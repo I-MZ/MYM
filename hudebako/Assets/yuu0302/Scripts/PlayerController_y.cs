@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController_y : MonoBehaviour
 {
     Rigidbody2D rbody;              //Rigidbody2D型の変数
     public float movespeed = 1.0f;  //移動速度
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        //重力による落下処理(下、上、右、左)
         switch (gravity)
         {
         case 0:
@@ -38,10 +38,9 @@ public class PlayerController : MonoBehaviour
                                                Vector2.down,
                                                0.5f,
                                                wallLayer);
-            if (!onWall)
-            {
+            
                 rbody.velocity = new Vector2(0, fallspead * -1);
-            }
+            
                 break;
 
         case 1:
@@ -50,10 +49,9 @@ public class PlayerController : MonoBehaviour
                                                Vector2.up,
                                                0.5f,
                                                wallLayer);
-            if (!onWall)
-            {
+            
                 rbody.velocity = new Vector2(0, fallspead);
-            }
+            
                 break;
 
         case 2:
@@ -62,10 +60,9 @@ public class PlayerController : MonoBehaviour
                                                Vector2.right,
                                                0.5f,
                                                wallLayer);
-            if (!onWall)
-            {
+            
                 rbody.velocity = new Vector2(fallspead, 0);
-            }
+            
                 break;
 
         case 3:
@@ -74,10 +71,9 @@ public class PlayerController : MonoBehaviour
                                               Vector2.left,
                                               0.5f,
                                               wallLayer);
-            if (!onWall)
-            {
+            
                 rbody.velocity = new Vector2(fallspead * -1, 0);
-            }
+            
                 break;
         }
     
@@ -87,7 +83,11 @@ public class PlayerController : MonoBehaviour
         {
             if (gravity == 0 || gravity == 1)
             {
-
+                rbody.velocity = new Vector2(movespeed * inputH, rbody.velocity.y);
+            }
+            else
+            {
+                rbody.velocity = new Vector2(rbody.velocity.x, movespeed * inputV);
             }
         }
 
@@ -143,4 +143,13 @@ public class PlayerController : MonoBehaviour
             gravity = 3;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Dead")
+        {
+
+        }
+    }
+
 }

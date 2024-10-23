@@ -1093,8 +1093,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8071cbba0c38c1443b1a782f6b89f9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallspead: 5
-  gravity: 0
+  movespeed: 5
+  fallspead: 10
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
