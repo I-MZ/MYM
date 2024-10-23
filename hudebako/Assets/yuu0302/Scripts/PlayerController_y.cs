@@ -5,30 +5,45 @@ using UnityEngine;
 public class PlayerController_y : MonoBehaviour
 {
     Rigidbody2D rbody;              //Rigidbody2D型の変数
+    SpriteRenderer sr;
     public float movespeed = 1.0f;  //移動速度
     private float inputH = 0.0f;      //横入力
     private float inputV = 0.0f;      //縦入力
     public float fallspead = 1.0f;  //落下速度
     private int gravity = 0;         //重力の向き(0=下,1=上,2=右,3=左)
     bool onWall = false;            //床(壁)に乗っているか
+    public double spawnpointX = 0.0f;//復活位置(X軸)
+    public double spawnpointY = 0.0f;//復活位置(Y軸)
 
+    public static string gameState = "playing";
     public LayerMask wallLayer;
 
     // Start is called before the first frame update
     void Start()
     {
         rbody = this.GetComponent<Rigidbody2D>();   //Rigidbody2Dを取ってくる
+        gameState = "playing";
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(gameState != "playing")
+        {
+            return;
+        }
+
         MoveUpdate();
         ChangeGravity();
     }
 
     void FixedUpdate()
     {
+        if (gameState != "playing")
+        {
+            return;
+        }
+
         //重力による落下処理(下、上、右、左)
         switch (gravity)
         {
@@ -148,8 +163,20 @@ public class PlayerController_y : MonoBehaviour
     {
         if (collision.gameObject.tag == "Dead")
         {
-
+            Respawn();
         }
+    }
+
+    void Respawn()
+    {
+        gameState = "respawn";
+        MoveStop();
+        
+    }
+
+    void MoveStop()
+    {
+        rbody.velocity = new Vector2(0, 0);
     }
 
 }
