@@ -12,8 +12,10 @@ public class PlayerController_y : MonoBehaviour
     public float fallspead = 1.0f;  //落下速度
     private int gravity = 0;         //重力の向き(0=下,1=上,2=右,3=左)
     bool onWall = false;            //床(壁)に乗っているか
-    public double spawnpointX = 0.0f;//復活位置(X軸)
-    public double spawnpointY = 0.0f;//復活位置(Y軸)
+    private float cla;
+    public float clarespeed = 0.001f;
+    public float spawnpointX = 0.0f;//復活位置(X軸)
+    public float spawnpointY = 0.0f;//復活位置(Y軸)
 
     public static string gameState = "playing";
     public LayerMask wallLayer;
@@ -22,6 +24,7 @@ public class PlayerController_y : MonoBehaviour
     void Start()
     {
         rbody = this.GetComponent<Rigidbody2D>();   //Rigidbody2Dを取ってくる
+        sr = GetComponent<SpriteRenderer>();
         gameState = "playing";
     }
 
@@ -171,7 +174,30 @@ public class PlayerController_y : MonoBehaviour
     {
         gameState = "respawn";
         MoveStop();
-        
+
+        cla = sr.color.a;
+        StartCoroutine(Display());
+    }
+
+    IEnumerator Display()
+    {
+        while (cla > 0f)
+        {
+            cla -= clarespeed;
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, cla);
+            yield return null;
+        }
+
+        transform.position = new Vector2(spawnpointX, spawnpointY);
+        gravity = 0;
+
+        while (cla < 1f)
+        {
+            cla += clarespeed;
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, cla);
+            yield return null;
+        }
+        gameState = "playing";
     }
 
     void MoveStop()
