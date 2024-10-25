@@ -22,10 +22,15 @@ public class get : MonoBehaviour
         //    Destroy(gameObject);
         //}
 
+        //ƒS[ƒ‹‚ÌŠø‚ÉG‚ê‚½‚Æ‚«
         if (collision.gameObject.tag == "Goal")
         {
             Destroy(collision.gameObject);
+
         }
+
+        
     }
+
 
 }
