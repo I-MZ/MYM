@@ -48,6 +48,11 @@ public class PlayerController_y : MonoBehaviour
             return;
         }
 
+        if (forcepower)
+        {
+            transform.localScale = new Vector3(1, 0.5f, 1);
+        }
+
         //重力による落下処理(下、上、右、左)
         switch (gravity)
         {
@@ -172,19 +177,48 @@ public class PlayerController_y : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity == 0)
         {
-            forcepower = true;
+            if (!forcepower)
+            {
+                forcepower = true;
+            }
+            else
+            {
+                forcepower = false;
+            }
+            
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity == 1)
         {
-            forcepower = true;
+            if (!forcepower)
+            {
+                forcepower = true;
+            }
+            else
+            {
+                forcepower = false;
+            }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity == 2)
         {
-            forcepower = true;
+            if (!forcepower)
+            {
+                forcepower = true;
+            }
+            else
+            {
+                forcepower = false;
+            }
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity == 3)
         {
-            forcepower = true;
+            if (!forcepower)
+            {
+                forcepower = true;
+            }
+            else
+            {
+                forcepower = false;
+            }
         }
 
 
@@ -229,7 +263,7 @@ public class PlayerController_y : MonoBehaviour
         cla = sr.color.a;
         StartCoroutine(Display());
 
-        gameState = "playing";
+        
     }
 
     IEnumerator Display()
@@ -250,7 +284,8 @@ public class PlayerController_y : MonoBehaviour
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, cla);
             yield return null;
         }
-        
+
+        gameState = "playing";
     }
 
     void MoveStop()
