@@ -99,11 +99,11 @@ public class PlayerController_a : MonoBehaviour
 
         if (onWall)
         {
-            if (gravity == 0 || gravity == 1)
+            if (gravity == 0 || gravity == 1)//â∫ÅAè„
             {
                 rbody.velocity = new Vector2(movespeed * inputH, rbody.velocity.y);
             }
-            else
+            else//âEÅAç∂
             {
                 rbody.velocity = new Vector2(rbody.velocity.x, movespeed * inputV);
             }

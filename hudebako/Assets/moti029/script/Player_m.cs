@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
 
 
 
+
 	// FixedUpdate（一定時間ごとに1度ずつ実行・物理演算用）
 	private void FixedUpdate()
 	{
@@ -81,4 +82,6 @@ public class Player : MonoBehaviour
 		// 計算した移動速度ベクトルをRigidbody2Dに反映
 		rigidbody2D.velocity = velocity;
 	}
+
+
 }
