@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController_y : MonoBehaviour
+public class MiniPlayerController_y : MonoBehaviour
 {
     Rigidbody2D rbody;              //Rigidbody2D型の変数
     SpriteRenderer sr;
@@ -31,7 +31,7 @@ public class PlayerController_y : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameState != "playing")
+        if (gameState != "playing")
         {
             return;
         }
@@ -47,56 +47,75 @@ public class PlayerController_y : MonoBehaviour
             return;
         }
 
-
         //重力による落下処理(下、上、右、左)
         switch (gravity)
         {
-        case 0:
-            onWall = Physics2D.CircleCast(transform.position,
-                                               0.1f,
-                                               Vector2.down,
-                                               0.5f,
-                                               wallLayer);
-            
+            case 0:
+                onWall = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.down,
+                                                   0.5f,
+                                                   wallLayer);
+
+                if (onWall)
+                {
+                    transform.eulerAngles = new Vector3(0, 0, 0);
+                }
+
                 rbody.velocity = new Vector2(0, fallspead * -1);
-            
+
                 break;
 
-        case 1:
-            onWall = Physics2D.CircleCast(transform.position,
-                                               0.1f,
-                                               Vector2.up,
-                                               0.5f,
-                                               wallLayer);
-            
+            case 1:
+                onWall = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.up,
+                                                   0.5f,
+                                                   wallLayer);
+
+                if (onWall)
+                {
+                    transform.eulerAngles = new Vector3(0, 0, 0);
+                }
+
                 rbody.velocity = new Vector2(0, fallspead);
-            
+
                 break;
 
-        case 2:
-            onWall = Physics2D.CircleCast(transform.position,
-                                               0.1f,
-                                               Vector2.right,
-                                               0.5f,
-                                               wallLayer);
-            
+            case 2:
+                onWall = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.right,
+                                                   0.5f,
+                                                   wallLayer);
+
+                if (onWall)
+                {
+                    transform.eulerAngles = new Vector3(0, 0, 90);
+                }
+
                 rbody.velocity = new Vector2(fallspead, 0);
-            
+
                 break;
 
-        case 3:
-            onWall = Physics2D.CircleCast(transform.position,
-                                              0.1f,
-                                              Vector2.left,
-                                              0.5f,
-                                              wallLayer);
-            
+            case 3:
+                onWall = Physics2D.CircleCast(transform.position,
+                                                  0.1f,
+                                                  Vector2.left,
+                                                  0.5f,
+                                                  wallLayer);
+
+                if (onWall)
+                {
+                    transform.eulerAngles = new Vector3(0, 0, 90);
+                }
+
                 rbody.velocity = new Vector2(fallspead * -1, 0);
-            
+
                 break;
         }
-    
-       
+
+
 
         if (onWall)
         {
@@ -207,7 +226,6 @@ public class PlayerController_y : MonoBehaviour
         }
 
         transform.position = new Vector2(spawnpointX, spawnpointY);
-        transform.eulerAngles = new Vector3(0, 0, 0);
         gravity = 0;
 
         while (cla < 1f)

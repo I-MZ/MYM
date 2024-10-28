@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController_y : MonoBehaviour
+public class PlayerController_Demo_y : MonoBehaviour
 {
-    Rigidbody2D rbody;              //Rigidbody2D型の変数
+    Rigidbody2D rbody;                   //Rigidbody2D型の変数
     SpriteRenderer sr;
-    public float movespeed = 1.0f;  //移動速度
-    private float inputH = 0.0f;      //横入力
-    private float inputV = 0.0f;      //縦入力
-    public float fallspead = 1.0f;  //落下速度
-    public int gravity = 0;         //重力の向き(0=下,1=上,2=右,3=左)
-    public bool onWall = false;            //床(壁)に乗っているか
+    public float movespeed = 1.0f;       //移動速度
+    private float inputH = 0.0f;         //横入力
+    private float inputV = 0.0f;         //縦入力
+    public float fallspead = 1.0f;       //落下速度
+    private int gravity = 0;             //重力の向き(0=下,1=上,2=右,3=左)
+    public bool forcepower = false;      //重力強化
+    bool onWall = false;                 //床(壁)に乗っているか
     private float cla;
     public float clarespeed = 0.001f;
-    public float spawnpointX = 0.0f;//復活位置(X軸)
-    public float spawnpointY = 0.0f;//復活位置(Y軸)
+    public float spawnpointX = 0.0f;     //復活位置(X軸)
+    public float spawnpointY = 0.0f;     //復活位置(Y軸)
 
     public static string gameState = "playing";
     public LayerMask wallLayer;
@@ -47,11 +48,15 @@ public class PlayerController_y : MonoBehaviour
             return;
         }
 
+        if (forcepower)
+        {
+            transform.localScale = new Vector3(0.78125f, 0.78125f/2, 1);
+        }
 
         //重力による落下処理(下、上、右、左)
         switch (gravity)
         {
-        case 0:
+        case 0://下
             onWall = Physics2D.CircleCast(transform.position,
                                                0.1f,
                                                Vector2.down,
@@ -59,10 +64,15 @@ public class PlayerController_y : MonoBehaviour
                                                wallLayer);
             
                 rbody.velocity = new Vector2(0, fallspead * -1);
-            
+
+                if (forcepower)
+                {
+                    transform.eulerAngles = new Vector3(0, 0, 0);
+                }
+
                 break;
 
-        case 1:
+        case 1://上
             onWall = Physics2D.CircleCast(transform.position,
                                                0.1f,
                                                Vector2.up,
@@ -70,10 +80,15 @@ public class PlayerController_y : MonoBehaviour
                                                wallLayer);
             
                 rbody.velocity = new Vector2(0, fallspead);
-            
+
+                if (forcepower)
+                {
+                    transform.eulerAngles = new Vector3(0, 0, 180);
+                }
+
                 break;
 
-        case 2:
+        case 2://右
             onWall = Physics2D.CircleCast(transform.position,
                                                0.1f,
                                                Vector2.right,
@@ -81,10 +96,15 @@ public class PlayerController_y : MonoBehaviour
                                                wallLayer);
             
                 rbody.velocity = new Vector2(fallspead, 0);
-            
+
+                if (forcepower)
+                {
+                    transform.eulerAngles = new Vector3(0, 0, 270);
+                }
+
                 break;
 
-        case 3:
+        case 3://左
             onWall = Physics2D.CircleCast(transform.position,
                                               0.1f,
                                               Vector2.left,
@@ -92,7 +112,12 @@ public class PlayerController_y : MonoBehaviour
                                               wallLayer);
             
                 rbody.velocity = new Vector2(fallspead * -1, 0);
-            
+
+                if (forcepower)
+                {
+                    transform.eulerAngles = new Vector3(0, 0, 90);
+                }
+
                 break;
         }
     
@@ -107,6 +132,11 @@ public class PlayerController_y : MonoBehaviour
             else
             {
                 rbody.velocity = new Vector2(rbody.velocity.x, movespeed * inputV);
+            }
+
+            if (!forcepower)
+            {
+                transform.localScale = new Vector3(0.78125f, 0.78125f, 1);
             }
         }
 
@@ -145,22 +175,76 @@ public class PlayerController_y : MonoBehaviour
 
     void ChangeGravity()
     {
-        if (PlayerMnager_y.gameState == "gravity_down" && onWall)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity == 0)
+        {
+            if (!forcepower)
+            {
+                forcepower = true;
+            }
+            else
+            {
+                forcepower = false;
+            }
+            
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity == 1)
+        {
+            if (!forcepower)
+            {
+                forcepower = true;
+            }
+            else
+            {
+                forcepower = false;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity == 2)
+        {
+            if (!forcepower)
+            {
+                forcepower = true;
+            }
+            else
+            {
+                forcepower = false;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity == 3)
+        {
+            if (!forcepower)
+            {
+                forcepower = true;
+            }
+            else
+            {
+                forcepower = false;
+            }
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity != 0)
         {
             gravity = 0;
+            forcepower = false;
         }
-        if (PlayerMnager_y.gameState == "gravity_up" && onWall)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity != 1)
         {
             gravity = 1;
+            forcepower = false;
         }
-        if (PlayerMnager_y.gameState == "gravity_right" && onWall)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity != 2)
         {
             gravity = 2;
+            forcepower = false;
         }
-        if (PlayerMnager_y.gameState == "gravity_left" && onWall)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity != 3)
         {
             gravity = 3;
+            forcepower = false;
         }
+
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -169,23 +253,6 @@ public class PlayerController_y : MonoBehaviour
         {
             Respawn();
         }
-
-        if (collision.gameObject.tag == "Goal")
-        {
-            Clear();
-        }
-
-        //ゴールの旗に触れたとき
-        if (collision.gameObject.tag == "Goal")
-        {
-            Destroy(collision.gameObject);
-        }
-    }
-
-    void Clear()
-    {
-        gameState = "clear";
-        MoveStop();
     }
 
     void Respawn()
@@ -207,7 +274,6 @@ public class PlayerController_y : MonoBehaviour
         }
 
         transform.position = new Vector2(spawnpointX, spawnpointY);
-        transform.eulerAngles = new Vector3(0, 0, 0);
         gravity = 0;
 
         while (cla < 1f)
