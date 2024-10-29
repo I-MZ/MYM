@@ -13,10 +13,14 @@ public class PlayerController_Demo_y : MonoBehaviour
     private int gravity = 0;             //重力の向き(0=下,1=上,2=右,3=左)
     public bool forcepower = false;      //重力強化
     bool onWall = false;                 //床(壁)に乗っているか
-    private float cla;
-    public float clarespeed = 0.001f;
+    private float cla;                   //透明度
+    public float clarespeed = 0.001f;    //変化速度
     public float spawnpointX = 0.0f;     //復活位置(X軸)
     public float spawnpointY = 0.0f;     //復活位置(Y軸)
+    public Sprite neutralsprite;
+    public Sprite minisprite;
+    private CircleCollider2D cc2;
+    private PolygonCollider2D pc2;
 
     public static string gameState = "playing";
     public LayerMask wallLayer;
@@ -26,7 +30,12 @@ public class PlayerController_Demo_y : MonoBehaviour
     {
         rbody = this.GetComponent<Rigidbody2D>();   //Rigidbody2Dを取ってくる
         sr = GetComponent<SpriteRenderer>();
+        cc2 = GetComponent<CircleCollider2D>();
+        pc2 = GetComponent<PolygonCollider2D>();
         gameState = "playing";
+        cc2.enabled = true;
+        pc2.enabled = false;
+        sr.sprite = neutralsprite;
     }
 
     // Update is called once per frame
@@ -50,7 +59,9 @@ public class PlayerController_Demo_y : MonoBehaviour
 
         if (forcepower)
         {
-            transform.localScale = new Vector3(0.78125f, 0.78125f/2, 1);
+            pc2.enabled = true;
+            sr.sprite = minisprite;
+            cc2.enabled = false;
         }
 
         //重力による落下処理(下、上、右、左)
@@ -136,7 +147,9 @@ public class PlayerController_Demo_y : MonoBehaviour
 
             if (!forcepower)
             {
-                transform.localScale = new Vector3(0.78125f, 0.78125f, 1);
+                cc2.enabled = true;
+                sr.sprite = neutralsprite;
+                pc2.enabled = false;
             }
         }
 
@@ -177,74 +190,95 @@ public class PlayerController_Demo_y : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity == 0)
         {
-            if (!forcepower)
-            {
-                forcepower = true;
-            }
-            else
-            {
-                forcepower = false;
-            }
-            
+            PowChange();
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity == 1)
         {
-            if (!forcepower)
-            {
-                forcepower = true;
-            }
-            else
-            {
-                forcepower = false;
-            }
+            PowChange();
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity == 2)
         {
-            if (!forcepower)
-            {
-                forcepower = true;
-            }
-            else
-            {
-                forcepower = false;
-            }
+            PowChange();
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity == 3)
         {
-            if (!forcepower)
-            {
-                forcepower = true;
-            }
-            else
-            {
-                forcepower = false;
-            }
+            PowChange();
         }
 
 
         if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity != 0)
         {
-            gravity = 0;
-            forcepower = false;
+            if (gravity == 2 || gravity == 3)
+            {
+                gravity = 0;
+                PowDown();
+            }
+            else
+            {
+                gravity = 0;
+            }
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity != 1)
         {
-            gravity = 1;
-            forcepower = false;
+            if (gravity == 2 || gravity == 3)
+            {
+                gravity = 1;
+                PowDown();
+            }
+            else
+            {
+                gravity = 1;
+            }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity != 2)
         {
-            gravity = 2;
-            forcepower = false;
+            if (gravity == 0 || gravity == 1)
+            {
+                gravity = 2;
+                PowDown();
+            }
+            else
+            {
+                gravity = 2;
+            }
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity != 3)
         {
-            gravity = 3;
-            forcepower = false;
+            if (gravity == 0 || gravity == 1)
+            {
+                gravity = 3;
+                PowDown();
+            }
+            else
+            {
+                gravity = 3;
+            }
         }
 
 
         
+    }
+
+    void PowChange()
+    {
+        if (!forcepower)
+        {
+            forcepower = true;
+        }
+        else
+        {
+            forcepower = false;
+        }
+    }
+
+    void PowUp()
+    {
+        forcepower = true;
+    }
+
+    void PowDown()
+    {
+        forcepower = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
