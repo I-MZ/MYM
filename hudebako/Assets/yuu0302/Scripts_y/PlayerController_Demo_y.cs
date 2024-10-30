@@ -10,7 +10,7 @@ public class PlayerController_Demo_y : MonoBehaviour
     private float inputH = 0.0f;         //横入力
     private float inputV = 0.0f;         //縦入力
     public float fallspead = 1.0f;       //落下速度
-    private int gravity = 0;             //重力の向き(0=下,1=上,2=右,3=左)
+    public int gravity = 0;             //重力の向き(0=下,1=上,2=右,3=左)
     public bool forcepower = false;      //重力強化
     bool onWall = false;                 //床(壁)に乗っているか
     private float cla;                   //透明度
