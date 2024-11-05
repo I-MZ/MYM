@@ -12,9 +12,10 @@ public class PlayerController_Demo_y : MonoBehaviour
     public float fallspead = 1.0f;       //落下速度
     public int gravity = 0;             //重力の向き(0=下,1=上,2=右,3=左)
     public bool forcepower = false;      //重力強化
+    private bool checkchange = false;
     bool onWall = false;                 //床(壁)に乗っているか
     private float cla;                   //透明度
-    public float clarespeed = 0.001f;    //変化速度
+    private float clarespeed = 0.001f;    //変化速度
     public float spawnpointX = 0.0f;     //復活位置(X軸)
     public float spawnpointY = 0.0f;     //復活位置(Y軸)
     public Sprite neutralsprite;
@@ -24,6 +25,14 @@ public class PlayerController_Demo_y : MonoBehaviour
 
     public static string gameState = "playing";
     public LayerMask wallLayer;
+
+    Animator animator;
+    public string henkeianime = "player-HENKEI";
+    public string modorianime = "player-HUKUGEN";
+    public string tuujouanime = "player-TUUJOU";
+
+    string nowanime = "";
+    string oldanime = "";
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +45,9 @@ public class PlayerController_Demo_y : MonoBehaviour
         cc2.enabled = true;
         pc2.enabled = false;
         sr.sprite = neutralsprite;
+        animator = GetComponent<Animator>();
+        nowanime = tuujouanime;
+        oldanime = tuujouanime;
     }
 
     // Update is called once per frame
@@ -60,6 +72,7 @@ public class PlayerController_Demo_y : MonoBehaviour
         if (forcepower)
         {
             pc2.enabled = true;
+            nowanime = henkeianime;
             sr.sprite = minisprite;
             cc2.enabled = false;
         }
@@ -148,9 +161,16 @@ public class PlayerController_Demo_y : MonoBehaviour
             if (!forcepower)
             {
                 cc2.enabled = true;
+                nowanime = modorianime;
                 sr.sprite = neutralsprite;
                 pc2.enabled = false;
             }
+        }
+
+        if (nowanime != oldanime && checkchange)
+        {
+            oldanime = nowanime;
+            animator.Play(nowanime);
         }
 
     }
@@ -263,17 +283,18 @@ public class PlayerController_Demo_y : MonoBehaviour
     {
         if (!forcepower)
         {
-            forcepower = true;
+            PowUp();
         }
         else
         {
-            forcepower = false;
+            PowDown();
         }
     }
 
     void PowUp()
     {
         forcepower = true;
+        checkchange = true;
     }
 
     void PowDown()
@@ -287,6 +308,11 @@ public class PlayerController_Demo_y : MonoBehaviour
         {
             Respawn();
         }
+
+        if (collision.gameObject.tag == "Goal")
+        {
+            Clear();
+        }
     }
 
     void Respawn()
@@ -296,6 +322,12 @@ public class PlayerController_Demo_y : MonoBehaviour
 
         cla = sr.color.a;
         StartCoroutine(Display());
+    }
+
+    void Clear()
+    {
+        gameState = "clear";
+        MoveStop();
     }
 
     IEnumerator Display()
@@ -308,7 +340,9 @@ public class PlayerController_Demo_y : MonoBehaviour
         }
 
         transform.position = new Vector2(spawnpointX, spawnpointY);
+        
         gravity = 0;
+        PowDown();
 
         while (cla < 1f)
         {
