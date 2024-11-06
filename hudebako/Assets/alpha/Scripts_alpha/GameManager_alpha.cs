@@ -8,10 +8,10 @@ public class GameManager_alpha : MonoBehaviour
     public GameObject panel;
     public GameObject resetButton;
 
-
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
         panel.SetActive(false);
     }
 
@@ -24,5 +24,15 @@ public class GameManager_alpha : MonoBehaviour
             Button bt = resetButton.GetComponent<Button>();
             bt.interactable = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Quit();
+        }
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

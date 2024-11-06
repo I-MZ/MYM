@@ -15,11 +15,9 @@ public class PlayerController_alpha : MonoBehaviour
     private bool checkchange = false;
     bool onWall = false;                 //床(壁)に乗っているか
     private float cla;                   //透明度
-    private float clarespeed = 0.001f;    //変化速度
+    private float clarespeed = 0.01f;    //変化速度
     public float spawnpointX = 0.0f;     //復活位置(X軸)
     public float spawnpointY = 0.0f;     //復活位置(Y軸)
-    public Sprite neutralsprite;
-    public Sprite minisprite;
     private CircleCollider2D cc2;
     private PolygonCollider2D pc2;
 
@@ -44,7 +42,6 @@ public class PlayerController_alpha : MonoBehaviour
         gameState = "playing";
         cc2.enabled = true;
         pc2.enabled = false;
-        sr.sprite = neutralsprite;
         animator = GetComponent<Animator>();
         nowanime = tuujouanime;
         oldanime = tuujouanime;
@@ -73,8 +70,8 @@ public class PlayerController_alpha : MonoBehaviour
         {
             pc2.enabled = true;
             nowanime = henkeianime;
-            sr.sprite = minisprite;
             cc2.enabled = false;
+            rbody.freezeRotation = true;
         }
 
         //重力による落下処理(下、上、右、左)
@@ -145,7 +142,10 @@ public class PlayerController_alpha : MonoBehaviour
                 break;
         }
 
-
+        if (!onWall)
+        {
+            rbody.freezeRotation = true;
+        }
 
         if (onWall)
         {
@@ -162,8 +162,8 @@ public class PlayerController_alpha : MonoBehaviour
             {
                 cc2.enabled = true;
                 nowanime = modorianime;
-                sr.sprite = neutralsprite;
                 pc2.enabled = false;
+                rbody.freezeRotation = false;
             }
         }
 
@@ -340,9 +340,14 @@ public class PlayerController_alpha : MonoBehaviour
         }
 
         transform.position = new Vector2(spawnpointX, spawnpointY);
-
+        transform.eulerAngles = new Vector3(0, 0, 0);
         gravity = 0;
         PowDown();
+        cc2.enabled = true;
+        nowanime = modorianime;
+        oldanime = modorianime;
+        animator.Play(nowanime);
+        pc2.enabled = false;
 
         while (cla < 1f)
         {
@@ -350,11 +355,13 @@ public class PlayerController_alpha : MonoBehaviour
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, cla);
             yield return null;
         }
+        rbody.freezeRotation = false;
         gameState = "playing";
     }
 
     void MoveStop()
     {
         rbody.velocity = new Vector2(0, 0);
+        rbody.freezeRotation = true;
     }
 }
