@@ -142,10 +142,11 @@ public class PlayerController_alpha : MonoBehaviour
                 break;
         }
 
-        if (!onWall)
-        {
-            rbody.freezeRotation = true;
-        }
+        ////浮いてるときは回転しない
+        //if (!onWall)
+        //{
+        //    rbody.freezeRotation = true;
+        //}
 
         if (onWall)
         {
@@ -208,6 +209,7 @@ public class PlayerController_alpha : MonoBehaviour
 
     void ChangeGravity()
     {
+        //重力の強弱切り替え
         if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity == 0)
         {
             PowChange();
@@ -225,7 +227,7 @@ public class PlayerController_alpha : MonoBehaviour
             PowChange();
         }
 
-
+        //重力の向き切り替え
         if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity != 0)
         {
             if (gravity == 2 || gravity == 3)
@@ -279,6 +281,7 @@ public class PlayerController_alpha : MonoBehaviour
 
     }
 
+    //重力の強弱切り替え
     void PowChange()
     {
         if (!forcepower)
@@ -291,12 +294,13 @@ public class PlayerController_alpha : MonoBehaviour
         }
     }
 
+    //重力(強)
     void PowUp()
     {
         forcepower = true;
         checkchange = true;
     }
-
+    //重力(弱)
     void PowDown()
     {
         forcepower = false;
@@ -304,17 +308,19 @@ public class PlayerController_alpha : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //死亡判定
         if (collision.gameObject.tag == "Dead")
         {
             Respawn();
         }
-
+        //ゴール判定
         if (collision.gameObject.tag == "Goal")
         {
             Clear();
         }
     }
 
+    //復活処理
     void Respawn()
     {
         gameState = "respawn";
@@ -324,6 +330,7 @@ public class PlayerController_alpha : MonoBehaviour
         StartCoroutine(Display());
     }
 
+    //ステージクリア
     void Clear()
     {
         gameState = "clear";
@@ -332,6 +339,7 @@ public class PlayerController_alpha : MonoBehaviour
 
     IEnumerator Display()
     {
+        //徐々に透明になる
         while (cla > 0f)
         {
             cla -= clarespeed;
@@ -349,12 +357,14 @@ public class PlayerController_alpha : MonoBehaviour
         animator.Play(nowanime);
         pc2.enabled = false;
 
+        //徐々に実体化する
         while (cla < 1f)
         {
             cla += clarespeed;
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, cla);
             yield return null;
         }
+
         rbody.freezeRotation = false;
         gameState = "playing";
     }
