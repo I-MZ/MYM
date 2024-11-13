@@ -5,7 +5,7 @@ using UnityEngine;
 public class FudebakoChanger : MonoBehaviour
 {
     public GameObject PlayerObject;
-    PlayerController_alpha Pcon;
+    PlayerController Pcon;
 
     public GameObject Fudebako_Down;
     public GameObject Fudebako_Up;
@@ -17,7 +17,7 @@ public class FudebakoChanger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Pcon = PlayerObject.GetComponent<PlayerController_alpha>();
+        Pcon = PlayerObject.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
