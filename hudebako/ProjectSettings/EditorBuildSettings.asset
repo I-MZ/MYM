@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/moti029/Scenes/Scene_Abe.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/alpha/Scenes_alpha/Game_alpha.unity
-    guid: 7de9e35547708a248a83262a435e5bd0
+    path: Assets/Game/Scenes/Title.unity
+    guid: 65cf3d89150d1e94eb647de0b9d40c0e
+  - enabled: 1
+    path: Assets/Game/Scenes/StageSelect.unity
+    guid: 558d0159bc196f04e89cf2b57395e3dc
+  - enabled: 1
+    path: Assets/Game/Scenes/Stage1.unity
+    guid: 48c3c8b0f09158e4bb308b1429b14a19
   m_configObjects: {}
