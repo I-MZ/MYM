@@ -32,8 +32,8 @@ Transform:
   m_GameObject: {fileID: 5196671999972059630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.95, y: 0.95, z: 0.95}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -115,7 +115,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 5196671999972059630}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f6623dece5b8bbe42859aab7076925c0, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -252,9 +252,9 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
-  henkeianime: player-HENKEI
-  modorianime: player-HUKUGEN
-  tuujouanime: player-TUUZYOU
+  henkeianime: DeformationAnime
+  modorianime: ReturnAnime
+  tuujouanime: NeutralAnime
 --- !u!95 &5196671999972059622
 Animator:
   serializedVersion: 5
@@ -265,7 +265,7 @@ Animator:
   m_GameObject: {fileID: 5196671999972059630}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8621082ca15b92c4289746f9d0370802, type: 2}
+  m_Controller: {fileID: 9100000, guid: e5b677bb8d4e0144eb83379280f55ea2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
