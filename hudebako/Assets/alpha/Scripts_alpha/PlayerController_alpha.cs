@@ -337,6 +337,18 @@ public class PlayerController_alpha : MonoBehaviour
         MoveStop();
     }
 
+    public void Pause()
+    {
+        gameState = "pause";
+        MoveStop();
+    }
+
+    public void Release()
+    {
+        gameState = "playing";
+        rbody.freezeRotation = false;
+    }
+
     IEnumerator Display()
     {
         //èôÅXÇ…ìßñæÇ…Ç»ÇÈ
