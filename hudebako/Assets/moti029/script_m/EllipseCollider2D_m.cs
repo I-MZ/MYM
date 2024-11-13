@@ -8,7 +8,7 @@ using UnityEngine;
 /// 楕円形のコライダー(をPolygonCollider2Dで表現するクラス)
 /// </summary>
 [RequireComponent(typeof(PolygonCollider2D))]
-public class EllipseCollider2D : MonoBehaviour
+public class EllipseCollider2D_m : MonoBehaviour
 {
 
     private PolygonCollider2D _polygonCollider2D;

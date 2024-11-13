@@ -6,11 +6,16 @@ public class PlayerController_a : MonoBehaviour
 {
     Rigidbody2D rbody;              //Rigidbody2D型の変数
     SpriteRenderer sr;
+
+    [SerializeField] public GameObject targetGameObject1; //通常オブジェクトを入れる
+    [SerializeField] public GameObject targetGameObject2; //変形オブジェクトを入れる
+
     public float movespeed = 1.0f;  //移動速度
-    private float inputH = 0.0f;      //横入力
-    private float inputV = 0.0f;      //縦入力
+    private float inputH = 0.0f;    //横入力
+    private float inputV = 0.0f;    //縦入力
     public float fallspead = 1.0f;  //落下速度
-    private int gravity = 0;         //重力の向き(0=下,1=上,2=右,3=左)
+    private int gravity = 0;        //重力の向き(0=下,1=上,2=右,3=左)
+    public bool onGravity = false;  //重力がかかっているか
     bool onWall = false;            //床(壁)に乗っているか
     private float cla;
     public float clarespeed = 0.001f;
@@ -46,6 +51,8 @@ public class PlayerController_a : MonoBehaviour
         {
             return;
         }
+
+        
 
         //重力による落下処理(下、上、右、左)
         switch (gravity)
@@ -222,4 +229,30 @@ public class PlayerController_a : MonoBehaviour
         rbody.velocity = new Vector2(0, 0);
     }
 
+
+    void Deformation_all()
+    {
+        if (onGravity == true)
+        {
+            Deformation();
+        }
+        if (onGravity == false)
+        {
+            Deformation_release();
+        }
+
+        void Deformation()//変形アニメーション再生
+        {
+            targetGameObject2.SetActive(true);
+            targetGameObject1.SetActive(false);
+        }
+
+        void Deformation_release()//変形解除アニメーション再生
+        {
+            targetGameObject1.SetActive(true);
+            targetGameObject2.SetActive(false);
+        }
+
+
+    }
 }

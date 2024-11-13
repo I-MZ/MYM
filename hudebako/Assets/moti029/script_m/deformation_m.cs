@@ -13,27 +13,25 @@ public class deformation_m : MonoBehaviour
     private float inputH = 0.0f;      //横入力
     private float inputV = 0.0f;      //縦入力
 
-    bool up_wall = false;       //上側の壁
-    bool down_wall = false;     //下側の壁
-    bool right_wall = false;    //右側の壁
-    bool left_wall = false;     //左側の壁
-
     private int gravity = 0;         //重力の向き(0=下,1=上,2=右,3=左)
 
     bool onWall = false;            //床(壁)に乗っているか
     bool onGravity = false;         //重力がかかっているか
-    
+
     // Start is called before the first frame update
     void Start()
     {
         rbody = this.GetComponent<Rigidbody2D>();   //Rigidbody2Dを取ってくる
+        //targetGameObject1.SetActive(true);//通常オブジェクト表示
         targetGameObject2.SetActive(false);//変形オブジェクトは消しておく
     }
 
     // Update is called once per frame
     void Update()
     {
-        Deformation();
+        ChangeGravity();
+        Deformation_all();
+        
 
         if (targetGameObject1.activeInHierarchy)
         {
@@ -44,9 +42,12 @@ public class deformation_m : MonoBehaviour
             targetGameObject1.transform.position = targetGameObject2.transform.position;
         }
 
+        
+
     }
     private void FixedUpdate()
     {
+       
         if (onWall)
         {
             if (gravity == 0 || gravity == 1)//下、上
@@ -66,92 +67,119 @@ public class deformation_m : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow) && onWall)
         {
             gravity = 0;
-            down_wall = true;
-        }
+        }       
         if (Input.GetKeyDown(KeyCode.UpArrow) && onWall)
         {
             gravity = 1;
-            up_wall = true;
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) && onWall)
         {
             gravity = 2;
-            right_wall = true;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall)
         {
             gravity = 3;
-            left_wall = true;
-
         }
+
+        //下側の床についていて下キーが押されたとき
+        if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity == 0)
+        {
+            if (!onGravity)//重力が強くなければ
+            {
+                onGravity = true;//重力を強くする
+            }
+            else//重力が強ければ
+            {
+                onGravity = false;//重力を弱める
+            }
+        } //上側の床についていて上キーが押されたとき
+        if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity == 1)
+        {
+            if (!onGravity)//重力が強くなければ
+            {
+                onGravity = true;//重力を強くする
+            }
+            else//重力が強ければ
+            {
+                onGravity = false;//重力を弱める
+            }
+
+        } //右側の床についていて右キーが押されたとき
+        if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity == 2)
+        {
+            if (!onGravity)//重力が強くなければ
+            {
+                onGravity = true;//重力を強くする
+            }
+            else//重力が強ければ
+            {
+                onGravity = false;//重力を弱める
+            }
+
+        } //左側の床についていて左キーが押されたとき
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity == 3)
+        {
+            if (!onGravity)//重力が強くなければ
+            {
+                onGravity = true;//重力を強くする
+            }
+            else//重力が強ければ
+            {
+                onGravity = false;//重力を弱める
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity != 0)
+        {
+            gravity = 0;
+            onGravity = false;
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity != 1)
+        {
+            gravity = 1;
+            onGravity = false;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity != 2)
+        {
+            gravity = 2;
+            onGravity = false;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity != 3)
+        {
+            gravity = 3;
+            onGravity = false;
+        }
+
+
     }
-    
 
 
-    void Deformation()//変形
+    void Deformation_all()
     {
-        //今くっついている壁側に向かって矢印キーを押す
-        //playerがactiveなのか調べてアクティブと非アクティブを切り替える
-
-        //下側に重力がかかっている時
-        if (Input.GetKeyDown(KeyCode.DownArrow) && targetGameObject1.activeInHierarchy && gravity == 0)
+        if (onGravity == true)
         {
-            onGravity = true;
-            targetGameObject2.SetActive(true);
-            targetGameObject1.SetActive(false);
-            return;
+            Deformation();
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && targetGameObject2.activeInHierarchy && gravity == 0)
+        if (onGravity == false)
         {
-            onGravity = false;
-            targetGameObject1.SetActive(true);
-            targetGameObject2.SetActive(false);
-            return;
+            Deformation_release();
         }
 
-        //上側に重力がかかっている時
-        if (Input.GetKeyDown(KeyCode.UpArrow) && targetGameObject1.activeInHierarchy && gravity == 1)
-        {
-            onGravity = true;
-            targetGameObject2.SetActive(true);
-            targetGameObject1.SetActive(false);
-            return;
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && targetGameObject2.activeInHierarchy && gravity == 1)
-        {
-            onGravity = false;
-            targetGameObject1.SetActive(true);
-            targetGameObject2.SetActive(false);
-            return;
-        }
-
-        //右
-        if (Input.GetKeyDown(KeyCode.RightArrow) && targetGameObject1.activeInHierarchy && onGravity == true)
+        void Deformation()//変形アニメーション再生
         {
             targetGameObject2.SetActive(true);
             targetGameObject1.SetActive(false);
-            return;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && targetGameObject2.activeInHierarchy && onGravity == true)
+    
+        void Deformation_release()//変形解除アニメーション再生
         {
             targetGameObject1.SetActive(true);
             targetGameObject2.SetActive(false);
-            return;
         }
 
-        //左
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && targetGameObject1.activeInHierarchy && onGravity == true)
-        {
-            targetGameObject2.SetActive(true);
-            targetGameObject1.SetActive(false);
-            return;
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && targetGameObject2.activeInHierarchy && onGravity == true)
-        {
-            targetGameObject1.SetActive(true);
-            targetGameObject2.SetActive(false);
-            return;
-        }
-
+        
     }
+
+
+   
 }
