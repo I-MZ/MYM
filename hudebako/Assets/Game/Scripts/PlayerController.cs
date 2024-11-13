@@ -360,7 +360,7 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.position = new Vector2(spawnpointX, spawnpointY);
-        transform.eulerAngles = new Vector3(0, 0, 0);
+        transform.eulerAngles = new Vector3(0, 0, 0); 
         gravity = 0;
         PowDown();
         cc2.enabled = true;
