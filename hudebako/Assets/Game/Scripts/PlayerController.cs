@@ -337,18 +337,6 @@ public class PlayerController : MonoBehaviour
         MoveStop();
     }
 
-    public void Pause()
-    {
-        gameState = "pause";
-        MoveStop();
-    }
-
-    public void Release()
-    {
-        gameState = "playing";
-        rbody.freezeRotation = false;
-    }
-
     IEnumerator Display()
     {
         //èôÅXÇ…ìßñæÇ…Ç»ÇÈ
@@ -364,9 +352,13 @@ public class PlayerController : MonoBehaviour
         gravity = 0;
         PowDown();
         cc2.enabled = true;
-        nowanime = modorianime;
-        oldanime = modorianime;
-        animator.Play(nowanime);
+        if (oldanime != tuujouanime)
+        {
+            nowanime = modorianime;
+            oldanime = modorianime;
+            animator.Play(nowanime);
+
+        }
         pc2.enabled = false;
 
         //èôÅXÇ…é¿ëÃâªÇ∑ÇÈ
