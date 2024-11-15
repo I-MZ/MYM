@@ -10,7 +10,7 @@ public class MenuManager : MonoBehaviour
     public GameObject TutorialPage2;
 
     private int page;
-    private bool checkmenu;
+    public bool checkmenu;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +38,11 @@ public class MenuManager : MonoBehaviour
                     break;
             }
         }
+        else
+        {
+            TutorialPage1.SetActive(false);
+            TutorialPage2.SetActive(false);
+        }
         
     }
 
@@ -61,8 +66,6 @@ public class MenuManager : MonoBehaviour
     public void ReturnMenu()
     {
         Menu.SetActive(true);
-        TutorialPage1.SetActive(false);
-        TutorialPage2.SetActive(false);
         checkmenu = false;
     }
 }

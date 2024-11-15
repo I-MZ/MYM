@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public GameObject resetButton;
     public GameObject menuButton;
 
+    public GameObject timer;
+    public GameObject timeText;
+    TimeController timeCnt;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +20,15 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         clearpanel.SetActive(false);
         menupanel.SetActive(false);
+
+        timeCnt = GetComponent<TimeController>();
+        if (timeCnt != null)
+        {
+            if (timeCnt.gameTime == 0.0f)
+            {
+                timer.SetActive(false);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -30,6 +42,19 @@ public class GameManager : MonoBehaviour
             rbt.interactable = false;
             Button mbt = menuButton.GetComponent<Button>();
             mbt.interactable = false;
+
+            if (timeCnt != null)
+            {
+                timeCnt.isTimeOver = true;
+            }
+        }
+        else if (PlayerController.gameState == "playing" || PlayerController.gameState == "respawn") 
+        {
+
+            if (timeCnt != null)
+            {
+
+            }
         }
 
        
