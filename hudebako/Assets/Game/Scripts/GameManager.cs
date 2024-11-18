@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public GameObject timeText;
     TimeController timeCnt;
 
+    float time_s = 0;
+    int time_m = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +56,17 @@ public class GameManager : MonoBehaviour
 
             if (timeCnt != null)
             {
-
+                if (timeCnt.gameTime > 0.0f)
+                {
+                    time_s += timeCnt.f_time;
+                    
+                    if (time_s >= 60.0f)
+                    {
+                        time_m++;
+                        time_s -= 60.0f;
+                    }
+                    timeText.GetComponent<Text>().text = time_m.ToString() + ":" + time_s.ToString("00.00");
+                }
             }
         }
 

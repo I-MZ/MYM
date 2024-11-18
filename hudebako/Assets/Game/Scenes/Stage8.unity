@@ -1488,11 +1488,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7315348617013170622, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
       propertyPath: sceneName
-      value: Stage
+      value: Stage8
       objectReference: {fileID: 0}
     - target: {fileID: 7315348617701477306, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
       propertyPath: sceneName
-      value: Stage
+      value: Stage9
       objectReference: {fileID: 0}
     - target: {fileID: 7315348618201845216, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
       propertyPath: m_Pivot.x
@@ -1588,7 +1588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7315348618233333717, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
       propertyPath: sceneName
-      value: Stage
+      value: Stage8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}

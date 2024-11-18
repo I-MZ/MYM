@@ -6557,6 +6557,8 @@ MonoBehaviour:
   menupanel: {fileID: 7315348617081447067}
   resetButton: {fileID: 7315348617013170619}
   menuButton: {fileID: 7315348618902116345}
+  timer: {fileID: 4730502572191626525}
+  timeText: {fileID: 1279325351216181536}
 --- !u!114 &5895048441258099079
 MonoBehaviour:
   m_ObjectHideFlags: 0

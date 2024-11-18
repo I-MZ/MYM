@@ -10,6 +10,8 @@ public class TimeController : MonoBehaviour
     public float displayTime = 0;
 
     float times = 0;
+    public float f_time = 0;
+    float x = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,9 @@ public class TimeController : MonoBehaviour
         if (!isTimeOver)
         {
             times += Time.deltaTime;
+
+            f_time = times - x;
+
             if (isCountDown)
             {
                 displayTime = gameTime - times;
@@ -34,16 +39,23 @@ public class TimeController : MonoBehaviour
                     displayTime = 0.0f;
                     isTimeOver = true;
                 }
-                else
+                
+            }
+            else
+            {
+                displayTime = times;
+                if (displayTime >= gameTime)
                 {
-                    displayTime = times;
-                    if (displayTime >= gameTime)
-                    {
-                        displayTime = gameTime;
-                        isTimeOver = true;
-                    }
+                    displayTime = gameTime;
+                    isTimeOver = true;
                 }
             }
+
+            x = times;
+        }
+        else
+        {
+            f_time = 0;
         }
     }
 }
