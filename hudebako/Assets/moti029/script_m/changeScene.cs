@@ -7,95 +7,81 @@ using UnityEngine.SceneManagement;
 
 public class changeScene : MonoBehaviour
 {
-    [SerializeField] public GameObject title_button; //タイトルボタンを入れる
-    [SerializeField] public GameObject Stage1_button; //ステージ1
-    [SerializeField] public GameObject Stage2_button; //ステージ2
-    [SerializeField] public GameObject Stage3_button; //ステージ3
-    [SerializeField] public GameObject Stage4_button; //ステージ4
-
-    [SerializeField] public GameObject Stage5_button; //ステージ5
-    [SerializeField] public GameObject Stage6_button; //ステージ6
-    [SerializeField] public GameObject Stage7_button; //ステージ7
-    [SerializeField] public GameObject Stage8_button; //ステージ8
-
-    [SerializeField] public GameObject Stage9_button; //ステージ9
-    [SerializeField] public GameObject Stage10_button; //ステージ10
+    [SerializeField] public GameObject select_button; //ボタンを入れる
+    int stage_num;
 
 
     public void Stage_select()//ステージ決定
     {
-       //タイトル画面からセレクト画面へ
-        if (title_button)
+        if (select_button)
         {
-            SceneManager.LoadScene("Stage_Select_Scene_m", LoadSceneMode.Single);
-        } 
-        
-        //セレクト画面からステージ1
-        if (SceneManager.GetActiveScene().name == "Stage_Select_Scene_m" && Stage1_button)
-        {
-            SceneManager.LoadScene("Stage1", LoadSceneMode.Single);
+            if (select_button.name == "Stage1_button")
+                stage_num = 0;
+            if (select_button.name == "Stage2_button")
+                stage_num = 1;
+            if (select_button.name == "Stage3_button")
+                stage_num = 2;
+            if (select_button.name == "Stage4_button")
+                stage_num = 3;
+            if (select_button.name == "Stage5_button")
+                stage_num = 4;
+            if (select_button.name == "Stage6_button")
+                stage_num = 5;
+            if (select_button.name == "Stage7_button")
+                stage_num = 6;
+            if (select_button.name == "Stage8_button")
+                stage_num = 7;
+            if (select_button.name == "Stage9_button")
+                stage_num = 8;
+            if (select_button.name == "Stage10_button")
+                stage_num = 9;
+            if (select_button.name == "Stage_select_button")
+                stage_num = 10;
         }
-        
-        //セレクト画面からステージ2
-        if (SceneManager.GetActiveScene().name == "Stage_Select_Scene_m" && Stage2_button)
+
+        switch (stage_num)
         {
-            SceneManager.LoadScene("Stage2", LoadSceneMode.Single);
+            case 0:
+                SceneManager.LoadScene("Stage1", LoadSceneMode.Single);
+                break;
+            case 1:
+                SceneManager.LoadScene("Stage2", LoadSceneMode.Single);
+                break;
+            case 2:
+                SceneManager.LoadScene("Stage3", LoadSceneMode.Single);
+                break;
+            case 3:
+                SceneManager.LoadScene("Stage4", LoadSceneMode.Single);
+                break; 
+            case 4:
+                SceneManager.LoadScene("Stage5", LoadSceneMode.Single);
+                break;
+            case 5:
+                SceneManager.LoadScene("Stage6", LoadSceneMode.Single);
+                break;
+            case 6:
+                SceneManager.LoadScene("Stage7", LoadSceneMode.Single);
+                break;
+            case 7:
+                SceneManager.LoadScene("Stage8", LoadSceneMode.Single);
+                break; 
+            case 8:
+                SceneManager.LoadScene("Stage9", LoadSceneMode.Single);
+                break;
+            case 9:
+                SceneManager.LoadScene("Stage10", LoadSceneMode.Single);
+                break;
+            case 10://ステージセレクト画面
+                SceneManager.LoadScene("Stage_Select_Scene_m", LoadSceneMode.Single);
+                break;
+
         }
+
         
-        //セレクト画面からステージ3
-        if (SceneManager.GetActiveScene().name == "Stage_Select_Scene_m" && Stage3_button)
-        {
-            SceneManager.LoadScene("Stage3", LoadSceneMode.Single);
-        }
-        
-        //セレクト画面からステージ4
-        if (SceneManager.GetActiveScene().name == "Stage_Select_Scene_m" && Stage4_button)
-        {
-            SceneManager.LoadScene("Stage4", LoadSceneMode.Single);
-        }
-        
-        //セレクト画面からステージ5
-        if (SceneManager.GetActiveScene().name == "Stage_Select_Scene_m" && Stage5_button)
-        {
-            SceneManager.LoadScene("Stage5", LoadSceneMode.Single);
-        }
-        
-        //セレクト画面からステージ6
-        if (SceneManager.GetActiveScene().name == "Stage_Select_Scene_m" && Stage6_button)
-        {
-            SceneManager.LoadScene("Stage6", LoadSceneMode.Single);
-        }
-        
-        //セレクト画面からステージ7
-        if (SceneManager.GetActiveScene().name == "Stage_Select_Scene_m" && Stage7_button)
-        {
-            SceneManager.LoadScene("Stage7", LoadSceneMode.Single);
-        }
-        
-        //セレクト画面からステージ8
-        if (SceneManager.GetActiveScene().name == "Stage_Select_Scene_m" && Stage8_button)
-        {
-            SceneManager.LoadScene("Stage8", LoadSceneMode.Single);
-        }
-        
-        //セレクト画面からステージ9
-        if (SceneManager.GetActiveScene().name == "Stage_Select_Scene_m" && Stage9_button)
-        {
-            SceneManager.LoadScene("Stage9", LoadSceneMode.Single);
-        }
-        
-        //セレクト画面からステージ10
-        if (SceneManager.GetActiveScene().name == "Stage_Select_Scene_m" && Stage10_button)
-        {
-            SceneManager.LoadScene("Stage10", LoadSceneMode.Single);
-        }
-        
-        
+       
     }
 
-   
-    
-
+  
 }
 
 

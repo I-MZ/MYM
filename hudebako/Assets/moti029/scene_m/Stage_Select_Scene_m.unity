@@ -182,11 +182,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 33a36c0d967157a44918ea78cb286fc4, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -194,7 +194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage2
+  m_Text: "\u30B9\u30C6\u30FC\u30B8\uFF12"
 --- !u!222 &33212806
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -203,6 +203,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33212803}
   m_CullTransparentMesh: 1
+--- !u!1 &105697395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 105697396}
+  - component: {fileID: 105697397}
+  m_Layer: 0
+  m_Name: stage_select_arrow2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &105697396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105697395}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.14, y: -1.69, z: 0}
+  m_LocalScale: {x: 0.42851365, y: 0.4990754, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 810574702}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &105697397
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105697395}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 194599db78125574985a1000381e193e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5, y: 3}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &106409200
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,11 +346,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 33a36c0d967157a44918ea78cb286fc4, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -274,7 +358,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage9
+  m_Text: "\u30B9\u30C6\u30FC\u30B8\uFF19"
 --- !u!222 &106409203
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -367,7 +451,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 150814932}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 150814934}
+        m_TargetAssemblyTypeName: changeScene, Assembly-CSharp
+        m_MethodName: Stage_select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &150814932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,17 +514,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d10c68d7baf74a4996e857f1afefebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title_button: {fileID: 0}
-  Stage1_button: {fileID: 1613808878}
-  Stage2_button: {fileID: 1806803192}
-  Stage3_button: {fileID: 1206233228}
-  Stage4_button: {fileID: 150814929}
-  Stage5_button: {fileID: 595583503}
-  Stage6_button: {fileID: 1364862089}
-  Stage7_button: {fileID: 1520787821}
-  Stage8_button: {fileID: 784381082}
-  Stage9_button: {fileID: 855341153}
-  Stage10_button: {fileID: 691474293}
+  select_button: {fileID: 150814929}
+--- !u!1 &217125367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 217125368}
+  - component: {fileID: 217125369}
+  m_Layer: 0
+  m_Name: stage_select_arrow1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &217125368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217125367}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.09, y: -2.97, z: 0}
+  m_LocalScale: {x: 0.99, y: 1.027327, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 810574702}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &217125369
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217125367}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 9d58fa58fa7ff4d489bcde28b9722b4f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5, y: 3}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &228254447
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,11 +742,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 33a36c0d967157a44918ea78cb286fc4, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -584,7 +754,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage4
+  m_Text: "\u30B9\u30C6\u30FC\u30B8\uFF14"
 --- !u!222 &312443925
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -785,11 +955,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 33a36c0d967157a44918ea78cb286fc4, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -797,7 +967,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage1
+  m_Text: "\u30B9\u30C6\u30FC\u30B8\uFF11"
 --- !u!222 &558923180
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -818,6 +988,7 @@ GameObject:
   - component: {fileID: 595583508}
   - component: {fileID: 595583507}
   - component: {fileID: 595583506}
+  - component: {fileID: 595583509}
   m_Layer: 5
   m_Name: Stage5_button
   m_TagString: Untagged
@@ -889,7 +1060,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 595583507}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 595583509}
+        m_TargetAssemblyTypeName: changeScene, Assembly-CSharp
+        m_MethodName: Stage_select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &595583507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,6 +1111,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 595583503}
   m_CullTransparentMesh: 1
+--- !u!114 &595583509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595583503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d10c68d7baf74a4996e857f1afefebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  select_button: {fileID: 595583503}
 --- !u!1 &691474293
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,17 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d10c68d7baf74a4996e857f1afefebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title_button: {fileID: 0}
-  Stage1_button: {fileID: 0}
-  Stage2_button: {fileID: 0}
-  Stage3_button: {fileID: 0}
-  Stage4_button: {fileID: 0}
-  Stage5_button: {fileID: 0}
-  Stage6_button: {fileID: 0}
-  Stage7_button: {fileID: 0}
-  Stage8_button: {fileID: 0}
-  Stage9_button: {fileID: 0}
-  Stage10_button: {fileID: 691474293}
+  select_button: {fileID: 691474293}
 --- !u!114 &691474296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1038,7 +1224,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 691474295}
         m_TargetAssemblyTypeName: changeScene, Assembly-CSharp
-        m_MethodName: change_button
+        m_MethodName: Stage_select
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1179,17 +1365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d10c68d7baf74a4996e857f1afefebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title_button: {fileID: 0}
-  Stage1_button: {fileID: 0}
-  Stage2_button: {fileID: 0}
-  Stage3_button: {fileID: 0}
-  Stage4_button: {fileID: 0}
-  Stage5_button: {fileID: 595583503}
-  Stage6_button: {fileID: 1364862089}
-  Stage7_button: {fileID: 1520787821}
-  Stage8_button: {fileID: 784381082}
-  Stage9_button: {fileID: 0}
-  Stage10_button: {fileID: 0}
+  select_button: {fileID: 0}
 --- !u!1 &784381082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1378,7 @@ GameObject:
   - component: {fileID: 784381087}
   - component: {fileID: 784381086}
   - component: {fileID: 784381085}
+  - component: {fileID: 784381088}
   m_Layer: 5
   m_Name: Stage8_button
   m_TagString: Untagged
@@ -1274,9 +1451,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 784381088}
         m_TargetAssemblyTypeName: changeScene, Assembly-CSharp
-        m_MethodName: change_button
+        m_MethodName: Stage_select
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1324,6 +1501,105 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784381082}
   m_CullTransparentMesh: 1
+--- !u!114 &784381088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784381082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d10c68d7baf74a4996e857f1afefebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  select_button: {fileID: 784381082}
+--- !u!1 &810574700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 810574702}
+  - component: {fileID: 810574701}
+  m_Layer: 0
+  m_Name: stage_select_arrow_all
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &810574701
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810574700}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 9a61ac8ccb61b514da3902f713156563, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5, y: 3}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &810574702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810574700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.8, y: 4.67, z: 0}
+  m_LocalScale: {x: 1.2660041, y: 0.9734, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 217125368}
+  - {fileID: 105697396}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &855341153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,17 +1653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d10c68d7baf74a4996e857f1afefebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title_button: {fileID: 0}
-  Stage1_button: {fileID: 0}
-  Stage2_button: {fileID: 0}
-  Stage3_button: {fileID: 0}
-  Stage4_button: {fileID: 0}
-  Stage5_button: {fileID: 0}
-  Stage6_button: {fileID: 0}
-  Stage7_button: {fileID: 0}
-  Stage8_button: {fileID: 0}
-  Stage9_button: {fileID: 855341153}
-  Stage10_button: {fileID: 0}
+  select_button: {fileID: 855341153}
 --- !u!114 &855341156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1434,7 +1700,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 855341155}
         m_TargetAssemblyTypeName: changeScene, Assembly-CSharp
-        m_MethodName: change_button
+        m_MethodName: Stage_select
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1573,17 +1839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d10c68d7baf74a4996e857f1afefebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title_button: {fileID: 0}
-  Stage1_button: {fileID: 0}
-  Stage2_button: {fileID: 0}
-  Stage3_button: {fileID: 0}
-  Stage4_button: {fileID: 0}
-  Stage5_button: {fileID: 0}
-  Stage6_button: {fileID: 0}
-  Stage7_button: {fileID: 0}
-  Stage8_button: {fileID: 0}
-  Stage9_button: {fileID: 855341153}
-  Stage10_button: {fileID: 691474293}
+  select_button: {fileID: 0}
 --- !u!1 &1008496910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,6 +2004,8 @@ GameObject:
   - component: {fileID: 1044633444}
   - component: {fileID: 1044633443}
   - component: {fileID: 1044633447}
+  - component: {fileID: 1044633448}
+  - component: {fileID: 1044633449}
   m_Layer: 5
   m_Name: 1-4Panel
   m_TagString: Untagged
@@ -1829,17 +2087,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d10c68d7baf74a4996e857f1afefebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title_button: {fileID: 0}
-  Stage1_button: {fileID: 1613808878}
-  Stage2_button: {fileID: 1806803192}
-  Stage3_button: {fileID: 1206233228}
-  Stage4_button: {fileID: 150814929}
-  Stage5_button: {fileID: 0}
-  Stage6_button: {fileID: 0}
-  Stage7_button: {fileID: 0}
-  Stage8_button: {fileID: 0}
-  Stage9_button: {fileID: 0}
-  Stage10_button: {fileID: 0}
+  select_button: {fileID: 1044633442}
+--- !u!114 &1044633448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044633442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1044633442}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1044633449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044633442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66fd30c1a0b6024fad23b9b2ac6344f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpSelectObject: {fileID: 217125367}
+  DownSelectObject: {fileID: 105697395}
 --- !u!1 &1092115801
 GameObject:
   m_ObjectHideFlags: 0
@@ -1916,7 +2207,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1932,6 +2223,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1870611782}
   - {fileID: 1349813384}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -2025,7 +2317,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1206233231}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1206233233}
+        m_TargetAssemblyTypeName: changeScene, Assembly-CSharp
+        m_MethodName: Stage_select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1206233231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2076,17 +2380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d10c68d7baf74a4996e857f1afefebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title_button: {fileID: 0}
-  Stage1_button: {fileID: 1613808878}
-  Stage2_button: {fileID: 1806803192}
-  Stage3_button: {fileID: 1206233228}
-  Stage4_button: {fileID: 150814929}
-  Stage5_button: {fileID: 595583503}
-  Stage6_button: {fileID: 1364862089}
-  Stage7_button: {fileID: 1520787821}
-  Stage8_button: {fileID: 784381082}
-  Stage9_button: {fileID: 855341153}
-  Stage10_button: {fileID: 691474293}
+  select_button: {fileID: 1206233228}
 --- !u!1 &1341710027
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,19 +2440,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 33a36c0d967157a44918ea78cb286fc4, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 52
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage3
+  m_Text: "\u30B9\u30C6\u30FC\u30B8\uFF13"
 --- !u!222 &1341710030
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2202,7 +2496,7 @@ Transform:
   - {fileID: 1947066047}
   - {fileID: 323185347}
   m_Father: {fileID: 1092115805}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1349813385
 MonoBehaviour:
@@ -2233,6 +2527,7 @@ GameObject:
   - component: {fileID: 1364862094}
   - component: {fileID: 1364862093}
   - component: {fileID: 1364862092}
+  - component: {fileID: 1364862095}
   m_Layer: 5
   m_Name: Stage6_button
   m_TagString: Untagged
@@ -2305,9 +2600,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1364862095}
         m_TargetAssemblyTypeName: changeScene, Assembly-CSharp
-        m_MethodName: change_button
+        m_MethodName: Stage_select
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2355,6 +2650,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364862089}
   m_CullTransparentMesh: 1
+--- !u!114 &1364862095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364862089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d10c68d7baf74a4996e857f1afefebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  select_button: {fileID: 1364862089}
 --- !u!1 &1373514205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,11 +2722,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 33a36c0d967157a44918ea78cb286fc4, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2426,7 +2734,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage8
+  m_Text: "\u30B9\u30C6\u30FC\u30B8\uFF18"
 --- !u!222 &1373514208
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2494,11 +2802,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 33a36c0d967157a44918ea78cb286fc4, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2506,7 +2814,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage5
+  m_Text: "\u30B9\u30C6\u30FC\u30B8\uFF15"
 --- !u!222 &1386241858
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2527,6 +2835,7 @@ GameObject:
   - component: {fileID: 1520787826}
   - component: {fileID: 1520787825}
   - component: {fileID: 1520787824}
+  - component: {fileID: 1520787827}
   m_Layer: 5
   m_Name: Stage7_button
   m_TagString: Untagged
@@ -2599,9 +2908,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1520787827}
         m_TargetAssemblyTypeName: changeScene, Assembly-CSharp
-        m_MethodName: change_button
+        m_MethodName: Stage_select
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2649,6 +2958,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520787821}
   m_CullTransparentMesh: 1
+--- !u!114 &1520787827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520787821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d10c68d7baf74a4996e857f1afefebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  select_button: {fileID: 1520787821}
 --- !u!1 &1613808878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2796,17 +3118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d10c68d7baf74a4996e857f1afefebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title_button: {fileID: 0}
-  Stage1_button: {fileID: 1613808878}
-  Stage2_button: {fileID: 1806803192}
-  Stage3_button: {fileID: 1206233228}
-  Stage4_button: {fileID: 150814929}
-  Stage5_button: {fileID: 595583503}
-  Stage6_button: {fileID: 1364862089}
-  Stage7_button: {fileID: 1520787821}
-  Stage8_button: {fileID: 784381082}
-  Stage9_button: {fileID: 855341153}
-  Stage10_button: {fileID: 691474293}
+  select_button: {fileID: 1613808878}
 --- !u!1 &1806803192
 GameObject:
   m_ObjectHideFlags: 0
@@ -2891,7 +3203,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1806803195}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1806803197}
+        m_TargetAssemblyTypeName: changeScene, Assembly-CSharp
+        m_MethodName: Stage_select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1806803195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2942,17 +3266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d10c68d7baf74a4996e857f1afefebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title_button: {fileID: 0}
-  Stage1_button: {fileID: 1613808878}
-  Stage2_button: {fileID: 1806803192}
-  Stage3_button: {fileID: 1206233228}
-  Stage4_button: {fileID: 150814929}
-  Stage5_button: {fileID: 595583503}
-  Stage6_button: {fileID: 1364862089}
-  Stage7_button: {fileID: 1520787821}
-  Stage8_button: {fileID: 784381082}
-  Stage9_button: {fileID: 855341153}
-  Stage10_button: {fileID: 691474293}
+  select_button: {fileID: 1806803192}
 --- !u!1 &1853726869
 GameObject:
   m_ObjectHideFlags: 0
@@ -3012,11 +3326,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 33a36c0d967157a44918ea78cb286fc4, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3024,7 +3338,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage7
+  m_Text: "\u30B9\u30C6\u30FC\u30B8\uFF17"
 --- !u!222 &1853726872
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3032,6 +3346,86 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853726869}
+  m_CullTransparentMesh: 1
+--- !u!1 &1870611781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1870611782}
+  - component: {fileID: 1870611784}
+  - component: {fileID: 1870611783}
+  m_Layer: 5
+  m_Name: Text (Legacy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1870611782
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870611781}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1092115805}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -207, y: 145}
+  m_SizeDelta: {x: 261.04, y: 41.48}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1870611783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870611781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 33a36c0d967157a44918ea78cb286fc4, type: 3}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\u30B9\u30C6\u30FC\u30B8\u30BB\u30EC\u30AF\u30C8"
+--- !u!222 &1870611784
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870611781}
   m_CullTransparentMesh: 1
 --- !u!1 &1889154208
 GameObject:
@@ -3309,11 +3703,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 33a36c0d967157a44918ea78cb286fc4, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3321,7 +3715,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage10
+  m_Text: "\u30B9\u30C6\u30FC\u30B8\uFF11\uFF10"
 --- !u!222 &2003059144
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3389,11 +3783,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 33a36c0d967157a44918ea78cb286fc4, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3401,7 +3795,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage6
+  m_Text: "\u30B9\u30C6\u30FC\u30B8\uFF16"
 --- !u!222 &2056600360
 CanvasRenderer:
   m_ObjectHideFlags: 0
