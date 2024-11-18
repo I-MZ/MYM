@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -70,6 +72,10 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Restart();
+        }
        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -96,6 +102,11 @@ public class GameManager : MonoBehaviour
         rbt.interactable = true;
         Button mbt = menuButton.GetComponent<Button>();
         mbt.interactable = true;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Quit()

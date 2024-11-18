@@ -32,4 +32,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/moti029/scene_m/title_scene_m.unity
     guid: 65601db0be79f8f4eb449fe8c8aaa6ff
+  - enabled: 1
+    path: Assets/Game/Scenes/Stage5.unity
+    guid: ae26603fd44b55745b73e6108a1c083a
+  - enabled: 1
+    path: Assets/Game/Scenes/Stage6.unity
+    guid: 8b325c2a8d0312246939fd9793437c06
+  - enabled: 1
+    path: Assets/Game/Scenes/Stage7.unity
+    guid: eea93d423af9b4741ac0a560337bcb6e
+  - enabled: 1
+    path: Assets/Game/Scenes/Stage8.unity
+    guid: 3463fa3b6ebc9024885a6a11d5179887
+  - enabled: 1
+    path: Assets/Game/Scenes/Stage9.unity
+    guid: 159c21acea1ba854cbf70c3b26c5b580
+  - enabled: 1
+    path: Assets/Game/Scenes/Stage10.unity
+    guid: f3b4fc040965a8b4fa0754ec282b099a
   m_configObjects: {}
