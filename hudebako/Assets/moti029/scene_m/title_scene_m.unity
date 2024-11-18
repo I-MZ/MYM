@@ -160,8 +160,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: -132.76}
-  m_SizeDelta: {x: 200, y: 64.55}
+  m_AnchoredPosition: {x: 244, y: -132.76}
+  m_SizeDelta: {x: 225.71, y: 64.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &83276224
 MonoBehaviour:
@@ -537,18 +537,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 33a36c0d967157a44918ea78cb286fc4, type: 3}
-    m_FontSize: 44
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 98
+    m_MinSize: 0
+    m_MaxSize: 228
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30B9\u30BF\u30FC\u30C8"
+  m_Text: "\u30B9\u30C6\u30FC\u30B8\n\u30BB\u30EC\u30AF\u30C8\u753B\u9762\u3078"
 --- !u!222 &389703325
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -778,8 +778,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: -47.04}
-  m_SizeDelta: {x: 200, y: 67.19}
+  m_AnchoredPosition: {x: 243.99997, y: -47.04}
+  m_SizeDelta: {x: 225.71, y: 67.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1002232739
 MonoBehaviour:
@@ -827,7 +827,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1002232742}
         m_TargetAssemblyTypeName: changeScene, Assembly-CSharp
-        m_MethodName: change_button
+        m_MethodName: Stage_select
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -892,6 +892,12 @@ MonoBehaviour:
   Stage2_button: {fileID: 0}
   Stage3_button: {fileID: 0}
   Stage4_button: {fileID: 0}
+  Stage5_button: {fileID: 0}
+  Stage6_button: {fileID: 0}
+  Stage7_button: {fileID: 0}
+  Stage8_button: {fileID: 0}
+  Stage9_button: {fileID: 0}
+  Stage10_button: {fileID: 0}
 --- !u!1 &1165751417
 GameObject:
   m_ObjectHideFlags: 0
