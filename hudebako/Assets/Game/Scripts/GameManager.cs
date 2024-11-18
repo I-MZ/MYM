@@ -48,6 +48,13 @@ public class GameManager : MonoBehaviour
             Button mbt = menuButton.GetComponent<Button>();
             mbt.interactable = false;
 
+            if (StageClearManager.clearleevl < SceneManager.GetActiveScene().buildIndex)
+            {
+                StageClearManager.clearleevl = SceneManager.GetActiveScene().buildIndex;
+                Debug.Log("clearlevel = " + StageClearManager.clearleevl);
+
+            }
+
             if (timeCnt != null)
             {
                 timeCnt.isTimeOver = true;
@@ -70,12 +77,22 @@ public class GameManager : MonoBehaviour
                     timeText.GetComponent<Text>().text = time_m.ToString() + ":" + time_s.ToString("00.00");
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Restart();
+            }
+
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                if (!menupanel.activeInHierarchy)
+                    PauseGame();
+                else
+                    ResumeGame();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Restart();
-        }
+        
        
         if (Input.GetKeyDown(KeyCode.Escape))
         {

@@ -5,21 +5,18 @@ using UnityEngine;
 public class StageClearManager : MonoBehaviour
 {
 
-    public static bool clear1  = false;
-    public static bool clear2  = false;
-    public static bool clear3  = false;
-    public static bool clear4  = false;
-    public static bool clear5  = false;
-    public static bool clear6  = false;
-    public static bool clear7  = false;
-    public static bool clear8  = false;
-    public static bool clear9  = false;
-    public static bool clear10 = false;
+    public static int clearleevl;
+    public static bool checkstart = false;
+   
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!checkstart)
+        {
+            checkstart = true;
+            clearleevl = 0;
+        }
     }
 
     // Update is called once per frame
