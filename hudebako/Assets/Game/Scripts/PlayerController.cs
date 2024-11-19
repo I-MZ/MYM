@@ -309,7 +309,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Ž€–S”»’è
-        if (collision.gameObject.tag == "Dead")
+        if (collision.gameObject.tag == "Dead" && gameState == "playing") 
         {
             Respawn();
         }
@@ -348,6 +348,7 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.position = new Vector2(spawnpointX, spawnpointY);
+        rbody.velocity = new Vector2(0, 0);
         transform.eulerAngles = new Vector3(0, 0, 0); 
         gravity = 0;
         PowDown();
