@@ -72,7 +72,7 @@ public class changeScene : MonoBehaviour
                 SceneManager.LoadScene("Stage10", LoadSceneMode.Single);
                 break;
             case 10://ステージセレクト画面
-                SceneManager.LoadScene("Stage_Select_Scene_m", LoadSceneMode.Single);
+                SceneManager.LoadScene("StageSelect", LoadSceneMode.Single);
                 break;
 
         }
