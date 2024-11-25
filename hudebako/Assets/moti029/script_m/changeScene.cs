@@ -42,7 +42,12 @@ public class changeScene : MonoBehaviour
         switch (stage_num)
         {
             case 0:
-                SceneManager.LoadScene("Stage1", LoadSceneMode.Single);
+                //シーン4でクリア判定が出ていたら
+                if (SceneManager."Stage4" && PlayerController.gameState == "clear")
+                {
+                    //ステージ1にはいれる
+                    SceneManager.LoadScene("Stage1", LoadSceneMode.Single);
+                {
                 break;
             case 1:
                 SceneManager.LoadScene("Stage2", LoadSceneMode.Single);
