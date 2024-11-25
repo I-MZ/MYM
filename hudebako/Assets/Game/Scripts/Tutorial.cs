@@ -8,6 +8,9 @@ public class Tutorial : MonoBehaviour
     public GameObject tutorial;
     private MenuManager mm;
 
+    [Header("Œˆ’èŽž‚É–Â‚ç‚·SE")] public AudioClip KETTEI;
+    [Header("ƒLƒƒƒ“ƒZƒ‹Žž‚É–Â‚ç‚·SE")] public AudioClip KYANSERU;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +22,15 @@ public class Tutorial : MonoBehaviour
     {
         tutorial.SetActive(true);
         mm.checkmenu = false;
+        GameManager.instance.PlaySE(KETTEI);
     }
+
 
     public void BackList()
     {
         tutorial.SetActive(false);
         mm.checkmenu = true;
+        GameManager.instance.PlaySE(KYANSERU);
+    
     }
 }

@@ -255,6 +255,9 @@ MonoBehaviour:
   henkeianime: DeformationAnime
   modorianime: ReturnAnime
   tuujouanime: NeutralAnime
+  HENKEI: {fileID: 8300000, guid: 477e9d3dca123cd45a1e6d0fdc80631c, type: 3}
+  TYAKUTI: {fileID: 8300000, guid: f4ea428bcdd015e42b66260d38751d4d, type: 3}
+  DAMEZI: {fileID: 8300000, guid: 29edd6983cf1dc240a2b881631cae4a6, type: 3}
 --- !u!95 &4627551752096937226
 Animator:
   serializedVersion: 5

@@ -746,6 +746,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348618312391742}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348616922190217
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,6 +977,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617054371945}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348616960229844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,6 +1331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Stage1
+  KETTEI: {fileID: 0}
 --- !u!1 &7315348617039180508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,6 +1839,8 @@ MonoBehaviour:
   TutorialPage1: {fileID: 7315348616963305932}
   TutorialPage2: {fileID: 7315348617308938035}
   checkmenu: 0
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617089448584
 GameObject:
   m_ObjectHideFlags: 0
@@ -2063,6 +2070,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617620384002}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617149517754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2292,6 +2301,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617054371945}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617174920679
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,6 +2893,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617277247827}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617373077626
 GameObject:
   m_ObjectHideFlags: 0
@@ -3031,6 +3044,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348618668917705}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617437552574
 GameObject:
   m_ObjectHideFlags: 0
@@ -3580,6 +3595,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617293932899}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617549978367
 GameObject:
   m_ObjectHideFlags: 0
@@ -3888,6 +3905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: StageSelect
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
 --- !u!1 &7315348617596269132
 GameObject:
   m_ObjectHideFlags: 0
@@ -4395,6 +4413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Stage2
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
 --- !u!1 &7315348617703201911
 GameObject:
   m_ObjectHideFlags: 0
@@ -4704,6 +4723,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617277247827}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617797369030
 GameObject:
   m_ObjectHideFlags: 0
@@ -5173,6 +5194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348618668917705}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617886039077
 GameObject:
   m_ObjectHideFlags: 0
@@ -5775,6 +5798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: StageSelect
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
 --- !u!1 &7315348618049531287
 GameObject:
   m_ObjectHideFlags: 0
@@ -6324,6 +6348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348618506531972}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348618170321387
 GameObject:
   m_ObjectHideFlags: 0
@@ -6597,6 +6623,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348618312391742}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348618201845244
 GameObject:
   m_ObjectHideFlags: 0
@@ -6611,6 +6639,7 @@ GameObject:
   - component: {fileID: 7315348618201845219}
   - component: {fileID: 7315348618201845223}
   - component: {fileID: 5895048441258099079}
+  - component: {fileID: 5589308447750953412}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6720,6 +6749,8 @@ MonoBehaviour:
   menuButton: {fileID: 7315348618902116345}
   timer: {fileID: 4730502572191626525}
   timeText: {fileID: 1279325351216181536}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!114 &5895048441258099079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6737,6 +6768,102 @@ MonoBehaviour:
   isTimeOver: 0
   displayTime: 0
   f_time: 0
+--- !u!82 &5589308447750953412
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7315348618201845244}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7315348618233333719
 GameObject:
   m_ObjectHideFlags: 0
@@ -6885,6 +7012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Stage1
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
 --- !u!1 &7315348618253346795
 GameObject:
   m_ObjectHideFlags: 0
@@ -7233,6 +7361,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348616903711397}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348618506531972
 GameObject:
   m_ObjectHideFlags: 0
@@ -7501,6 +7631,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348616903711397}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348618619602052
 GameObject:
   m_ObjectHideFlags: 0
@@ -7729,6 +7861,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348618506531972}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348618686292850
 GameObject:
   m_ObjectHideFlags: 0
@@ -8038,6 +8172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617293932899}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348618754133664
 GameObject:
   m_ObjectHideFlags: 0
@@ -9257,3 +9393,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617620384002}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
+  KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}

@@ -12,6 +12,9 @@ public class MenuManager : MonoBehaviour
     private int page;
     public bool checkmenu;
 
+    [Header("Œˆ’èŽž‚É–Â‚ç‚·SE")]       public AudioClip KETTEI;
+    [Header("ƒLƒƒƒ“ƒZƒ‹Žž‚É–Â‚ç‚·SE")] public AudioClip KYANSERU;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,11 +52,13 @@ public class MenuManager : MonoBehaviour
     public void NextPage()
     {
         page++;
+        GameManager.instance.PlaySE(KETTEI);
     }
 
     public void BackPage()
     {
         page--;
+        GameManager.instance.PlaySE(KETTEI);
     }
 
     public void GoTutorial()
@@ -61,11 +66,13 @@ public class MenuManager : MonoBehaviour
         Menu.SetActive(false);
         checkmenu = true;
         page = 1;
+        GameManager.instance.PlaySE(KETTEI);
     }
 
     public void ReturnMenu()
     {
         Menu.SetActive(true);
         checkmenu = false;
+        GameManager.instance.PlaySE(KYANSERU);
     }
 }

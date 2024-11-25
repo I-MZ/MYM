@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance = null;
+
     public GameObject clearpanel;
     public GameObject menupanel;
     public GameObject resetButton;
@@ -18,6 +20,11 @@ public class GameManager : MonoBehaviour
 
     float time_s = 0;
     int time_m = 0;
+
+    private AudioSource audioSource = null;
+
+    [Header("Œˆ’èŽž‚É–Â‚ç‚·SE")] public AudioClip KETTEI;
+    [Header("ƒLƒƒƒ“ƒZƒ‹Žž‚É–Â‚ç‚·SE")] public AudioClip KYANSERU;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +41,9 @@ public class GameManager : MonoBehaviour
                 timer.SetActive(false);
             }
         }
+
+        instance = GetComponent<GameManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -102,6 +112,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        PlaySE(KETTEI);
         Time.timeScale = 0;
         menupanel.SetActive(true);
         Button rbt = resetButton.GetComponent<Button>();
@@ -112,6 +123,7 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        PlaySE(KYANSERU);
         Time.timeScale = 1;
         clearpanel.SetActive(false);
         menupanel.SetActive(false);
@@ -121,8 +133,22 @@ public class GameManager : MonoBehaviour
         mbt.interactable = true;
     }
 
+    //SE‚ð–Â‚ç‚·
+    public void PlaySE(AudioClip clip)
+    {
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.Log("audioSource == null");
+        }
+    }
+
     public void Restart()
     {
+        PlaySE(KETTEI);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

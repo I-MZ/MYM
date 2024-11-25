@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float spawnpointY = 0.0f;     //復活位置(Y軸)
     private CircleCollider2D cc2;
     private PolygonCollider2D pc2;
+    private bool hitwall = true;
 
     public static string gameState = "playing";
     public LayerMask wallLayer;
@@ -31,6 +32,11 @@ public class PlayerController : MonoBehaviour
 
     string nowanime = "";
     string oldanime = "";
+
+    //SE
+    [Header("変形する時に鳴らすSE")]          public AudioClip HENKEI;
+    [Header("着地した時に鳴らすSE")]          public AudioClip TYAKUTI;
+    [Header("ダメージを受けた時に鳴らすSE")]  public AudioClip DAMEZI;
 
     // Start is called before the first frame update
     void Start()
@@ -166,13 +172,29 @@ public class PlayerController : MonoBehaviour
                 pc2.enabled = false;
                 rbody.freezeRotation = false;
             }
+
+            if (!hitwall)
+            {
+                GameManager.instance.PlaySE(TYAKUTI);
+                Debug.Log("音鳴らした");
+                hitwall = true;
+            }
+        }
+        else
+        {
+            hitwall = false;
         }
 
         if (nowanime != oldanime && checkchange)
         {
             oldanime = nowanime;
             animator.Play(nowanime);
+            GameManager.instance.PlaySE(HENKEI);
         }
+
+        
+           
+        
 
     }
 
@@ -323,6 +345,13 @@ public class PlayerController : MonoBehaviour
     //復活処理
     void Respawn()
     {
+        Debug.Log("リスポーン処理開始");
+        if (gameState == "playing")
+        {
+            Debug.Log("音鳴らす");
+            GameManager.instance.PlaySE(DAMEZI);
+        }
+
         gameState = "respawn";
         MoveStop();
 
@@ -378,5 +407,6 @@ public class PlayerController : MonoBehaviour
     {
         rbody.velocity = new Vector2(0, 0);
         rbody.freezeRotation = true;
+        Debug.Log("プレイヤー停止");
     }
 }
