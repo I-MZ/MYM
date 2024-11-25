@@ -74,6 +74,8 @@ public class Panel_Manager_m : MonoBehaviour
         
     }
 
+   
+
     //public void panel_num()//ステージ1～10のtrue.false切り替え
     //{
     //    if (stage_num == 0)//ステージ1-4
