@@ -18,9 +18,13 @@ public class PlayerController : MonoBehaviour
     private float clarespeed = 0.01f;    //•Ï‰»‘¬“x
     public float spawnpointX = 0.0f;     //•œŠˆˆÊ’u(XŽ²)
     public float spawnpointY = 0.0f;     //•œŠˆˆÊ’u(YŽ²)
+    public float CpSpawnpointX = 0.0f;
+    public float CpSpawnpointY = 0.0f;
     private CircleCollider2D cc2;
     private PolygonCollider2D pc2;
     private bool hitwall = true;
+
+    private bool checkpoint;
 
     public static string gameState = "playing";
     public LayerMask wallLayer;
@@ -51,6 +55,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         nowanime = tuujouanime;
         oldanime = tuujouanime;
+        checkpoint = false;
     }
 
     // Update is called once per frame
@@ -330,6 +335,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject.tag == "CheckPoint")
+        {
+            checkpoint = true;
+        }
         //Ž€–S”»’è
         if (collision.gameObject.tag == "Dead" && gameState == "playing") 
         {
@@ -376,7 +385,15 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        transform.position = new Vector2(spawnpointX, spawnpointY);
+        if (!checkpoint)
+        {
+            transform.position = new Vector2(spawnpointX, spawnpointY);
+        }
+        else
+        {
+            transform.position = new Vector2(CpSpawnpointX, CpSpawnpointY);
+        }
+
         rbody.velocity = new Vector2(0, 0);
         transform.eulerAngles = new Vector3(0, 0, 0); 
         gravity = 0;

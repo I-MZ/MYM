@@ -249,6 +249,8 @@ MonoBehaviour:
   forcepower: 0
   spawnpointX: 0
   spawnpointY: 0
+  CpSpawnpointX: 0
+  CpSpawnpointY: 0
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
