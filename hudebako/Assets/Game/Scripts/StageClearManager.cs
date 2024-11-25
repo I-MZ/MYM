@@ -5,7 +5,7 @@ using UnityEngine;
 public class StageClearManager : MonoBehaviour
 {
 
-    public static int clearleevl;
+    public static int clearlevel;
     public static bool checkstart = false;
    
 
@@ -15,13 +15,12 @@ public class StageClearManager : MonoBehaviour
         if (!checkstart)
         {
             checkstart = true;
-            clearleevl = 0;
+            clearlevel = 0;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

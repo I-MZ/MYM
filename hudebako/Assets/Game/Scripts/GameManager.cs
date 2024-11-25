@@ -48,10 +48,10 @@ public class GameManager : MonoBehaviour
             Button mbt = menuButton.GetComponent<Button>();
             mbt.interactable = false;
 
-            if (StageClearManager.clearleevl < SceneManager.GetActiveScene().buildIndex)
+            if (StageClearManager.clearlevel < SceneManager.GetActiveScene().buildIndex)
             {
-                StageClearManager.clearleevl = SceneManager.GetActiveScene().buildIndex;
-                Debug.Log("clearlevel = " + StageClearManager.clearleevl);
+                StageClearManager.clearlevel = SceneManager.GetActiveScene().buildIndex;
+                Debug.Log("clearlevel = " + StageClearManager.clearlevel);
 
             }
 

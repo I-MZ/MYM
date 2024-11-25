@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class changeScene : MonoBehaviour
 {
+   
     [SerializeField] public GameObject select_button; //ボタンを入れる
     int stage_num;
 
-
+    
     public void Stage_select()//ステージ決定
     {
         if (select_button)
@@ -39,42 +40,79 @@ public class changeScene : MonoBehaviour
                 stage_num = 10;
         }
 
+
         switch (stage_num)
         {
             case 0:
                 //シーン4でクリア判定が出ていたら
-                if (SceneManager."Stage4" && PlayerController.gameState == "clear")
+                if (StageClearManager.clearlevel >= 0)
                 {
                     //ステージ1にはいれる
                     SceneManager.LoadScene("Stage1", LoadSceneMode.Single);
-                {
+                }
                 break;
             case 1:
-                SceneManager.LoadScene("Stage2", LoadSceneMode.Single);
+                if (StageClearManager.clearlevel >= 1)
+                {
+                    SceneManager.LoadScene("Stage2", LoadSceneMode.Single);
+                }
+                    
                 break;
             case 2:
-                SceneManager.LoadScene("Stage3", LoadSceneMode.Single);
+                if (StageClearManager.clearlevel >= 2)
+                {
+                    SceneManager.LoadScene("Stage3", LoadSceneMode.Single);
+                }
+                
                 break;
             case 3:
-                SceneManager.LoadScene("Stage4", LoadSceneMode.Single);
+                if (StageClearManager.clearlevel >= 3)
+                {
+                    SceneManager.LoadScene("Stage4", LoadSceneMode.Single);
+                }
+                
                 break; 
             case 4:
-                SceneManager.LoadScene("Stage5", LoadSceneMode.Single);
+                if (StageClearManager.clearlevel >= 4)
+                {
+                    SceneManager.LoadScene("Stage5", LoadSceneMode.Single);
+                }
+                
                 break;
             case 5:
-                SceneManager.LoadScene("Stage6", LoadSceneMode.Single);
+                if (StageClearManager.clearlevel >= 5)
+                {
+                    SceneManager.LoadScene("Stage6", LoadSceneMode.Single);
+                }
+                
                 break;
             case 6:
-                SceneManager.LoadScene("Stage7", LoadSceneMode.Single);
+                if (StageClearManager.clearlevel >= 6)
+                {
+                    SceneManager.LoadScene("Stage7", LoadSceneMode.Single);
+                }
+                
                 break;
             case 7:
-                SceneManager.LoadScene("Stage8", LoadSceneMode.Single);
+                if (StageClearManager.clearlevel >= 7)
+                {
+                    SceneManager.LoadScene("Stage8", LoadSceneMode.Single);
+                }
+                
                 break; 
             case 8:
-                SceneManager.LoadScene("Stage9", LoadSceneMode.Single);
+                if (StageClearManager.clearlevel >= 8)
+                {
+                    SceneManager.LoadScene("Stage9", LoadSceneMode.Single);
+                }
+                
                 break;
             case 9:
-                SceneManager.LoadScene("Stage10", LoadSceneMode.Single);
+                if (StageClearManager.clearlevel >= 9)
+                {
+                    SceneManager.LoadScene("Stage10", LoadSceneMode.Single);
+                }
+                
                 break;
             case 10://ステージセレクト画面
                 SceneManager.LoadScene("StageSelect", LoadSceneMode.Single);
