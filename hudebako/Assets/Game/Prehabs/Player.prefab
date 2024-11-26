@@ -245,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movespeed: 5
   fallspead: 10
+  startgravity: 0
   gravity: 0
   forcepower: 0
   spawnpointX: 0

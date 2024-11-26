@@ -152,8 +152,8 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        PlaySE(KETTEI);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        PlaySE(KETTEI);
     }
 
     public void Quit()

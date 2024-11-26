@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Stage1
-  KETTEI: {fileID: 0}
+  KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
 --- !u!1 &7315348617039180508
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float inputH = 0.0f;         //横入力
     private float inputV = 0.0f;         //縦入力
     public float fallspead = 10.0f;       //落下速度
+    public int startgravity = 0;
     public int gravity = 0;             //重力の向き(0=下,1=上,2=右,3=左)
     public bool forcepower = false;      //重力強化
     private bool checkchange = false;
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
         nowanime = tuujouanime;
         oldanime = tuujouanime;
         checkpoint = false;
+        gravity = startgravity;
     }
 
     // Update is called once per frame
@@ -424,7 +426,7 @@ public class PlayerController : MonoBehaviour
 
         rbody.velocity = new Vector2(0, 0);
         transform.eulerAngles = new Vector3(0, 0, 0); 
-        gravity = 0;
+        gravity = startgravity;
         PowDown();
         cc2.enabled = true;
         if (oldanime != tuujouanime)
