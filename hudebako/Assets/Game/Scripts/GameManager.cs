@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     float time_s = 0;
     int time_m = 0;
 
+    public GameObject stagenum;
+
     private AudioSource audioSource = null;
 
     [Header("決定時に鳴らすSE")] public AudioClip KETTEI;
@@ -41,6 +43,8 @@ public class GameManager : MonoBehaviour
                 timer.SetActive(false);
             }
         }
+
+        stagenum.GetComponent<Text>().text = "ステージ" + SceneManager.GetActiveScene().buildIndex;
 
         instance = GetComponent<GameManager>();
         audioSource = GetComponent<AudioSource>();
