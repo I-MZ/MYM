@@ -104,6 +104,15 @@ public class GameManager : MonoBehaviour
                 else
                     ResumeGame();
             }
+
+            if (Input.GetKey(KeyCode.F2))
+            {
+                UiHidden();
+            }
+            else
+            {
+                UiDisplay();
+            }
         }
 
         
@@ -112,6 +121,7 @@ public class GameManager : MonoBehaviour
         {
             Quit();
         }
+       
     }
 
     public void PauseGame()
@@ -148,6 +158,22 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("audioSource == null");
         }
+    }
+
+    private void UiHidden()
+    {
+        menuButton.SetActive(false);
+        resetButton.SetActive(false);
+        timer.SetActive(false);
+        stagenum.SetActive(false);
+    }
+
+    private void UiDisplay()
+    {
+        menuButton.SetActive(true);
+        resetButton.SetActive(true);
+        timer.SetActive(true);
+        stagenum.SetActive(true);
     }
 
     public void Restart()
