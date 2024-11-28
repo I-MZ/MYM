@@ -18,6 +18,7 @@ public class Panel_Manager_m : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
         stage_num = 0;
     }
 
