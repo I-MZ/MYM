@@ -6,22 +6,26 @@ public class PlayerController_Demo_y : MonoBehaviour
 {
     Rigidbody2D rbody;                   //Rigidbody2D型の変数
     SpriteRenderer sr;
-    public float movespeed = 1.0f;       //移動速度
+    public float movespeed = 5.0f;       //移動速度
     private float inputH = 0.0f;         //横入力
     private float inputV = 0.0f;         //縦入力
-    public float fallspead = 1.0f;       //落下速度
+    public float fallspead = 10.0f;       //落下速度
+    public int startgravity = 0;
     public int gravity = 0;             //重力の向き(0=下,1=上,2=右,3=左)
     public bool forcepower = false;      //重力強化
     private bool checkchange = false;
     bool onWall = false;                 //床(壁)に乗っているか
     private float cla;                   //透明度
-    private float clarespeed = 0.001f;    //変化速度
+    private float clarespeed = 0.01f;    //変化速度
     public float spawnpointX = 0.0f;     //復活位置(X軸)
     public float spawnpointY = 0.0f;     //復活位置(Y軸)
-    public Sprite neutralsprite;
-    public Sprite minisprite;
+    public float CpSpawnpointX = 0.0f;
+    public float CpSpawnpointY = 0.0f;
     private CircleCollider2D cc2;
     private PolygonCollider2D pc2;
+    private bool hitwall = true;
+
+    private bool checkpoint;
 
     public static string gameState = "playing";
     public LayerMask wallLayer;
@@ -29,10 +33,15 @@ public class PlayerController_Demo_y : MonoBehaviour
     Animator animator;
     public string henkeianime = "player-HENKEI";
     public string modorianime = "player-HUKUGEN";
-    public string tuujouanime = "player-TUUJOU";
+    public string tuujouanime = "player-TUUZYOU";
 
     string nowanime = "";
     string oldanime = "";
+
+    //SE
+    [Header("変形する時に鳴らすSE")] public AudioClip HENKEI;
+    [Header("着地した時に鳴らすSE")] public AudioClip TYAKUTI;
+    [Header("ダメージを受けた時に鳴らすSE")] public AudioClip DAMEZI;
 
     // Start is called before the first frame update
     void Start()
@@ -44,16 +53,17 @@ public class PlayerController_Demo_y : MonoBehaviour
         gameState = "playing";
         cc2.enabled = true;
         pc2.enabled = false;
-        sr.sprite = neutralsprite;
         animator = GetComponent<Animator>();
         nowanime = tuujouanime;
         oldanime = tuujouanime;
+        checkpoint = false;
+        gravity = startgravity;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameState != "playing")
+        if (gameState != "playing")
         {
             return;
         }
@@ -73,20 +83,20 @@ public class PlayerController_Demo_y : MonoBehaviour
         {
             pc2.enabled = true;
             nowanime = henkeianime;
-            sr.sprite = minisprite;
             cc2.enabled = false;
+            rbody.freezeRotation = true;
         }
 
         //重力による落下処理(下、上、右、左)
         switch (gravity)
         {
-        case 0://下
-            onWall = Physics2D.CircleCast(transform.position,
-                                               0.1f,
-                                               Vector2.down,
-                                               0.5f,
-                                               wallLayer);
-            
+            case 0://下
+                onWall = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.down,
+                                                   0.5f,
+                                                   wallLayer);
+
                 rbody.velocity = new Vector2(0, fallspead * -1);
 
                 if (forcepower)
@@ -96,13 +106,13 @@ public class PlayerController_Demo_y : MonoBehaviour
 
                 break;
 
-        case 1://上
-            onWall = Physics2D.CircleCast(transform.position,
-                                               0.1f,
-                                               Vector2.up,
-                                               0.5f,
-                                               wallLayer);
-            
+            case 1://上
+                onWall = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.up,
+                                                   0.5f,
+                                                   wallLayer);
+
                 rbody.velocity = new Vector2(0, fallspead);
 
                 if (forcepower)
@@ -112,13 +122,13 @@ public class PlayerController_Demo_y : MonoBehaviour
 
                 break;
 
-        case 2://右
-            onWall = Physics2D.CircleCast(transform.position,
-                                               0.1f,
-                                               Vector2.right,
-                                               0.5f,
-                                               wallLayer);
-            
+            case 2://右
+                onWall = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.right,
+                                                   0.5f,
+                                                   wallLayer);
+
                 rbody.velocity = new Vector2(fallspead, 0);
 
                 if (forcepower)
@@ -128,13 +138,13 @@ public class PlayerController_Demo_y : MonoBehaviour
 
                 break;
 
-        case 3://左
-            onWall = Physics2D.CircleCast(transform.position,
-                                              0.1f,
-                                              Vector2.left,
-                                              0.5f,
-                                              wallLayer);
-            
+            case 3://左
+                onWall = Physics2D.CircleCast(transform.position,
+                                                  0.1f,
+                                                  Vector2.left,
+                                                  0.5f,
+                                                  wallLayer);
+
                 rbody.velocity = new Vector2(fallspead * -1, 0);
 
                 if (forcepower)
@@ -144,8 +154,12 @@ public class PlayerController_Demo_y : MonoBehaviour
 
                 break;
         }
-    
-       
+
+        ////浮いてるときは回転しない
+        //if (!onWall)
+        //{
+        //    rbody.freezeRotation = true;
+        //}
 
         if (onWall)
         {
@@ -162,16 +176,32 @@ public class PlayerController_Demo_y : MonoBehaviour
             {
                 cc2.enabled = true;
                 nowanime = modorianime;
-                sr.sprite = neutralsprite;
                 pc2.enabled = false;
+                rbody.freezeRotation = false;
             }
+
+            if (!hitwall)
+            {
+                GameManager.instance.PlaySE(TYAKUTI);
+                Debug.Log("音鳴らした");
+                hitwall = true;
+            }
+        }
+        else
+        {
+            hitwall = false;
         }
 
         if (nowanime != oldanime && checkchange)
         {
             oldanime = nowanime;
             animator.Play(nowanime);
+            GameManager.instance.PlaySE(HENKEI);
         }
+
+
+
+
 
     }
 
@@ -180,11 +210,25 @@ public class PlayerController_Demo_y : MonoBehaviour
         // 横方向移動入力
         if (Input.GetKey(KeyCode.D))
         {// 右方向の移動入力
-            inputH = 1.0f;
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                inputH = 1.0f;
+            }
+            else
+            {
+                inputH = 0.5f;
+            }
         }
         else if (Input.GetKey(KeyCode.A))
         {// 左方向の移動入力
-            inputH = -1.0f;
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                inputH = -1.0f;
+            }
+            else
+            {
+                inputH = -0.5f;
+            }
         }
         else
         {// 入力なし
@@ -194,11 +238,25 @@ public class PlayerController_Demo_y : MonoBehaviour
         // 縦方向移動入力
         if (Input.GetKey(KeyCode.W))
         {// 上方向の移動入力
-            inputV = 1.0f;
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                inputV = 1.0f;
+            }
+            else
+            {
+                inputV = 0.5f;
+            }
         }
         else if (Input.GetKey(KeyCode.S))
         {// 下方向の移動入力
-            inputV = -1.0f;
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                inputV = -1.0f;
+            }
+            else
+            {
+                inputV = -0.5f;
+            }
         }
         else
         {// 入力なし
@@ -208,6 +266,7 @@ public class PlayerController_Demo_y : MonoBehaviour
 
     void ChangeGravity()
     {
+        //重力の強弱切り替え
         if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity == 0)
         {
             PowChange();
@@ -225,7 +284,7 @@ public class PlayerController_Demo_y : MonoBehaviour
             PowChange();
         }
 
-
+        //重力の向き切り替え
         if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity != 0)
         {
             if (gravity == 2 || gravity == 3)
@@ -276,9 +335,10 @@ public class PlayerController_Demo_y : MonoBehaviour
         }
 
 
-        
+
     }
 
+    //重力の強弱切り替え
     void PowChange()
     {
         if (!forcepower)
@@ -291,12 +351,13 @@ public class PlayerController_Demo_y : MonoBehaviour
         }
     }
 
+    //重力(強)
     void PowUp()
     {
         forcepower = true;
         checkchange = true;
     }
-
+    //重力(弱)
     void PowDown()
     {
         forcepower = false;
@@ -304,19 +365,32 @@ public class PlayerController_Demo_y : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Dead")
+        if (collision.gameObject.tag == "CheckPoint")
+        {
+            checkpoint = true;
+        }
+        //死亡判定
+        if (collision.gameObject.tag == "Dead" && gameState == "playing")
         {
             Respawn();
         }
-
+        //ゴール判定
         if (collision.gameObject.tag == "Goal")
         {
             Clear();
         }
     }
 
+    //復活処理
     void Respawn()
     {
+        Debug.Log("リスポーン処理開始");
+        if (gameState == "playing")
+        {
+            Debug.Log("音鳴らす");
+            GameManager.instance.PlaySE(DAMEZI);
+        }
+
         gameState = "respawn";
         MoveStop();
 
@@ -324,6 +398,7 @@ public class PlayerController_Demo_y : MonoBehaviour
         StartCoroutine(Display());
     }
 
+    //ステージクリア
     void Clear()
     {
         gameState = "clear";
@@ -332,6 +407,7 @@ public class PlayerController_Demo_y : MonoBehaviour
 
     IEnumerator Display()
     {
+        //徐々に透明になる
         while (cla > 0f)
         {
             cla -= clarespeed;
@@ -339,23 +415,45 @@ public class PlayerController_Demo_y : MonoBehaviour
             yield return null;
         }
 
-        transform.position = new Vector2(spawnpointX, spawnpointY);
-        
-        gravity = 0;
-        PowDown();
+        if (!checkpoint)
+        {
+            transform.position = new Vector2(spawnpointX, spawnpointY);
+        }
+        else
+        {
+            transform.position = new Vector2(CpSpawnpointX, CpSpawnpointY);
+        }
 
+        rbody.velocity = new Vector2(0, 0);
+        transform.eulerAngles = new Vector3(0, 0, 0);
+        gravity = startgravity;
+        PowDown();
+        cc2.enabled = true;
+        if (oldanime != tuujouanime)
+        {
+            nowanime = modorianime;
+            oldanime = modorianime;
+            animator.Play(nowanime);
+
+        }
+        pc2.enabled = false;
+
+        //徐々に実体化する
         while (cla < 1f)
         {
             cla += clarespeed;
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, cla);
             yield return null;
         }
+
+        rbody.freezeRotation = false;
         gameState = "playing";
     }
 
     void MoveStop()
     {
         rbody.velocity = new Vector2(0, 0);
+        rbody.freezeRotation = true;
+        Debug.Log("プレイヤー停止");
     }
-
 }

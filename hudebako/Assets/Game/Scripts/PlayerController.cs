@@ -70,6 +70,11 @@ public class PlayerController : MonoBehaviour
 
         MoveUpdate();
         ChangeGravity();
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Respawn();
+        }
     }
 
     void FixedUpdate()
@@ -198,10 +203,6 @@ public class PlayerController : MonoBehaviour
             animator.Play(nowanime);
             GameManager.instance.PlaySE(HENKEI);
         }
-
-        
-           
-        
 
     }
 
