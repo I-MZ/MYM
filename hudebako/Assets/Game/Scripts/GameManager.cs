@@ -115,6 +115,10 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            DebugMode();
+        }
         
        
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -174,6 +178,11 @@ public class GameManager : MonoBehaviour
         resetButton.SetActive(true);
         timer.SetActive(true);
         stagenum.SetActive(true);
+    }
+
+    private void DebugMode()
+    {
+        StageClearManager.clearlevel = 10;
     }
 
     public void Restart()
