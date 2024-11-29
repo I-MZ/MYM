@@ -7,6 +7,8 @@ public class Tutorial : MonoBehaviour
     public GameObject Menu;
     public GameObject tutorial;
     private MenuManager mm;
+    public GameObject button;
+    public int buttonlevel;
 
     [Header("Œˆ’èŽž‚É–Â‚ç‚·SE")] public AudioClip KETTEI;
     [Header("ƒLƒƒƒ“ƒZƒ‹Žž‚É–Â‚ç‚·SE")] public AudioClip KYANSERU;
@@ -16,6 +18,15 @@ public class Tutorial : MonoBehaviour
     {
         mm = Menu.GetComponent<MenuManager>();
         tutorial.SetActive(false);
+        button.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (StageClearManager.clearlevel >= buttonlevel)
+        {
+            button.SetActive(true);
+        }
     }
 
     public void GoTutorial()

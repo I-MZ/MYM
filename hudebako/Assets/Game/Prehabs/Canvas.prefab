@@ -1283,6 +1283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348618312391742}
+  button: {fileID: 7315348616907376665}
+  buttonlevel: 7
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348616922190217
@@ -1514,6 +1516,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617054371945}
+  button: {fileID: 0}
+  buttonlevel: 0
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348616960229844
@@ -2282,7 +2286,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button5
+  m_Text: "\u56DE\u8EE2\u30AB\u30C3\u30BF\u30FC"
 --- !u!1 &7315348617081447067
 GameObject:
   m_ObjectHideFlags: 0
@@ -2608,6 +2612,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617620384002}
+  button: {fileID: 7315348617096570686}
+  buttonlevel: 6
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617149517754
@@ -2839,6 +2845,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617054371945}
+  button: {fileID: 7315348617166060580}
+  buttonlevel: 9
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617174920679
@@ -3433,6 +3441,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617277247827}
+  button: {fileID: 7315348617369455274}
+  buttonlevel: 4
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617373077626
@@ -3584,6 +3594,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348618668917705}
+  button: {fileID: 0}
+  buttonlevel: 0
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617437552574
@@ -3825,7 +3837,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button8
+  m_Text: "\u30D5\u30C7\u30D0\u30B3"
 --- !u!1 &7315348617517549171
 GameObject:
   m_ObjectHideFlags: 0
@@ -4135,6 +4147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617293932899}
+  button: {fileID: 7315348617542389317}
+  buttonlevel: 10
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617549978367
@@ -4216,7 +4230,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button7
+  m_Text: "\u4E2D\u9593\u5730\u70B9"
 --- !u!1 &7315348617552419447
 GameObject:
   m_ObjectHideFlags: 0
@@ -4805,7 +4819,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button6
+  m_Text: "\u3058\u3087\u3046\u304E"
 --- !u!1 &7315348617701477300
 GameObject:
   m_ObjectHideFlags: 0
@@ -5264,6 +5278,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617277247827}
+  button: {fileID: 0}
+  buttonlevel: 0
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617797369030
@@ -5735,6 +5751,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348618668917705}
+  button: {fileID: 7315348617847337162}
+  buttonlevel: 2
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348617886039077
@@ -6889,6 +6907,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348618506531972}
+  button: {fileID: 7315348618165115125}
+  buttonlevel: 3
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348618170321387
@@ -7164,6 +7184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348618312391742}
+  button: {fileID: 0}
+  buttonlevel: 0
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348618201845244
@@ -7904,6 +7926,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348616903711397}
+  button: {fileID: 7315348618350659074}
+  buttonlevel: 1
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348618506531972
@@ -8175,6 +8199,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348616903711397}
+  button: {fileID: 0}
+  buttonlevel: 0
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348618619602052
@@ -8405,6 +8431,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348618506531972}
+  button: {fileID: 0}
+  buttonlevel: 0
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348618686292850
@@ -8716,6 +8744,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617293932899}
+  button: {fileID: 0}
+  buttonlevel: 0
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &7315348618754133664
@@ -9938,6 +9968,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Menu: {fileID: 7315348617081447067}
   tutorial: {fileID: 7315348617620384002}
+  button: {fileID: 0}
+  buttonlevel: 0
   KETTEI: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   KYANSERU: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
 --- !u!1 &8907505029069017921
