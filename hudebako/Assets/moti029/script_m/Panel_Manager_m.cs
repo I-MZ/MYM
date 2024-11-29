@@ -51,6 +51,11 @@ public class Panel_Manager_m : MonoBehaviour
             Select_L.SetActive(true);
             Select_R.SetActive(false);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     public void num_plus_R()
