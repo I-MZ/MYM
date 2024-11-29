@@ -41,13 +41,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Scenes/StageSelect.unity
     guid: dbea41addb2e9fa4bb092782b3599311
-  - enabled: 1
-    path: Assets/moti029/scene_m/Stage_Select_Scene_m.unity
-    guid: 372cb43b3f6028e48ab5340873d48465
-  - enabled: 1
-    path: Assets/moti029/scene_m/Scene_Abe2.unity
-    guid: e3561433479486c4a8bd025ab3ca56a6
-  - enabled: 1
-    path: Assets/moti029/scene_m/title_scene_m.unity
-    guid: 65601db0be79f8f4eb449fe8c8aaa6ff
   m_configObjects: {}
