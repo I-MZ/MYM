@@ -40,7 +40,7 @@ public class SURINUKEYUKA : MonoBehaviour
             BC.enabled = false;
             nowanime = hiraku;
         }
-        else if(CkcloseGravity==Pcnt.gravity)
+        else if(CkcloseGravity==Pcnt.gravity||PlayerController.gameState=="respawn")
         {
             if (nowanime != toziru)
             {
