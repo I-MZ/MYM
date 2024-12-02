@@ -1747,7 +1747,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u304A\u307E\u3051\u30BB\u30EC\u30AF\u30C8\u3092\u958B\u304F"
+  m_Text: "\u304A\u307E\u3051\u3092\u898B\u308B"
 --- !u!1 &7315348616963305932
 GameObject:
   m_ObjectHideFlags: 0
