@@ -22,6 +22,7 @@ public class SceneChenger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
         selectscene = 11;
         audioSource = GetComponent<AudioSource>();
         sr = GetComponent<Image>();
