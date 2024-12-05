@@ -5251,6 +5251,10 @@ PrefabInstance:
       propertyPath: sceneName
       value: Stage10
       objectReference: {fileID: 0}
+    - target: {fileID: 7315348617701477300, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7315348617701477306, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
       propertyPath: sceneName
       value: Stage10
