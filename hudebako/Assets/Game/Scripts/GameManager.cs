@@ -97,17 +97,23 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && SceneChenger.gameState != "pause")
             {
                 ScCanger.ReloadScene();
             }
 
-            if (Input.GetKeyDown(KeyCode.M))
+            if (Input.GetKeyDown(KeyCode.M) && SceneChenger.gameState != "loading")
             {
                 if (!menupanel.activeInHierarchy)
+                {
                     PauseGame();
-                else
-                    ResumeGame();
+                }
+                    
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                
             }
 
             if (Input.GetKey(KeyCode.F2))
@@ -126,10 +132,7 @@ public class GameManager : MonoBehaviour
         }
         
        
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Quit();
-        }
+        
        
     }
 
@@ -142,6 +145,7 @@ public class GameManager : MonoBehaviour
         rbt.interactable = false;
         Button mbt = menuButton.GetComponent<Button>();
         mbt.interactable = false;
+        SceneChenger.gameState = "pause";
     }
 
     public void ResumeGame()
@@ -154,6 +158,7 @@ public class GameManager : MonoBehaviour
         rbt.interactable = true;
         Button mbt = menuButton.GetComponent<Button>();
         mbt.interactable = true;
+        SceneChenger.gameState = "playing";
     }
 
     //SE‚ð–Â‚ç‚·
@@ -188,16 +193,5 @@ public class GameManager : MonoBehaviour
     private void DebugMode()
     {
         StageClearManager.clearlevel = 10;
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        PlaySE(KETTEI);
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
     }
 }

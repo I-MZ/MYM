@@ -8,12 +8,14 @@ public class SceneChenger : MonoBehaviour
 {
     Image sr;
     private float cla;                   //“§–¾“x
-    private float clarespeed = 0.02f;    //•Ï‰»‘¬“x
+    private float clarespeed = 0.03f;    //•Ï‰»‘¬“x
 
     private bool fadein = true;
 
     private int scenenum;
     private int selectscene;
+
+    public static string gameState = "";
 
     private AudioSource audioSource = null;
 
@@ -30,6 +32,14 @@ public class SceneChenger : MonoBehaviour
         StartCoroutine(FadeIn());
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex == selectscene)
+        {
+            Quit();
+        }
+    }
+
     public void NextScene()
     {
         StartCoroutine(FadeOut((SceneManager.GetActiveScene().buildIndex) + 1));
@@ -43,13 +53,13 @@ public class SceneChenger : MonoBehaviour
 
     public void ReloadScene()
     {
-        if (PlayerController.gameState != "retry")
+        if (gameState != "loading")
             StartCoroutine(FadeOut(SceneManager.GetActiveScene().buildIndex));
     }
 
     public void ReturnSelect()
     {
-        if (PlayerController.gameState != "retry")
+        if (gameState != "loading")
             StartCoroutine(FadeOut(selectscene));
     }
 
@@ -63,7 +73,7 @@ public class SceneChenger : MonoBehaviour
             Debug.Log("sr.color = " + sr.color.a);
             yield return null;
         }
-
+        gameState = "playing";
         Time.timeScale = 1;
     }
 
@@ -72,8 +82,7 @@ public class SceneChenger : MonoBehaviour
         fadein = false;
         Time.timeScale = 0;
 
-        if (PlayerController.gameState != null)
-            PlayerController.gameState = "retry";
+        gameState = "loading";
 
         PlaySE(enter);
 
@@ -100,5 +109,10 @@ public class SceneChenger : MonoBehaviour
         {
             Debug.Log("audioSource == null");
         }
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

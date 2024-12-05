@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+    public static MenuManager instance = null;
+
     public GameObject Menu;
     public GameObject TutorialPage1;
     public GameObject TutorialPage2;
@@ -35,6 +37,8 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = GetComponent<MenuManager>();
+
         button1.SetActive(false);
         button2.SetActive(false);
         button3.SetActive(false);
