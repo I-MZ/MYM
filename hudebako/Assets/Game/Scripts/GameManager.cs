@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     float time_s = 0;
     int time_m = 0;
 
+    public GameObject fade;
+    private SceneChenger ScCanger;
+
     public GameObject stagenum;
 
     private AudioSource audioSource = null;
@@ -43,6 +46,8 @@ public class GameManager : MonoBehaviour
                 timer.SetActive(false);
             }
         }
+
+        ScCanger = fade.GetComponent<SceneChenger>();
 
         stagenum.GetComponent<Text>().text = "ステージ" + SceneManager.GetActiveScene().buildIndex;
 
@@ -94,7 +99,7 @@ public class GameManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Restart();
+                ScCanger.ReloadScene();
             }
 
             if (Input.GetKeyDown(KeyCode.M))

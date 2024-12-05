@@ -15,12 +15,15 @@ public class SceneChenger : MonoBehaviour
     private int scenenum;
     private int selectscene;
 
+    private AudioSource audioSource = null;
+
     [Header("Œˆ’èŽž‚É–Â‚ç‚·SE")] public AudioClip enter;
 
     // Start is called before the first frame update
     void Start()
     {
         selectscene = 11;
+        audioSource = GetComponent<AudioSource>();
         sr = GetComponent<Image>();
         cla = sr.color.a;
         StartCoroutine(FadeIn());
@@ -71,8 +74,7 @@ public class SceneChenger : MonoBehaviour
         if (PlayerController.gameState != null)
             PlayerController.gameState = "retry";
 
-        if (GameManager.instance != null)
-            GameManager.instance.PlaySE(enter);
+        PlaySE(enter);
 
         scenenum = i;
 
@@ -85,5 +87,17 @@ public class SceneChenger : MonoBehaviour
         }
 
         SceneManager.LoadScene(scenenum);
+    }
+
+    private void PlaySE(AudioClip clip)
+    {
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.Log("audioSource == null");
+        }
     }
 }
