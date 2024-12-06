@@ -21,6 +21,14 @@ public class Tutorial : MonoBehaviour
         tutorial.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            BackList();
+        }
+    }
+
     public void GoTutorial()
     {
         tutorial.SetActive(true);

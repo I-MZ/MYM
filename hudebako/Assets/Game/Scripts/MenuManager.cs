@@ -69,6 +69,13 @@ public class MenuManager : MonoBehaviour
                     TutorialPage2.SetActive(true);
                     break;
             }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ReturnMenu();
+                TutorialPage1.SetActive(false);
+                TutorialPage2.SetActive(false);
+            }
         }
         else
         {

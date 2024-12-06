@@ -25,6 +25,7 @@ public class SceneChenger : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60;
+        gameState = "loading";
         selectscene = 11;
         audioSource = GetComponent<AudioSource>();
         sr = GetComponent<Image>();

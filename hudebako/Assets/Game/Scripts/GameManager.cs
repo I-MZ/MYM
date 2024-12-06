@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
 
         if (PlayerController.gameState == "clear")
-        {
+        {//ステージクリア
             clearpanel.SetActive(true);
             Button rbt = resetButton.GetComponent<Button>();
             rbt.interactable = false;
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
             }
         }
         else if (PlayerController.gameState == "playing" || PlayerController.gameState == "respawn") 
-        {
+        {//プレイ中
 
             if (timeCnt != null)
             {
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
                 ScCanger.ReloadScene();
             }
 
-            if (Input.GetKeyDown(KeyCode.M) && SceneChenger.gameState != "loading")
+            if (Input.GetKeyDown(KeyCode.M))
             {
                 if (!menupanel.activeInHierarchy)
                 {
@@ -113,7 +113,10 @@ public class GameManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                
+                if (MenuManager.instance.Menu.activeInHierarchy)
+                {
+                    ResumeGame();
+                }
             }
 
             if (Input.GetKey(KeyCode.F2))
@@ -138,14 +141,18 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        PlaySE(KETTEI);
-        Time.timeScale = 0;
-        menupanel.SetActive(true);
-        Button rbt = resetButton.GetComponent<Button>();
-        rbt.interactable = false;
-        Button mbt = menuButton.GetComponent<Button>();
-        mbt.interactable = false;
-        SceneChenger.gameState = "pause";
+        if (SceneChenger.gameState != "loading")
+        {
+            PlaySE(KETTEI);
+            Time.timeScale = 0;
+            menupanel.SetActive(true);
+            Button rbt = resetButton.GetComponent<Button>();
+            rbt.interactable = false;
+            Button mbt = menuButton.GetComponent<Button>();
+            mbt.interactable = false;
+            SceneChenger.gameState = "pause";
+        }
+        
     }
 
     public void ResumeGame()
