@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneChenger : MonoBehaviour
 {
+    public static SceneChenger instance = null;
+
     Image sr;
     private float cla;                   //“§–¾“x
     private float clarespeed = 0.03f;    //•Ï‰»‘¬“x
@@ -24,6 +26,8 @@ public class SceneChenger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = GetComponent<SceneChenger>();
+
         Application.targetFrameRate = 60;
         gameState = "loading";
         selectscene = 11;
@@ -35,7 +39,7 @@ public class SceneChenger : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex == selectscene)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Quit();
         }
@@ -100,7 +104,7 @@ public class SceneChenger : MonoBehaviour
         SceneManager.LoadScene(scenenum);
     }
 
-    private void PlaySE(AudioClip clip)
+    public void PlaySE(AudioClip clip)
     {
         if (audioSource != null)
         {
