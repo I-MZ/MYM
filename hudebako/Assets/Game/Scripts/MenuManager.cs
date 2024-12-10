@@ -28,6 +28,8 @@ public class MenuManager : MonoBehaviour
     public GameObject button8;
     public int b8level;
 
+    public GameObject nextbutton;
+
     private int page;
     public bool checkmenu;
 
@@ -47,6 +49,7 @@ public class MenuManager : MonoBehaviour
         button6.SetActive(false);
         button7.SetActive(false);
         button8.SetActive(false);
+        nextbutton.SetActive(false);
         TutorialPage1.SetActive(false);
         TutorialPage2.SetActive(false);
         page = 1;
@@ -114,6 +117,10 @@ public class MenuManager : MonoBehaviour
         if (StageClearManager.clearlevel >= b8level)
         {
             button8.SetActive(true);
+        }
+        if (StageClearManager.clearlevel >= b5level)
+        {
+            nextbutton.SetActive(true);
         }
 
     }
