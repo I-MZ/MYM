@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject timer;
     public GameObject timeText;
+
+
+    public GameObject Explanation;
+
+
     TimeController timeCnt;
 
     float time_s = 0;
@@ -190,6 +195,8 @@ public class GameManager : MonoBehaviour
         resetButton.SetActive(false);
         timer.SetActive(false);
         stagenum.SetActive(false);
+
+        Explanation.SetActive(false);
         Uihidden = true;
     }
 
@@ -199,6 +206,8 @@ public class GameManager : MonoBehaviour
         resetButton.SetActive(true);
         timer.SetActive(true);
         stagenum.SetActive(true);
+
+        Explanation.SetActive(true);
         Uihidden = false;
     }
 

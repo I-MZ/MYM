@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController_m : MonoBehaviour
 {
     Rigidbody2D rbody;                   //Rigidbody2D型の変数
     SpriteRenderer sr;
@@ -24,6 +25,12 @@ public class PlayerController : MonoBehaviour
     private CircleCollider2D cc2;
     private PolygonCollider2D pc2;
     private bool hitwall = true;
+
+    public bool Deformation = true;    //変形状態 false:変形不可
+
+    //1マスの空間がプレイヤーより大きいなら変形解除できる?
+    private float space = 1.0f; //1マスの空間
+    private float playerspace = 0f; //変形時のプレイヤーの大きさ
 
     private bool checkpoint;
 
@@ -58,6 +65,9 @@ public class PlayerController : MonoBehaviour
         oldanime = tuujouanime;
         checkpoint = false;
         gravity = startgravity;
+
+        
+          
     }
 
     // Update is called once per frame
@@ -177,12 +187,17 @@ public class PlayerController : MonoBehaviour
                 rbody.velocity = new Vector2(rbody.velocity.x, movespeed * inputV);
             }
 
+            //変形解除　1マスにcc2分の空間が空いている時
             if (!forcepower)
             {
+                if (Deformation == false)//変形可能状態の時
+                {
                 cc2.enabled = true;
                 nowanime = modorianime;
                 pc2.enabled = false;
                 rbody.freezeRotation = false;
+                }
+              
             }
 
             if (!hitwall)
@@ -339,6 +354,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    ////変形タイルマップとプレイヤーの接触判定
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.name == "")
+    //    {
+
+    //    }
+    //}
+
     //重力の強弱切り替え
     void PowChange()
     {
@@ -364,6 +388,8 @@ public class PlayerController : MonoBehaviour
         forcepower = false;
     }
 
+    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "CheckPoint")
@@ -380,6 +406,27 @@ public class PlayerController : MonoBehaviour
         {
             Clear();
         }
+
+       
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+         //変形解除不可判定
+        if (collision.gameObject.name == "Object")
+        {
+            //Physics2D.CircleCast(transform.position,
+            //                                       0.1f,
+            //                                       Vector2.right,
+            //                                       0.5f,
+            //                                       wallLayer);
+            Debug.Log("変形不可");
+            NotDeformable();
+        }
+    }
+    //変形解除不可
+    void NotDeformable()
+    {
+        Deformation = false;
     }
 
     //復活処理
