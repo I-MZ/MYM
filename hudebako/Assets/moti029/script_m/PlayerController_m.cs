@@ -16,6 +16,9 @@ public class PlayerController_m : MonoBehaviour
     public bool forcepower = false;      //重力強化
     private bool checkchange = false;
     bool onWall = false;                 //床(壁)に乗っているか
+
+    public bool crevice = false;                //変形しないと通れない場所にいるか
+
     private float cla;                   //透明度
     private float clarespeed = 0.01f;    //変化速度
     public float spawnpointX = 0.0f;     //復活位置(X軸)
@@ -25,12 +28,6 @@ public class PlayerController_m : MonoBehaviour
     private CircleCollider2D cc2;
     private PolygonCollider2D pc2;
     private bool hitwall = true;
-
-    public bool Deformation = true;    //変形状態 false:変形不可
-
-    //1マスの空間がプレイヤーより大きいなら変形解除できる?
-    private float space = 1.0f; //1マスの空間
-    private float playerspace = 0f; //変形時のプレイヤーの大きさ
 
     private bool checkpoint;
 
@@ -66,8 +63,7 @@ public class PlayerController_m : MonoBehaviour
         checkpoint = false;
         gravity = startgravity;
 
-        
-          
+
     }
 
     // Update is called once per frame
@@ -148,7 +144,7 @@ public class PlayerController_m : MonoBehaviour
 
                 if (forcepower)
                 {
-                    transform.eulerAngles = new Vector3(0, 0, 270);
+                    transform.eulerAngles = new Vector3(0, 0, 90);
                 }
 
                 break;
@@ -164,7 +160,7 @@ public class PlayerController_m : MonoBehaviour
 
                 if (forcepower)
                 {
-                    transform.eulerAngles = new Vector3(0, 0, 90);
+                    transform.eulerAngles = new Vector3(0, 0, 270);
                 }
 
                 break;
@@ -187,17 +183,15 @@ public class PlayerController_m : MonoBehaviour
                 rbody.velocity = new Vector2(rbody.velocity.x, movespeed * inputV);
             }
 
-            //変形解除　1マスにcc2分の空間が空いている時
+
+            //変形解除
             if (!forcepower)
             {
-                if (Deformation == false)//変形可能状態の時
-                {
                 cc2.enabled = true;
                 nowanime = modorianime;
                 pc2.enabled = false;
                 rbody.freezeRotation = false;
-                }
-              
+                crevice = false;
             }
 
             if (!hitwall)
@@ -219,6 +213,81 @@ public class PlayerController_m : MonoBehaviour
             GameManager.instance.PlaySE(HENKEI);
         }
 
+        
+        if (forcepower)
+        {
+            switch (gravity)
+            {
+                case 0://下
+                    crevice = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.up,
+                                                   0.5f,
+                                                   wallLayer);
+
+                    if (crevice == true)
+                    {
+                        if (Input.GetKey(KeyCode.DownArrow))
+                        {
+                            Debug.Log("下変形不可");
+                            //NotDeformable();
+                        }
+
+
+                    }
+
+                    break;
+
+                case 1://上
+                    crevice = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.down,
+                                                   0.5f,
+                                                   wallLayer);
+
+
+                    if (crevice == true)
+                    {
+                        Debug.Log("上変形不可");
+                        //NotDeformable();
+                    }
+
+                    break;
+
+                case 2://右
+                    crevice = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.left,
+                                                   0.5f,
+                                                   wallLayer);
+
+
+                    if (crevice == true)
+                    {
+                        Debug.Log("右変形不可");
+                        //NotDeformable();
+                    }
+
+                    break;
+
+                case 3://左
+                    crevice = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.right,
+                                                   0.5f,
+                                                   wallLayer);
+
+                    //rbody.velocity = new Vector2(fallspead * -1, 0);
+
+                    if (crevice == true)
+                    {
+                        Debug.Log("左変形不可");
+                       // NotDeformable();
+                    }
+
+                    break;
+            }
+        }
     }
 
     void MoveUpdate()
@@ -280,22 +349,23 @@ public class PlayerController_m : MonoBehaviour
         }
     }
 
+    
     void ChangeGravity()
     {
         //重力の強弱切り替え
-        if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity == 0)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity == 0 && !crevice)
         {
             PowChange();
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity == 1)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity == 1 && !crevice)
         {
             PowChange();
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity == 2)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity == 2 && !crevice)
         {
             PowChange();
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity == 3)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity == 3 && !crevice)
         {
             PowChange();
         }
@@ -409,24 +479,11 @@ public class PlayerController_m : MonoBehaviour
 
        
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-         //変形解除不可判定
-        if (collision.gameObject.name == "Object")
-        {
-            //Physics2D.CircleCast(transform.position,
-            //                                       0.1f,
-            //                                       Vector2.right,
-            //                                       0.5f,
-            //                                       wallLayer);
-            Debug.Log("変形不可");
-            NotDeformable();
-        }
-    }
+    
     //変形解除不可
     void NotDeformable()
     {
-        Deformation = false;
+        forcepower = true;
     }
 
     //復活処理

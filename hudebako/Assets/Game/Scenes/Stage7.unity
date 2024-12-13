@@ -9087,6 +9087,10 @@ PrefabInstance:
       value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2083627711291270267, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083627711291270267, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
       propertyPath: spawnpointX
       value: -7.5
       objectReference: {fileID: 0}
@@ -9149,6 +9153,42 @@ PrefabInstance:
     - target: {fileID: 5196671999972059630, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754941779309431898, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
+      propertyPath: DAMEZI
+      value: 
+      objectReference: {fileID: 8300000, guid: 29edd6983cf1dc240a2b881631cae4a6, type: 3}
+    - target: {fileID: 7754941779309431898, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
+      propertyPath: HENKEI
+      value: 
+      objectReference: {fileID: 8300000, guid: 477e9d3dca123cd45a1e6d0fdc80631c, type: 3}
+    - target: {fileID: 7754941779309431898, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
+      propertyPath: TYAKUTI
+      value: 
+      objectReference: {fileID: 8300000, guid: f4ea428bcdd015e42b66260d38751d4d, type: 3}
+    - target: {fileID: 7754941779309431898, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754941779309431898, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
+      propertyPath: henkeianime
+      value: DeformationAnime
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754941779309431898, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
+      propertyPath: modorianime
+      value: ReturnAnime
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754941779309431898, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
+      propertyPath: spawnpointX
+      value: -6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754941779309431898, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
+      propertyPath: spawnpointY
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754941779309431898, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
+      propertyPath: tuujouanime
+      value: NeutralAnime
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}

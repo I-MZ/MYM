@@ -2,36 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController_Demo_m : MonoBehaviour
+public class PlayerController_copy : MonoBehaviour
 {
+    public static PlayerController_copy instance = null;
+
     Rigidbody2D rbody;                   //Rigidbody2D型の変数
     SpriteRenderer sr;
-    public float movespeed = 1.0f;       //移動速度
+    public float movespeed = 5.0f;       //移動速度
     private float inputH = 0.0f;         //横入力
     private float inputV = 0.0f;         //縦入力
-    public float fallspead = 1.0f;       //落下速度
+    public float fallspead = 10.0f;       //落下速度
+    public int startgravity = 0;
     public int gravity = 0;             //重力の向き(0=下,1=上,2=右,3=左)
     public bool forcepower = false;      //重力強化
+    private bool checkchange = false;
     bool onWall = false;                 //床(壁)に乗っているか
     private float cla;                   //透明度
-    public float clarespeed = 0.001f;    //変化速度
+    private float clarespeed = 0.01f;    //変化速度
     public float spawnpointX = 0.0f;     //復活位置(X軸)
     public float spawnpointY = 0.0f;     //復活位置(Y軸)
-    private Animator anim;  //Animatorをanimという変数で定義する
-    public Sprite neutralsprite;
-    public Sprite minisprite;
+    public float CpSpawnpointX = 0.0f;
+    public float CpSpawnpointY = 0.0f;
     private CircleCollider2D cc2;
     private PolygonCollider2D pc2;
+    private bool hitwall = true;
+
+    private bool checkpoint;
 
     public static string gameState = "playing";
     public LayerMask wallLayer;
 
+    Animator animator;
+    public string henkeianime = "player-HENKEI";
+    public string modorianime = "player-HUKUGEN";
+    public string tuujouanime = "player-TUUZYOU";
+
+    string nowanime = "";
+    string oldanime = "";
+
+    //SE
+    [Header("変形する時に鳴らすSE")]          public AudioClip HENKEI;
+    [Header("着地した時に鳴らすSE")]          public AudioClip TYAKUTI;
+    [Header("ダメージを受けた時に鳴らすSE")]  public AudioClip DAMEZI;
+
     // Start is called before the first frame update
     void Start()
     {
-        Application.targetFrameRate = 60;
-
-        anim = GetComponent<Animator>();//変数animに、Animatorコンポーネントを設定する
         rbody = this.GetComponent<Rigidbody2D>();   //Rigidbody2Dを取ってくる
         sr = GetComponent<SpriteRenderer>();
         cc2 = GetComponent<CircleCollider2D>();
@@ -39,8 +55,13 @@ public class PlayerController_Demo_m : MonoBehaviour
         gameState = "playing";
         cc2.enabled = true;
         pc2.enabled = false;
-        sr.sprite = neutralsprite;
-        Animation_all();
+        animator = GetComponent<Animator>();
+        nowanime = tuujouanime;
+        oldanime = tuujouanime;
+        checkpoint = false;
+        gravity = startgravity;
+
+        instance = GetComponent<PlayerController_copy>();
     }
 
     // Update is called once per frame
@@ -51,18 +72,13 @@ public class PlayerController_Demo_m : MonoBehaviour
             return;
         }
 
-        if (forcepower == true)
-        {
-            for (int i = 0; i == 1; i++)
-            {
-                animation_deformation();
-                animation_release();
-            }
-        }
-       
-
         MoveUpdate();
         ChangeGravity();
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Respawn();
+        }
     }
 
     void FixedUpdate()
@@ -72,9 +88,13 @@ public class PlayerController_Demo_m : MonoBehaviour
             return;
         }
 
-        
-
-
+        if (forcepower)
+        {
+            pc2.enabled = true;
+            nowanime = henkeianime;
+            cc2.enabled = false;
+            rbody.freezeRotation = true;
+        }
 
         //重力による落下処理(下、上、右、左)
         switch (gravity)
@@ -122,7 +142,7 @@ public class PlayerController_Demo_m : MonoBehaviour
 
                 if (forcepower)
                 {
-                    transform.eulerAngles = new Vector3(0, 0, 270);
+                    transform.eulerAngles = new Vector3(0, 0, 90);
                 }
 
                 break;
@@ -138,13 +158,17 @@ public class PlayerController_Demo_m : MonoBehaviour
 
                 if (forcepower)
                 {
-                    transform.eulerAngles = new Vector3(0, 0, 90);
+                    transform.eulerAngles = new Vector3(0, 0, 270);
                 }
 
                 break;
         }
 
-
+        ////浮いてるときは回転しない
+        //if (!onWall)
+        //{
+        //    rbody.freezeRotation = true;
+        //}
 
         if (onWall)
         {
@@ -157,7 +181,31 @@ public class PlayerController_Demo_m : MonoBehaviour
                 rbody.velocity = new Vector2(rbody.velocity.x, movespeed * inputV);
             }
 
-            
+            if (!forcepower)
+            {
+                cc2.enabled = true;
+                nowanime = modorianime;
+                pc2.enabled = false;
+                rbody.freezeRotation = false;
+            }
+
+            if (!hitwall)
+            {
+                GameManager.instance.PlaySE(TYAKUTI);
+                Debug.Log("音鳴らした");
+                hitwall = true;
+            }
+        }
+        else
+        {
+            hitwall = false;
+        }
+
+        if (nowanime != oldanime && checkchange)
+        {
+            oldanime = nowanime;
+            animator.Play(nowanime);
+            GameManager.instance.PlaySE(HENKEI);
         }
 
     }
@@ -167,11 +215,25 @@ public class PlayerController_Demo_m : MonoBehaviour
         // 横方向移動入力
         if (Input.GetKey(KeyCode.D))
         {// 右方向の移動入力
-            inputH = 1.0f;
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                inputH = 1.0f;
+            }
+            else
+            {
+                inputH = 0.5f;
+            }
         }
         else if (Input.GetKey(KeyCode.A))
         {// 左方向の移動入力
-            inputH = -1.0f;
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                inputH = -1.0f;
+            }
+            else
+            {
+                inputH = -0.5f;
+            }
         }
         else
         {// 入力なし
@@ -181,11 +243,25 @@ public class PlayerController_Demo_m : MonoBehaviour
         // 縦方向移動入力
         if (Input.GetKey(KeyCode.W))
         {// 上方向の移動入力
-            inputV = 1.0f;
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                inputV = 1.0f;
+            }
+            else
+            {
+                inputV = 0.5f;
+            }
         }
         else if (Input.GetKey(KeyCode.S))
         {// 下方向の移動入力
-            inputV = -1.0f;
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                inputV = -1.0f;
+            }
+            else
+            {
+                inputV = -0.5f;
+            }
         }
         else
         {// 入力なし
@@ -195,6 +271,7 @@ public class PlayerController_Demo_m : MonoBehaviour
 
     void ChangeGravity()
     {
+        //重力の強弱切り替え
         if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity == 0)
         {
             PowChange();
@@ -212,7 +289,7 @@ public class PlayerController_Demo_m : MonoBehaviour
             PowChange();
         }
 
-
+        //重力の向き切り替え
         if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity != 0)
         {
             if (gravity == 2 || gravity == 3)
@@ -266,23 +343,26 @@ public class PlayerController_Demo_m : MonoBehaviour
 
     }
 
+    //重力の強弱切り替え
     void PowChange()
     {
         if (!forcepower)
         {
-            forcepower = true;
+            PowUp();
         }
         else
         {
-            forcepower = false;
+            PowDown();
         }
     }
 
+    //重力(強)
     void PowUp()
     {
         forcepower = true;
+        checkchange = true;
     }
-
+    //重力(弱)
     void PowDown()
     {
         forcepower = false;
@@ -290,19 +370,32 @@ public class PlayerController_Demo_m : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Dead")
+        if(collision.gameObject.tag == "CheckPoint")
+        {
+            checkpoint = true;
+        }
+        //死亡判定
+        if (collision.gameObject.tag == "Dead" && gameState == "playing") 
         {
             Respawn();
         }
-
+        //ゴール判定
         if (collision.gameObject.tag == "Goal")
         {
             Clear();
         }
     }
 
+    //復活処理
     void Respawn()
     {
+        Debug.Log("リスポーン処理開始");
+        if (gameState == "playing")
+        {
+            Debug.Log("音鳴らす");
+            GameManager.instance.PlaySE(DAMEZI);
+        }
+
         gameState = "respawn";
         MoveStop();
 
@@ -310,6 +403,7 @@ public class PlayerController_Demo_m : MonoBehaviour
         StartCoroutine(Display());
     }
 
+    //ステージクリア
     void Clear()
     {
         gameState = "clear";
@@ -318,6 +412,7 @@ public class PlayerController_Demo_m : MonoBehaviour
 
     IEnumerator Display()
     {
+        //徐々に透明になる
         while (cla > 0f)
         {
             cla -= clarespeed;
@@ -325,62 +420,45 @@ public class PlayerController_Demo_m : MonoBehaviour
             yield return null;
         }
 
-        transform.position = new Vector2(spawnpointX, spawnpointY);
-        gravity = 0;
+        if (!checkpoint)
+        {
+            transform.position = new Vector2(spawnpointX, spawnpointY);
+        }
+        else
+        {
+            transform.position = new Vector2(CpSpawnpointX, CpSpawnpointY);
+        }
 
+        rbody.velocity = new Vector2(0, 0);
+        transform.eulerAngles = new Vector3(0, 0, 0); 
+        gravity = startgravity;
+        PowDown();
+        cc2.enabled = true;
+        if (oldanime != tuujouanime)
+        {
+            nowanime = modorianime;
+            oldanime = modorianime;
+            animator.Play(nowanime);
+
+        }
+        pc2.enabled = false;
+
+        //徐々に実体化する
         while (cla < 1f)
         {
             cla += clarespeed;
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, cla);
             yield return null;
         }
+
+        rbody.freezeRotation = false;
         gameState = "playing";
     }
 
     void MoveStop()
     {
         rbody.velocity = new Vector2(0, 0);
+        rbody.freezeRotation = true;
+        Debug.Log("プレイヤー停止");
     }
-
-    void Animation_all()
-    {
-        if (forcepower == true)//変形アニメーション
-        {
-            animation_deformation();
-            pc2.enabled = true;
-            sr.sprite = minisprite;
-            cc2.enabled = false;
-        }
-
-        if (forcepower == false)//変形解除アニメーション
-        {
-            animation_release();
-            animation_nomal();
-            cc2.enabled = true;
-            sr.sprite = neutralsprite;
-            pc2.enabled = false;
-        }
-
-        
-    }
-       
-
-        void animation_nomal()//通常アニメーション
-        {
-        anim.SetTrigger("bl_normal_ani");
-        }
-        void animation_deformation()//変形アニメーション
-        {
-        anim.SetTrigger("bl_deformation_ani");
-        }
-        void animation_release()//変形解除アニメーション
-        {
-        anim.SetTrigger("bl_release_ani");
-        }
-
-     /*
-      anim.SetBool("bl_normal_ani", false);//通常
-      anim.SetBool("bl_deformation_ani", false);//変形
-      anim.SetBool("bl_release_ani", true);//解除
-     */
 }

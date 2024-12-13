@@ -16,7 +16,7 @@ public class clear_UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         if (PlayerController_Demo_m.gameState == "clear")
+         if (PlayerController.gameState == "clear")
 	    {
             panel.SetActive(true);
 	    }
