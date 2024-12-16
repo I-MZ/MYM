@@ -4,31 +4,30 @@ using UnityEngine;
 
 public class FudebakoChanger : MonoBehaviour
 {
-    public GameObject PlayerObject;
-    PlayerController Pcon;
 
     public GameObject Fudebako_Down;
     public GameObject Fudebako_Up;
     public GameObject Fudebako_Right;
     public GameObject Fudebako_Left;
 
-    private int color = 0;
+    public GameObject ChengeColor;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        Pcon = PlayerObject.GetComponent<PlayerController>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        color = Pcon.gravity;
+
     }
 
     private void FixedUpdate()
     {
-        switch (color) 
+        switch (PlayerController.instance.gravity) 
         {
             case 0:
 
@@ -63,6 +62,19 @@ public class FudebakoChanger : MonoBehaviour
 
                 break;
         }
+
+        if(ChengeColor!=null)
+        {
+            if (PlayerController.instance.forcepower)
+            {
+                ChengeColor.SetActive(true);
+            }
+            else
+            {
+                ChengeColor.SetActive(false);
+            }
+        }
+        
 
     }
 }
