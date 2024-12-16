@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private PolygonCollider2D pc2;
     private bool hitwall = true;
 
+    private bool returnfolm;
+
     private bool checkpoint;
 
     public static string gameState = "playing";
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
         oldanime = tuujouanime;
         checkpoint = false;
         gravity = startgravity;
+        returnfolm = false;
 
         instance = GetComponent<PlayerController>();
     }
@@ -98,6 +101,7 @@ public class PlayerController : MonoBehaviour
             nowanime = henkeianime;
             cc2.enabled = false;
             rbody.freezeRotation = true;
+            returnfolm = true;
         }
 
         //重力による落下処理(下、上、右、左)
@@ -191,6 +195,27 @@ public class PlayerController : MonoBehaviour
             //変形解除
             if (!forcepower)
             {
+                if (returnfolm)
+                {
+                    switch (gravity)
+                    {
+                        case 0://↓
+                            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.25f, this.transform.position.z);
+                            break;
+                        case 1://↑
+                            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.25f, this.transform.position.z);
+                            break;
+                        case 2://→
+                            this.transform.position = new Vector3(this.transform.position.x - 0.25f, this.transform.position.y, this.transform.position.z);
+                            break;
+                        case 3://←
+                            this.transform.position = new Vector3(this.transform.position.x + 0.25f, this.transform.position.y, this.transform.position.z);
+                            break;
+                    }
+
+                    returnfolm = false;
+                }
+
                 cc2.enabled = true;
                 nowanime = modorianime;
                 pc2.enabled = false;
