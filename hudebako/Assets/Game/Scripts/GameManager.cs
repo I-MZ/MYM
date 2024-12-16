@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
+    public GameObject UI;
+
     public GameObject clearpanel;
     public GameObject menupanel;
     public GameObject resetButton;
@@ -50,7 +52,7 @@ public class GameManager : MonoBehaviour
         timeCnt = GetComponent<TimeController>();
         if (timeCnt != null)
         {
-            if (timeCnt.gameTime == 0.0f)
+            if (timeCnt.gameTime == 0.0f || SceneManager.GetActiveScene().buildIndex > StageClearManager.clearlevel)
             {
                 timer.SetActive(false);
             }
@@ -128,13 +130,15 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.F2))
-            {
-                if (!Uihidden)
-                    UiHidden();
-                else
-                    UiDisplay();
-            }
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            if (!Uihidden)
+                UiHidden();
+            else
+                UiDisplay();
         }
 
         if (Input.GetKeyDown(KeyCode.F10))
@@ -191,23 +195,15 @@ public class GameManager : MonoBehaviour
 
     private void UiHidden()
     {
-        menuButton.SetActive(false);
-        resetButton.SetActive(false);
-        timer.SetActive(false);
-        stagenum.SetActive(false);
+        UI.SetActive(false);
 
-        Explanation.SetActive(false);
         Uihidden = true;
     }
 
     private void UiDisplay()
     {
-        menuButton.SetActive(true);
-        resetButton.SetActive(true);
-        timer.SetActive(true);
-        stagenum.SetActive(true);
+        UI.SetActive(true);
 
-        Explanation.SetActive(true);
         Uihidden = false;
     }
 
