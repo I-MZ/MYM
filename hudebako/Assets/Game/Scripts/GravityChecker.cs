@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GravityChekcer : MonoBehaviour
+public class GravityChecker : MonoBehaviour
 {
     Image Img;
 
