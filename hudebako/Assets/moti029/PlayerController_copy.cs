@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
-public class PlayerController_copy : MonoBehaviour
+public class PlayerController_Copy : MonoBehaviour
 {
-    public static PlayerController_copy instance = null;
+    public static PlayerController instance;
 
     Rigidbody2D rbody;                   //Rigidbody2D型の変数
     SpriteRenderer sr;
@@ -17,6 +18,9 @@ public class PlayerController_copy : MonoBehaviour
     public bool forcepower = false;      //重力強化
     private bool checkchange = false;
     bool onWall = false;                 //床(壁)に乗っているか
+
+    public bool crevice = false;                //変形しないと通れない場所にいるか
+
     private float cla;                   //透明度
     private float clarespeed = 0.01f;    //変化速度
     public float spawnpointX = 0.0f;     //復活位置(X軸)
@@ -25,7 +29,10 @@ public class PlayerController_copy : MonoBehaviour
     public float CpSpawnpointY = 0.0f;
     private CircleCollider2D cc2;
     private PolygonCollider2D pc2;
+
     private bool hitwall = true;
+
+    private bool returnfolm;
 
     private bool checkpoint;
 
@@ -41,9 +48,9 @@ public class PlayerController_copy : MonoBehaviour
     string oldanime = "";
 
     //SE
-    [Header("変形する時に鳴らすSE")]          public AudioClip HENKEI;
-    [Header("着地した時に鳴らすSE")]          public AudioClip TYAKUTI;
-    [Header("ダメージを受けた時に鳴らすSE")]  public AudioClip DAMEZI;
+    [Header("変形する時に鳴らすSE")] public AudioClip HENKEI;
+    [Header("着地した時に鳴らすSE")] public AudioClip TYAKUTI;
+    [Header("ダメージを受けた時に鳴らすSE")] public AudioClip DAMEZI;
 
     // Start is called before the first frame update
     void Start()
@@ -55,19 +62,21 @@ public class PlayerController_copy : MonoBehaviour
         gameState = "playing";
         cc2.enabled = true;
         pc2.enabled = false;
+
         animator = GetComponent<Animator>();
         nowanime = tuujouanime;
         oldanime = tuujouanime;
         checkpoint = false;
         gravity = startgravity;
+        returnfolm = false;
 
-        instance = GetComponent<PlayerController_copy>();
+        instance = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameState != "playing")
+        if (gameState != "playing" || SceneChenger.gameState != "playing")
         {
             return;
         }
@@ -83,7 +92,7 @@ public class PlayerController_copy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (gameState != "playing")
+        if (gameState != "playing" || SceneChenger.gameState != "playing")
         {
             return;
         }
@@ -94,6 +103,7 @@ public class PlayerController_copy : MonoBehaviour
             nowanime = henkeianime;
             cc2.enabled = false;
             rbody.freezeRotation = true;
+            returnfolm = true;
         }
 
         //重力による落下処理(下、上、右、左)
@@ -105,6 +115,8 @@ public class PlayerController_copy : MonoBehaviour
                                                    Vector2.down,
                                                    0.5f,
                                                    wallLayer);
+
+                
 
                 rbody.velocity = new Vector2(0, fallspead * -1);
 
@@ -181,12 +193,36 @@ public class PlayerController_copy : MonoBehaviour
                 rbody.velocity = new Vector2(rbody.velocity.x, movespeed * inputV);
             }
 
+
+            //変形解除
             if (!forcepower)
             {
+                if (returnfolm)
+                {
+                    switch (gravity)
+                    {
+                        case 0://↓
+                            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.25f, this.transform.position.z);
+                            break;
+                        case 1://↑
+                            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.25f, this.transform.position.z);
+                            break;
+                        case 2://→
+                            this.transform.position = new Vector3(this.transform.position.x - 0.25f, this.transform.position.y, this.transform.position.z);
+                            break;
+                        case 3://←
+                            this.transform.position = new Vector3(this.transform.position.x + 0.25f, this.transform.position.y, this.transform.position.z);
+                            break;
+                    }
+
+                    returnfolm = false;
+                }
+
                 cc2.enabled = true;
                 nowanime = modorianime;
                 pc2.enabled = false;
                 rbody.freezeRotation = false;
+                crevice = false;
             }
 
             if (!hitwall)
@@ -208,6 +244,77 @@ public class PlayerController_copy : MonoBehaviour
             GameManager.instance.PlaySE(HENKEI);
         }
 
+
+        if (forcepower)
+        {
+            switch (gravity)
+            {
+                case 0://下
+                    crevice = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.up,
+                                                   0.5f,
+                                                   wallLayer);
+
+
+                    if (crevice == true)
+                    {
+                        if (Input.GetKey(KeyCode.DownArrow))
+                        {
+                            Debug.Log("下変形不可");
+                        }
+
+
+                    }
+
+                    break;
+
+                case 1://上
+                    crevice = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.down,
+                                                   0.5f,
+                                                   wallLayer);
+
+
+                    if (crevice == true)
+                    {
+                        Debug.Log("上変形不可");
+                    }
+
+                    break;
+
+                case 2://右
+                    crevice = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.left,
+                                                   0.5f,
+                                                   wallLayer);
+
+                    if (crevice == true)
+                    {
+                        Debug.Log("右変形不可");
+                    }
+
+                    break;
+
+                case 3://左
+                    crevice = Physics2D.CircleCast(transform.position,
+                                                   0.1f,
+                                                   Vector2.right,
+                                                   0.5f,
+                                                   wallLayer);
+
+                    //rbody.velocity = new Vector2(fallspead * -1, 0);
+
+                    if (crevice == true)
+                    {
+                        Debug.Log("左変形不可");
+                    }
+
+                    break;
+            }
+        }
     }
 
     void MoveUpdate()
@@ -269,22 +376,23 @@ public class PlayerController_copy : MonoBehaviour
         }
     }
 
+
     void ChangeGravity()
     {
         //重力の強弱切り替え
-        if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity == 0)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity == 0 && !crevice)
         {
             PowChange();
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity == 1)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity == 1 && !crevice)
         {
             PowChange();
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity == 2)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity == 2 && !crevice)
         {
             PowChange();
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity == 3)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity == 3 && !crevice)
         {
             PowChange();
         }
@@ -296,6 +404,7 @@ public class PlayerController_copy : MonoBehaviour
             {
                 gravity = 0;
                 PowDown();
+                returnfolm = false;
             }
             else
             {
@@ -308,6 +417,7 @@ public class PlayerController_copy : MonoBehaviour
             {
                 gravity = 1;
                 PowDown();
+                returnfolm = false;
             }
             else
             {
@@ -320,6 +430,7 @@ public class PlayerController_copy : MonoBehaviour
             {
                 gravity = 2;
                 PowDown();
+                returnfolm = false;
             }
             else
             {
@@ -332,6 +443,7 @@ public class PlayerController_copy : MonoBehaviour
             {
                 gravity = 3;
                 PowDown();
+                returnfolm = false;
             }
             else
             {
@@ -342,6 +454,15 @@ public class PlayerController_copy : MonoBehaviour
 
 
     }
+
+    ////変形タイルマップとプレイヤーの接触判定
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.name == "")
+    //    {
+
+    //    }
+    //}
 
     //重力の強弱切り替え
     void PowChange()
@@ -368,14 +489,16 @@ public class PlayerController_copy : MonoBehaviour
         forcepower = false;
     }
 
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "CheckPoint")
+        if (collision.gameObject.tag == "CheckPoint")
         {
             checkpoint = true;
         }
         //死亡判定
-        if (collision.gameObject.tag == "Dead" && gameState == "playing") 
+        if (collision.gameObject.tag == "Dead" && gameState == "playing")
         {
             Respawn();
         }
@@ -384,6 +507,8 @@ public class PlayerController_copy : MonoBehaviour
         {
             Clear();
         }
+
+
     }
 
     //復活処理
@@ -430,7 +555,7 @@ public class PlayerController_copy : MonoBehaviour
         }
 
         rbody.velocity = new Vector2(0, 0);
-        transform.eulerAngles = new Vector3(0, 0, 0); 
+        transform.eulerAngles = new Vector3(0, 0, 0);
         gravity = startgravity;
         PowDown();
         cc2.enabled = true;

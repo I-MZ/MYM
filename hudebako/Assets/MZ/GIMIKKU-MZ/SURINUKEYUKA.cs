@@ -57,8 +57,6 @@ public class SURINUKEYUKA : MonoBehaviour
             animator.Play(nowanime);
             Debug.Log("anime = " + nowanime);
         }
-
-
-
     }
+
 }

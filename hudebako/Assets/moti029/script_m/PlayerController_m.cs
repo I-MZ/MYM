@@ -27,6 +27,9 @@ public class PlayerController_m : MonoBehaviour
     public float CpSpawnpointY = 0.0f;
     private CircleCollider2D cc2;
     private PolygonCollider2D pc2;
+
+    private BoxCollider2D bc2;           //•Â‚¶‚½’è‹K‚Éˆø‚Á‚©‚©‚ç‚È‚¢‚½‚ß‚Ì”»’è
+
     private bool hitwall = true;
 
     private bool checkpoint;
@@ -57,6 +60,9 @@ public class PlayerController_m : MonoBehaviour
         gameState = "playing";
         cc2.enabled = true;
         pc2.enabled = false;
+
+        bc2.enabled = false;
+
         animator = GetComponent<Animator>();
         nowanime = tuujouanime;
         oldanime = tuujouanime;
@@ -157,6 +163,12 @@ public class PlayerController_m : MonoBehaviour
                                                   wallLayer);
 
                 rbody.velocity = new Vector2(fallspead * -1, 0);
+
+                bc2.enabled = true;
+                if (bc2)
+                {
+                   
+                }
 
                 if (forcepower)
                 {

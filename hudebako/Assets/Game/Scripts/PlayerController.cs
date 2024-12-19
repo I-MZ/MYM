@@ -3,32 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+//517行目　未完
+
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
-    Rigidbody2D rbody;                   //Rigidbody2D型の変数
+    
+
+    Rigidbody2D rbody;                  //Rigidbody2D型の変数
     SpriteRenderer sr;
-    public float movespeed = 5.0f;       //移動速度
-    private float inputH = 0.0f;         //横入力
-    private float inputV = 0.0f;         //縦入力
-    public float fallspead = 10.0f;       //落下速度
+    public float movespeed = 5.0f;      //移動速度
+    private float inputH = 0.0f;        //横入力
+    private float inputV = 0.0f;        //縦入力
+    public float fallspead = 10.0f;     //落下速度
     public int startgravity = 0;
     public int gravity = 0;             //重力の向き(0=下,1=上,2=右,3=左)
-    public bool forcepower = false;      //重力強化
+    public bool forcepower = false;     //重力強化
     private bool checkchange = false;
-    bool onWall = false;                 //床(壁)に乗っているか
+    bool onWall = false;                //床(壁)に乗っているか
 
-    public bool crevice = false;                //変形しないと通れない場所にいるか
+    public bool crevice = false;        //変形しないと通れない場所にいるか
+    public bool Ruler_overlap = false;  //定規とプレイヤーが重なっているか
 
-    private float cla;                   //透明度
-    private float clarespeed = 0.01f;    //変化速度
-    public float spawnpointX = 0.0f;     //復活位置(X軸)
-    public float spawnpointY = 0.0f;     //復活位置(Y軸)
+
+    private float cla;                  //透明度
+    private float clarespeed = 0.01f;   //変化速度
+    public float spawnpointX = 0.0f;    //復活位置(X軸)
+    public float spawnpointY = 0.0f;    //復活位置(Y軸)
     public float CpSpawnpointX = 0.0f;
     public float CpSpawnpointY = 0.0f;
     private CircleCollider2D cc2;
     private PolygonCollider2D pc2;
+
+
     private bool hitwall = true;
 
     private bool returnfolm;
@@ -61,6 +69,10 @@ public class PlayerController : MonoBehaviour
         gameState = "playing";
         cc2.enabled = true;
         pc2.enabled = false;
+
+
+
+
         animator = GetComponent<Animator>();
         nowanime = tuujouanime;
         oldanime = tuujouanime;
@@ -69,6 +81,8 @@ public class PlayerController : MonoBehaviour
         returnfolm = false;
 
         instance = GetComponent<PlayerController>();
+
+        
     }
 
     // Update is called once per frame
@@ -113,7 +127,6 @@ public class PlayerController : MonoBehaviour
                                                    Vector2.down,
                                                    0.5f,
                                                    wallLayer);
-
                 
 
                 rbody.velocity = new Vector2(0, fallspead * -1);
@@ -289,7 +302,6 @@ public class PlayerController : MonoBehaviour
                                                    0.5f,
                                                    wallLayer);
 
-
                     if (crevice == true)
                     {
                         Debug.Log("右変形不可");
@@ -403,6 +415,7 @@ public class PlayerController : MonoBehaviour
             {
                 gravity = 0;
                 PowDown();
+                returnfolm = false;
             }
             else
             {
@@ -415,6 +428,7 @@ public class PlayerController : MonoBehaviour
             {
                 gravity = 1;
                 PowDown();
+                returnfolm = false;
             }
             else
             {
@@ -427,6 +441,7 @@ public class PlayerController : MonoBehaviour
             {
                 gravity = 2;
                 PowDown();
+                returnfolm = false;
             }
             else
             {
@@ -439,6 +454,7 @@ public class PlayerController : MonoBehaviour
             {
                 gravity = 3;
                 PowDown();
+                returnfolm = false;
             }
             else
             {
@@ -450,14 +466,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    ////変形タイルマップとプレイヤーの接触判定
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.name == "")
-    //    {
-
-    //    }
-    //}
 
     //重力の強弱切り替え
     void PowChange()
@@ -501,6 +509,57 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Goal")
         {
             Clear();
+        }
+
+        //定規に当たってる時
+        if (collision.gameObject.name == "Ruler")
+        {
+            Debug.Log("定規");
+            Ruler_overlap = true;
+            Ruler_Move();
+        }
+    }
+
+    //定規に埋まった時の処理
+    void Ruler_Move()
+    {
+        //GameObject RulerAll = transform.Find("Ruler All").gameObject;
+        //GameObject RulerChild = RulerAll.transform.GetComponent<GameObject>();
+
+        //現在の位置を取得
+        Vector3 Neripos = this.gameObject.transform.position;
+        ////定規の位置を取得
+        //Vector3 Rupos = Ruler.gameObject.transform.position;
+
+        //0下、1上、2右、3左
+
+        if (Ruler_overlap)
+        {
+            if (gravity == 0)//下
+            {
+                this.gameObject.transform.position = new Vector3(Neripos.x, Neripos.y + 1 / 2, Neripos.z);
+                gravity = 1;
+                Debug.Log("上側へ移動");
+            }
+            if (gravity == 1)//上
+            {
+                this.gameObject.transform.position = new Vector3(Neripos.x, Neripos.y - 1 / 2, Neripos.z);
+                gravity = 0;
+                Debug.Log("下側へ移動");
+            }
+            if (gravity == 2)//右
+            {
+                this.gameObject.transform.position = new Vector3(Neripos.x + 1 / 2, Neripos.y, Neripos.z);
+                gravity = 0;
+                Debug.Log("左側へ移動");
+            }
+            if (gravity == 3)//左
+            {
+                this.gameObject.transform.position = new Vector3(Neripos.x - 1 / 2, Neripos.y, Neripos.z);
+                gravity = 0;
+                Debug.Log("右側へ移動");
+            } 
+           
         }
 
 
