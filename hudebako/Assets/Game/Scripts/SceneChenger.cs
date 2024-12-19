@@ -39,10 +39,7 @@ public class SceneChenger : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Quit();
-        }
+        
     }
 
     public void NextScene()
@@ -116,8 +113,5 @@ public class SceneChenger : MonoBehaviour
         }
     }
 
-    public void Quit()
-    {
-        Application.Quit();
-    }
+    
 }
