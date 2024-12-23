@@ -19,9 +19,9 @@ public class CursorManager : MonoBehaviour
     public GameObject buckbutton;
 
     //ˆÊ’uƒTƒ“ƒvƒ‹
-    //  1   2  
-    //  3   4
-    //    5
+    //   1   2  
+    //   3   4
+    //     5
 
 
     // Start is called before the first frame update
@@ -29,17 +29,13 @@ public class CursorManager : MonoBehaviour
     {
         if (select1 != null && select1.activeInHierarchy)
         {
-            cursor.transform.position = new Vector3(select1.transform.position.x,
-                                                    select1.transform.position.y,
-                                                    select1.transform.position.z);
+            SetCursorPos(select1);
 
             cursor_num = 1;
         }
         else
         {
-            cursor.transform.position = new Vector3(select5.transform.position.x,
-                                                     select5.transform.position.y,
-                                                     select5.transform.position.z);
+            SetCursorPos(select5);
 
             cursor_num = 5;
         }
@@ -48,13 +44,65 @@ public class CursorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        switch (cursor_num)
+        {
+            case 1:
+                //
+                ButtonSelect(select1);
+                break;
+            case 2:
+                //
+                ButtonSelect(select2);
+                break;
+            case 3:
+                //
+                ButtonSelect(select3);
+                break;
+            case 4:
+                //
+                ButtonSelect(select4);
+                break;
+            case 5:
+                //
+                ButtonSelect(select5);
+                break;
+        }
+
         CursorMove();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Enter();
+            switch (cursor_num) 
+            {
+                case 1:
+                    //
+                    Enter(select1);
+                    break;
+                case 2:
+                    //
+                    Enter(select2);
+                    break;
+                case 3:
+                    //
+                    Enter(select3);
+                    break;
+                case 4:
+                    //
+                    Enter(select4);
+                    break;
+                case 5:
+                    //
+                    Enter(select5);
+                    break;
+            }
         }
 
+    }
+
+    void ButtonSelect(GameObject select)
+    {
+        Button bt = select.GetComponent<Button>();
+        bt.Select();
     }
 
     void CursorMove()
@@ -67,13 +115,8 @@ public class CursorManager : MonoBehaviour
 
                     if (buckbutton != null && buckbutton.activeInHierarchy)
                     {
-                        Enter();
+                        BuckPage();
 
-                        cursor.transform.position = new Vector3(select2.transform.position.x,
-                                                                select2.transform.position.y,
-                                                                select2.transform.position.z);
-
-                        cursor_num = 2;
                     }
 
 
@@ -82,9 +125,7 @@ public class CursorManager : MonoBehaviour
 
                     if (select1 != null && select1.activeInHierarchy)
                     {
-                        cursor.transform.position = new Vector3(select1.transform.position.x,
-                                                                select1.transform.position.y, 
-                                                                select1.transform.position.z);
+                        SetCursorPos(select1);
 
                         cursor_num = 1;
                     }
@@ -92,15 +133,21 @@ public class CursorManager : MonoBehaviour
                     break;
                 case 3:
 
+                    if (buckbutton != null && buckbutton.activeInHierarchy)
+                    {
+                        BuckPage();
+
+                        SetCursorPos(select1);
+
+                        cursor_num = 1;
+                    }
 
                     break;
                 case 4:
 
                     if (select3 != null && select3.activeInHierarchy)
                     {
-                        cursor.transform.position = new Vector3(select3.transform.position.x,
-                                                                select3.transform.position.y,
-                                                                select3.transform.position.z);
+                        SetCursorPos(select3);
 
                         cursor_num = 3;
                     }
@@ -110,9 +157,7 @@ public class CursorManager : MonoBehaviour
 
                     if ((select3 != null && select3.activeInHierarchy) && (select4 != null && select4.activeInHierarchy))
                     {
-                        cursor.transform.position = new Vector3(select3.transform.position.x,
-                                                                select3.transform.position.y,
-                                                                select3.transform.position.z);
+                        SetCursorPos(select3);
 
                         cursor_num = 3;
                     }
@@ -129,9 +174,7 @@ public class CursorManager : MonoBehaviour
 
                     if (select2 != null && select2.activeInHierarchy)
                     {
-                        cursor.transform.position = new Vector3(select2.transform.position.x,
-                                                                select2.transform.position.y,
-                                                                select2.transform.position.z);
+                        SetCursorPos(select2);
 
                         cursor_num = 2;
                     }
@@ -139,15 +182,18 @@ public class CursorManager : MonoBehaviour
                     break;
                 case 2:
 
+                    if (nextbutton != null && nextbutton.activeInHierarchy)
+                    {
+                        NextPage();
+
+                    }
 
                     break;
                 case 3:
 
                     if (select4 != null && select4.activeInHierarchy)
                     {
-                        cursor.transform.position = new Vector3(select4.transform.position.x,
-                                                                select4.transform.position.y,
-                                                                select4.transform.position.z);
+                        SetCursorPos(select4);
 
                         cursor_num = 4;
                     }
@@ -155,15 +201,21 @@ public class CursorManager : MonoBehaviour
                     break;
                 case 4:
 
+                    if (nextbutton != null && nextbutton.activeInHierarchy)
+                    {
+                        NextPage();
+
+                        SetCursorPos(select2);
+
+                        cursor_num = 2;
+                    }
 
                     break;
                 case 5:
 
                     if ((select3 != null && select3.activeInHierarchy) && (select4 != null && select4.activeInHierarchy))
                     {
-                        cursor.transform.position = new Vector3(select4.transform.position.x,
-                                                                select4.transform.position.y,
-                                                                select4.transform.position.z);
+                        SetCursorPos(select4);
 
                         cursor_num = 4;
                     }
@@ -188,9 +240,7 @@ public class CursorManager : MonoBehaviour
 
                     if (select1 != null && select1.activeInHierarchy)
                     {
-                        cursor.transform.position = new Vector3(select1.transform.position.x,
-                                                                select1.transform.position.y,
-                                                                select1.transform.position.z);
+                        SetCursorPos(select1);
 
                         cursor_num = 1;
                     }
@@ -200,9 +250,7 @@ public class CursorManager : MonoBehaviour
 
                     if (select2 != null && select2.activeInHierarchy)
                     {
-                        cursor.transform.position = new Vector3(select2.transform.position.x,
-                                                                select2.transform.position.y,
-                                                                select2.transform.position.z);
+                        SetCursorPos(select2);
 
                         cursor_num = 2;
                     }
@@ -212,9 +260,7 @@ public class CursorManager : MonoBehaviour
 
                     if (select3 != null && select3.activeInHierarchy)
                     {
-                        cursor.transform.position = new Vector3(select3.transform.position.x,
-                                                                select3.transform.position.y,
-                                                                select3.transform.position.z);
+                        SetCursorPos(select3);
 
                         cursor_num = 3;
                     }
@@ -230,9 +276,7 @@ public class CursorManager : MonoBehaviour
 
                     if (select3 != null && select3.activeInHierarchy)
                     {
-                        cursor.transform.position = new Vector3(select3.transform.position.x,
-                                                                select3.transform.position.y,
-                                                                select3.transform.position.z);
+                        SetCursorPos(select3);
 
                         cursor_num = 3;
                     }
@@ -242,9 +286,7 @@ public class CursorManager : MonoBehaviour
 
                     if (select4 != null && select4.activeInHierarchy)
                     {
-                        cursor.transform.position = new Vector3(select4.transform.position.x,
-                                                                select4.transform.position.y,
-                                                                select4.transform.position.z);
+                        SetCursorPos(select4);
 
                         cursor_num = 4;
                     }
@@ -254,9 +296,7 @@ public class CursorManager : MonoBehaviour
 
                     if (select5 != null && select5.activeInHierarchy)
                     {
-                        cursor.transform.position = new Vector3(select5.transform.position.x,
-                                                                select5.transform.position.y,
-                                                                select5.transform.position.z);
+                        SetCursorPos(select5);
 
                         cursor_num = 5;
                     }
@@ -266,9 +306,7 @@ public class CursorManager : MonoBehaviour
 
                     if (select5 != null && select5.activeInHierarchy)
                     {
-                        cursor.transform.position = new Vector3(select5.transform.position.x,
-                                                                select5.transform.position.y,
-                                                                select5.transform.position.z);
+                        SetCursorPos(select5);
 
                         cursor_num = 5;
                     }
@@ -283,143 +321,30 @@ public class CursorManager : MonoBehaviour
         }
     }
 
-    void Enter()
+    void SetCursorPos(GameObject select)
     {
-        
+        cursor.transform.position = new Vector3(select.transform.position.x + (select.GetComponent<RectTransform>().sizeDelta.x / 75),
+                                                select.transform.position.y,
+                                                select.transform.position.z);
+    }
 
-        switch (cursor_num)
-        {
-            case 1:
+    void Enter(GameObject select)
+    {
 
-                if (select1 != null && select1.activeInHierarchy)
-                {
-                    if (select1 != null && select1.activeInHierarchy)
-                    {
-                        cursor.transform.position = new Vector3(select1.transform.position.x,
-                                                                select1.transform.position.y,
-                                                                select1.transform.position.z);
+        Button bt = select.GetComponent<Button>();
+        bt.onClick.Invoke();
+              
+    }
 
-                        cursor_num = 1;
-                    }
-                    else
-                    {
-                        cursor.transform.position = new Vector3(select5.transform.position.x,
-                                                                 select5.transform.position.y,
-                                                                 select5.transform.position.z);
+    void NextPage()
+    {
+        Button bt = nextbutton.GetComponent<Button>();
+        bt.onClick.Invoke();
+    }
 
-                        cursor_num = 5;
-                    }
-
-                    Button bt = select1.GetComponent<Button>();
-                    bt.onClick.Invoke();
-                }
-
-                break;
-            case 2:
-
-                if (select2 != null && select2.activeInHierarchy)
-                {
-                    if (select1 != null && select1.activeInHierarchy)
-                    {
-                        cursor.transform.position = new Vector3(select1.transform.position.x,
-                                                                select1.transform.position.y,
-                                                                select1.transform.position.z);
-
-                        cursor_num = 1;
-                    }
-                    else
-                    {
-                        cursor.transform.position = new Vector3(select5.transform.position.x,
-                                                                 select5.transform.position.y,
-                                                                 select5.transform.position.z);
-
-                        cursor_num = 5;
-                    }
-
-                    Button bt = select2.GetComponent<Button>();
-                    bt.onClick.Invoke();
-                }
-
-                break;
-            case 3:
-
-                if (select3 != null && select3.activeInHierarchy)
-                {
-                    if (select1 != null && select1.activeInHierarchy)
-                    {
-                        cursor.transform.position = new Vector3(select1.transform.position.x,
-                                                                select1.transform.position.y,
-                                                                select1.transform.position.z);
-
-                        cursor_num = 1;
-                    }
-                    else
-                    {
-                        cursor.transform.position = new Vector3(select5.transform.position.x,
-                                                                 select5.transform.position.y,
-                                                                 select5.transform.position.z);
-
-                        cursor_num = 5;
-                    }
-
-                    Button bt = select3.GetComponent<Button>();
-                    bt.onClick.Invoke();
-                }
-
-                break;
-            case 4:
-
-                if (select4 != null && select4.activeInHierarchy)
-                {
-                    if (select1 != null && select1.activeInHierarchy)
-                    {
-                        cursor.transform.position = new Vector3(select1.transform.position.x,
-                                                                select1.transform.position.y,
-                                                                select1.transform.position.z);
-
-                        cursor_num = 1;
-                    }
-                    else
-                    {
-                        cursor.transform.position = new Vector3(select5.transform.position.x,
-                                                                 select5.transform.position.y,
-                                                                 select5.transform.position.z);
-
-                        cursor_num = 5;
-                    }
-
-                    Button bt = select4.GetComponent<Button>();
-                    bt.onClick.Invoke();
-                }
-
-                break;
-            case 5:
-
-                if (select5 != null && select5.activeInHierarchy)
-                {
-                    if (select1 != null && select1.activeInHierarchy)
-                    {
-                        cursor.transform.position = new Vector3(select1.transform.position.x,
-                                                                select1.transform.position.y,
-                                                                select1.transform.position.z);
-
-                        cursor_num = 1;
-                    }
-                    else
-                    {
-                        cursor.transform.position = new Vector3(select5.transform.position.x,
-                                                                 select5.transform.position.y,
-                                                                 select5.transform.position.z);
-
-                        cursor_num = 5;
-                    }
-
-                    Button bt = select5.GetComponent<Button>();
-                    bt.onClick.Invoke();
-                }
-
-                break;
-        }
-
+    void BuckPage()
+    {
+        Button bt = buckbutton.GetComponent<Button>();
+        bt.onClick.Invoke();
     }
 }
