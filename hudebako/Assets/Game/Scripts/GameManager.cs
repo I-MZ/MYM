@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour
 
     private AudioSource audioSource = null;
 
-    [Header("決定時に鳴らすSE")] public AudioClip KETTEI;
-    [Header("キャンセル時に鳴らすSE")] public AudioClip KYANSERU;
+    [Header("決定時に鳴らすSE")] public AudioClip Decide;
+    [Header("キャンセル時に鳴らすSE")] public AudioClip Cancel;
 
     private bool Uihidden;
 
@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
     {
         if (SceneChenger.gameState != "loading")
         {
-            PlaySE(KETTEI);
+            PlaySE(Decide);
             Time.timeScale = 0;
             menupanel.SetActive(true);
             Button rbt = resetButton.GetComponent<Button>();
@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        PlaySE(KYANSERU);
+        PlaySE(Cancel);
         Time.timeScale = 1;
         clearpanel.SetActive(false);
         menupanel.SetActive(false);

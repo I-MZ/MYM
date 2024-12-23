@@ -9814,6 +9814,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1253753142}
+    - target: {fileID: 7315348618201845223, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+      propertyPath: Cancel
+      value: 
+      objectReference: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
+    - target: {fileID: 7315348618201845223, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+      propertyPath: Decide
+      value: 
+      objectReference: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
     - target: {fileID: 7315348618201845244, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
       propertyPath: m_Name
       value: Canvas
