@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SURINUKEYUKA : MonoBehaviour
+public class Penetration : MonoBehaviour
 {
     public GameObject PlayerObject;
     PlayerController Pcnt;
