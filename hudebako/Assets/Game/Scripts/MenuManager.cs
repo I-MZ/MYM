@@ -33,8 +33,8 @@ public class MenuManager : MonoBehaviour
     private int page;
     public bool checkmenu;
 
-    [Header("決定時に鳴らすSE")]       public AudioClip KETTEI;
-    [Header("キャンセル時に鳴らすSE")] public AudioClip KYANSERU;
+    [Header("決定時に鳴らすSE")]       public AudioClip Decide;
+    [Header("キャンセル時に鳴らすSE")] public AudioClip Cancel;
 
     // Start is called before the first frame update
     void Start()
@@ -128,13 +128,13 @@ public class MenuManager : MonoBehaviour
     public void NextPage()
     {
         page++;
-        GameManager.instance.PlaySE(KETTEI);
+        GameManager.instance.PlaySE(Decide);
     }
 
     public void BackPage()
     {
         page--;
-        GameManager.instance.PlaySE(KETTEI);
+        GameManager.instance.PlaySE(Decide);
     }
 
     public void GoTutorial()
@@ -142,13 +142,13 @@ public class MenuManager : MonoBehaviour
         Menu.SetActive(false);
         checkmenu = true;
         page = 1;
-        GameManager.instance.PlaySE(KETTEI);
+        GameManager.instance.PlaySE(Decide);
     }
 
     public void ReturnMenu()
     {
         Menu.SetActive(true);
         checkmenu = false;
-        GameManager.instance.PlaySE(KYANSERU);
+        GameManager.instance.PlaySE(Cancel);
     }
 }
