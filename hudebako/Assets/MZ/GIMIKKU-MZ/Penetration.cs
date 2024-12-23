@@ -12,8 +12,8 @@ public class Penetration : MonoBehaviour
     private BoxCollider2D BC;
 
     Animator animator;
-     string hiraku = "ZYOUGI_AKERU";
-     string toziru = "ZYOUGI_SIMERU";
+     string open  = "Ruler_Open";
+     string close = "Ruler_Close";
 
     string nowanime = "";
     string oldanime = "";
@@ -32,23 +32,23 @@ public class Penetration : MonoBehaviour
         if (CkopenGravity == Pcnt.gravity) 
         {
             Debug.Log("äJÇ≠ÅH");
-            if (nowanime != hiraku)
+            if (nowanime != open)
             {
                 Debug.Log("äJÇ¢ÇΩ");
             }
 
             BC.enabled = false;
-            nowanime = hiraku;
+            nowanime = open;
         }
         else if(CkcloseGravity==Pcnt.gravity||PlayerController.gameState=="respawn")
         {
-            if (nowanime != toziru)
+            if (nowanime != close)
             {
                 Debug.Log("ï¬Ç∂ÇΩ");
             }
 
             BC.enabled = true;
-            nowanime = toziru;
+            nowanime = close;
         }
 
         if (nowanime != oldanime)
