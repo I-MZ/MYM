@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController_Demo_y : MonoBehaviour
 {
+    public static PlayerController instance = null;
+
     Rigidbody2D rbody;                   //Rigidbody2Då^ÇÃïœêî
     SpriteRenderer sr;
     public float movespeed = 5.0f;       //à⁄ìÆë¨ìx
@@ -58,6 +60,8 @@ public class PlayerController_Demo_y : MonoBehaviour
         oldanime = tuujouanime;
         checkpoint = false;
         gravity = startgravity;
+
+        instance = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -70,6 +74,11 @@ public class PlayerController_Demo_y : MonoBehaviour
 
         MoveUpdate();
         ChangeGravity();
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Respawn();
+        }
     }
 
     void FixedUpdate()
@@ -133,7 +142,7 @@ public class PlayerController_Demo_y : MonoBehaviour
 
                 if (forcepower)
                 {
-                    transform.eulerAngles = new Vector3(0, 0, 270);
+                    transform.eulerAngles = new Vector3(0, 0, 90);
                 }
 
                 break;
@@ -149,7 +158,7 @@ public class PlayerController_Demo_y : MonoBehaviour
 
                 if (forcepower)
                 {
-                    transform.eulerAngles = new Vector3(0, 0, 90);
+                    transform.eulerAngles = new Vector3(0, 0, 270);
                 }
 
                 break;
@@ -198,10 +207,6 @@ public class PlayerController_Demo_y : MonoBehaviour
             animator.Play(nowanime);
             GameManager.instance.PlaySE(HENKEI);
         }
-
-
-
-
 
     }
 

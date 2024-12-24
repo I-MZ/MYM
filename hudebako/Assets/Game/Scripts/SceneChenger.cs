@@ -27,7 +27,6 @@ public class SceneChenger : MonoBehaviour
     void Start()
     {
         instance = GetComponent<SceneChenger>();
-
         Application.targetFrameRate = 60;
         gameState = "loading";
         selectscene = 11;

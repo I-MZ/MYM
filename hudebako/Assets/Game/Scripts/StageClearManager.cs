@@ -6,16 +6,17 @@ public class StageClearManager : MonoBehaviour
 {
 
     public static int clearlevel;
-    public static bool checkstart = false;
+    public static bool CheckStart = false;
    
 
     // Start is called before the first frame update
     void Start()
     {
-        if (!checkstart)
+        //Å‰‚¾‚¯“®‚©‚·
+        if (!CheckStart)
         {
-            checkstart = true;
-            clearlevel = 0;
+            CheckStart = true;  //Ÿ“®‚©‚È‚¢‚æ‚¤‚É‚·‚é
+            clearlevel = 0;     //ƒNƒŠƒAî•ñ‰Šú‰»
         }
     }
 
