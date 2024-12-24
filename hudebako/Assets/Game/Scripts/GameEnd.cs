@@ -6,6 +6,8 @@ public class GameEnd : MonoBehaviour
 {
     public GameObject endpanel;
 
+    public static string GameState = "";
+
     [Header("Œˆ’èŽž‚É–Â‚ç‚·SE")] public AudioClip enter;
     [Header("ƒLƒƒƒ“ƒZƒ‹Žž‚É–Â‚ç‚·SE")] public AudioClip cancel;
 
@@ -13,6 +15,8 @@ public class GameEnd : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameState = "playing";
+
         endpanel.SetActive(false);
     }
 
@@ -31,6 +35,8 @@ public class GameEnd : MonoBehaviour
         SceneChenger.instance.PlaySE(enter);
         endpanel.SetActive(true);
 
+        GameState = "endmode";
+
     }
 
     public void PanelDisabling()
@@ -38,6 +44,8 @@ public class GameEnd : MonoBehaviour
 
         SceneChenger.instance.PlaySE(cancel);
         endpanel.SetActive(false);
+
+        GameState = "playing";
 
     }
 

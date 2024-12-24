@@ -9,36 +9,34 @@ public class SceneChenger : MonoBehaviour
     public static SceneChenger instance = null;
 
     Image sr;
-    private float cla;                   //透明度
-    private float clarespeed = 0.03f;    //変化速度
+    private float cla;                      //透明度
+    private float clarespeed = 0.03f;       //変化速度
 
-    private bool fadein = true;
+    private bool fadein = true;             //フェードイン/フェードアウト切り替え
 
-    private int scenenum;
-    private int selectscene;
+    private int scenenum;                   //切り替え先のシーンのビルドインデックス
+    private int selectscene = 11;           //ステージセレクトのビルドインデックス
 
-    public static string gameState = "";
+    public static string gameState = "";    //フェードイン/フェードアウト中かどうか
 
-    private AudioSource audioSource = null;
+    private AudioSource audioSource = null; //
 
-    [Header("決定時に鳴らすSE")] public AudioClip enter;
+    public AudioClip enter;                 //決定時に鳴らすSE
+
+    void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         instance = GetComponent<SceneChenger>();
-        Application.targetFrameRate = 60;
         gameState = "loading";
-        selectscene = 11;
         audioSource = GetComponent<AudioSource>();
         sr = GetComponent<Image>();
         cla = sr.color.a;
         StartCoroutine(FadeIn());
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void NextScene()

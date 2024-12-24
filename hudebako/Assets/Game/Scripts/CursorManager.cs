@@ -18,6 +18,8 @@ public class CursorManager : MonoBehaviour
     public GameObject nextbutton;
     public GameObject buckbutton;
 
+    public bool GameEnd_Cuasor = false;
+
     //ˆÊ’uƒTƒ“ƒvƒ‹
     //   1   2  
     //   3   4
@@ -44,6 +46,11 @@ public class CursorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameEnd_Cuasor && GameEnd.GameState == "endmode")
+        {
+            return;
+        }
+
         switch (cursor_num)
         {
             case 1:
