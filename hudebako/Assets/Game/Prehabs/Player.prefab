@@ -251,6 +251,8 @@ MonoBehaviour:
   forcepower: 0
   crevice: 0
   Ruler_overlap: 0
+  groundgravity: 0
+  UDLRground: 0
   spawnpointX: 0
   spawnpointY: 0
   CpSpawnpointX: 0

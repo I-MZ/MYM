@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-//517行目　未完
+//520行未完
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
-
-    
 
     Rigidbody2D rbody;                  //Rigidbody2D型の変数
     SpriteRenderer sr;
@@ -25,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
     public bool crevice = false;        //変形しないと通れない場所にいるか
     public bool Ruler_overlap = false;  //定規とプレイヤーが重なっているか
+    public int groundgravity;            //入力された重力の向きを記憶する
+    //public int newgravity;              //現在の重力の向きを記憶する
+    public int UDLRground;              //定規から外れたときの重力の向き(0:下 1:上 2:右 3:左)
 
 
     private float cla;                  //透明度
@@ -104,6 +105,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+
+
         if (gameState != "playing" || SceneChenger.gameState != "playing")
         {
             return;
@@ -111,6 +114,8 @@ public class PlayerController : MonoBehaviour
 
         if (forcepower)
         {
+            //gravitychange = false;
+
             pc2.enabled = true;
             nowanime = henkeianime;
             cc2.enabled = false;
@@ -135,7 +140,6 @@ public class PlayerController : MonoBehaviour
                 {
                     transform.eulerAngles = new Vector3(0, 0, 0);
                 }
-
                 break;
 
             case 1://上
@@ -151,7 +155,6 @@ public class PlayerController : MonoBehaviour
                 {
                     transform.eulerAngles = new Vector3(0, 0, 180);
                 }
-
                 break;
 
             case 2://右
@@ -167,7 +170,6 @@ public class PlayerController : MonoBehaviour
                 {
                     transform.eulerAngles = new Vector3(0, 0, 90);
                 }
-
                 break;
 
             case 3://左
@@ -183,9 +185,12 @@ public class PlayerController : MonoBehaviour
                 {
                     transform.eulerAngles = new Vector3(0, 0, 270);
                 }
-
                 break;
+
         }
+        //GroundGravityCount();
+
+
 
         ////浮いてるときは回転しない
         //if (!onWall)
@@ -212,16 +217,16 @@ public class PlayerController : MonoBehaviour
                 {
                     switch (gravity)
                     {
-                        case 0://↓
+                        case 0://下
                             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.25f, this.transform.position.z);
                             break;
-                        case 1://↑
+                        case 1://上
                             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.25f, this.transform.position.z);
                             break;
-                        case 2://→
+                        case 2://右
                             this.transform.position = new Vector3(this.transform.position.x - 0.25f, this.transform.position.y, this.transform.position.z);
                             break;
-                        case 3://←
+                        case 3://左
                             this.transform.position = new Vector3(this.transform.position.x + 0.25f, this.transform.position.y, this.transform.position.z);
                             break;
                     }
@@ -387,7 +392,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+   
+        
+  
     void ChangeGravity()
     {
         //重力の強弱切り替え
@@ -511,6 +518,7 @@ public class PlayerController : MonoBehaviour
             Clear();
         }
 
+        
         //定規に当たってる時
         if (collision.gameObject.name == "Ruler")
         {
@@ -518,18 +526,36 @@ public class PlayerController : MonoBehaviour
             Ruler_overlap = true;
             Ruler_Move();
         }
+        
     }
+
+    //
+    //void GroundGravityCount()
+    //{
+    //    if (gravity == 1 || gravity == 0)//上下
+    //    {
+    //        groundgravity = gravity;
+    //        Debug.Log("着地する重力の方向を上下に変更");
+
+    //    }
+    //    if (gravity == 2 || gravity == 3)//左右
+    //    {
+    //        groundgravity = gravity;
+    //        Debug.Log("着地する重力の方向を左右に変更");
+
+    //    }
+    //}
 
     //定規に埋まった時の処理
     void Ruler_Move()
     {
         //GameObject RulerAll = transform.Find("Ruler All").gameObject;
-        //GameObject RulerChild = RulerAll.transform.GetComponent<GameObject>();
+        
 
         //現在の位置を取得
         Vector3 Neripos = this.gameObject.transform.position;
         ////定規の位置を取得
-        //Vector3 Rupos = Ruler.gameObject.transform.position;
+        Vector3 RulerPosition = this.transform.position;
 
         //0下、1上、2右、3左
 
@@ -537,27 +563,23 @@ public class PlayerController : MonoBehaviour
         {
             if (gravity == 0)//下
             {
-                this.gameObject.transform.position = new Vector3(Neripos.x, Neripos.y + 1 / 2, Neripos.z);
-                gravity = 1;
-                Debug.Log("上側へ移動");
+                this.gameObject.transform.position = new Vector3(Neripos.x, Neripos.y = RulerPosition.y - 1 / 2, Neripos.z);
+                Debug.Log("下側へ移動");
             }
             if (gravity == 1)//上
             {
-                this.gameObject.transform.position = new Vector3(Neripos.x, Neripos.y - 1 / 2, Neripos.z);
-                gravity = 0;
-                Debug.Log("下側へ移動");
+                this.gameObject.transform.position = new Vector3(Neripos.x, Neripos.y = RulerPosition.y + 1 / 2, Neripos.z);
+                Debug.Log("上側へ移動");
             }
             if (gravity == 2)//右
             {
-                this.gameObject.transform.position = new Vector3(Neripos.x + 1 / 2, Neripos.y, Neripos.z);
-                gravity = 0;
-                Debug.Log("左側へ移動");
+                this.gameObject.transform.position = new Vector3(Neripos.x = RulerPosition.x + 1 / 2, Neripos.y, Neripos.z);
+                Debug.Log("右側へ移動");
             }
             if (gravity == 3)//左
             {
-                this.gameObject.transform.position = new Vector3(Neripos.x - 1 / 2, Neripos.y, Neripos.z);
-                gravity = 0;
-                Debug.Log("右側へ移動");
+                this.gameObject.transform.position = new Vector3(Neripos.x = RulerPosition.x - 1 / 2, Neripos.y, Neripos.z);
+                Debug.Log("左側へ移動");
             } 
            
         }
