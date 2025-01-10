@@ -52,10 +52,10 @@ public class Panel_Manager_m : MonoBehaviour
             Select_R.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    Application.Quit();
+        //}
     }
 
     public void num_plus_R()
