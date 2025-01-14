@@ -10,6 +10,7 @@ public class CursorController : MonoBehaviour
 
     public GameObject cursor;
     public int cursor_num = 1;
+    private int old_cursor_num;
     private RectTransform cursor_RecTr;
 
     public GameObject select1;
@@ -22,6 +23,12 @@ public class CursorController : MonoBehaviour
     public GameObject buckbutton;
 
     public bool GameEnd_Cuasor = false;
+
+    //入力関係
+    private int horizontal = 0;
+    private int vertical = 0;
+    private bool horizontal_move = false;
+    private bool vertical_move = false;
 
     //位置サンプル
     //   1   2  
@@ -48,11 +55,17 @@ public class CursorController : MonoBehaviour
 
             cursor_num = 5;
         }
+        old_cursor_num = cursor_num;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("horizontal = " + horizontal + " : horizontal_move = " + horizontal_move);
+        Debug.Log("vertical = " + vertical + " : vertical_move = " + vertical_move);
+
+        CheckInput();
+
         if (!GameEnd_Cuasor && GameEnd.GameState == "endmode")
         {
             return;
@@ -131,6 +144,41 @@ public class CursorController : MonoBehaviour
 
     }
 
+    void CheckInput()
+    {
+        //横方向
+        if (Input.GetAxisRaw("Horizontal") < 0)
+        {//左入力
+            horizontal = -1;
+        }
+        else if (Input.GetAxisRaw("Horizontal") > 0)
+        {//右入力
+            horizontal = 1;
+        }
+        else if (Input.GetAxisRaw("Horizontal") == 0)
+        {//入力なし
+            horizontal = 0;
+
+            horizontal_move = true;
+        }
+
+        //縦方向
+        if (Input.GetAxisRaw("Vertical") < 0)
+        {//下入力
+            vertical = -1;
+        }
+        else if (Input.GetAxisRaw("Vertical") > 0)
+        {//上入力
+            vertical = 1;
+        }
+        else if (Input.GetAxisRaw("Vertical") == 0)
+        {//入力なし
+            vertical = 0;
+
+            vertical_move = true;
+        }
+    }
+
     void ButtonSelect(GameObject select)
     {
         Button bt = select.GetComponent<Button>();
@@ -156,7 +204,7 @@ public class CursorController : MonoBehaviour
 
     void CursorMove()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (horizontal < 0 && horizontal_move)
         {//左入力
             switch (cursor_num)
             {
@@ -168,6 +216,7 @@ public class CursorController : MonoBehaviour
 
                         BuckPage();
 
+                        old_cursor_num = 1;
                     }
 
 
@@ -181,6 +230,8 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select1);
 
                         cursor_num = 1;
+
+                        old_cursor_num = 2;
                     }
 
                     break;
@@ -195,6 +246,8 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select1);
 
                         cursor_num = 1;
+
+                        old_cursor_num = 3;
                     }
 
                     break;
@@ -207,6 +260,8 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select3);
 
                         cursor_num = 3;
+
+                        old_cursor_num = 4;
                     }
 
                     break;
@@ -219,13 +274,16 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select3);
 
                         cursor_num = 3;
+
+                        old_cursor_num = 5;
                     }
 
                     break;
             }
 
+            horizontal_move = false;
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (horizontal > 0 && horizontal_move)
         {//右入力
             switch (cursor_num)
             {
@@ -238,6 +296,8 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select2);
 
                         cursor_num = 2;
+
+                        old_cursor_num = 1;
                     }
 
                     break;
@@ -249,6 +309,7 @@ public class CursorController : MonoBehaviour
 
                         NextPage();
 
+                        old_cursor_num = 2;
                     }
 
                     break;
@@ -261,6 +322,8 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select4);
 
                         cursor_num = 4;
+
+                        old_cursor_num = 3;
                     }
 
                     break;
@@ -275,6 +338,8 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select2);
 
                         cursor_num = 2;
+
+                        old_cursor_num = 4;
                     }
 
                     break;
@@ -287,12 +352,16 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select4);
 
                         cursor_num = 4;
+
+                        old_cursor_num = 5;
                     }
 
                     break;
             }
+
+            horizontal_move = false;
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (vertical > 0 && vertical_move)
         {//上入力
             switch (cursor_num)
             {
@@ -314,6 +383,8 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select1);
 
                         cursor_num = 1;
+
+                        old_cursor_num = 3;
                     }
 
                     break;
@@ -326,6 +397,18 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select2);
 
                         cursor_num = 2;
+
+                        old_cursor_num = 4;
+                    }
+                    else if (select1 != null && select1.activeInHierarchy)
+                    {
+                        ButtonSelectRemove(select3);
+
+                        SetCursorPos(select1);
+
+                        cursor_num = 1;
+
+                        old_cursor_num = 4;
                     }
 
                     break;
@@ -338,6 +421,8 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select3);
 
                         cursor_num = 3;
+
+                        old_cursor_num = 5;
                     }
                     else if (select1 != null && select1.activeInHierarchy)
                     {
@@ -346,24 +431,50 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select1);
 
                         cursor_num = 1;
+
+                        old_cursor_num = 5;
                     }
 
                     break;
             }
+
+            vertical_move = false;
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (vertical < 0 && vertical_move)
         {//下入力
             switch (cursor_num)
             {
                 case 1:
 
-                    if (select3 != null && select3.activeInHierarchy)
+                    if (select3 != null && select3.activeInHierarchy && old_cursor_num == 3)
                     {
                         ButtonSelectRemove(select1);
 
                         SetCursorPos(select3);
 
                         cursor_num = 3;
+
+                        old_cursor_num = 1;
+                    }
+                    else if (select4 != null && select4.activeInHierarchy && old_cursor_num == 4)
+                    {
+                        ButtonSelectRemove(select1);
+
+                        SetCursorPos(select4);
+
+                        cursor_num = 4;
+
+                        old_cursor_num = 1;
+                    }
+                    else if (select3 != null && select3.activeInHierarchy)
+                    {
+                        ButtonSelectRemove(select1);
+
+                        SetCursorPos(select3);
+
+                        cursor_num = 3;
+
+                        old_cursor_num = 1;
                     }
                     else if (select5 != null && select5.activeInHierarchy)
                     {
@@ -372,6 +483,8 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select5);
 
                         cursor_num = 5;
+
+                        old_cursor_num = 1;
                     }
 
                     break;
@@ -384,6 +497,8 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select4);
 
                         cursor_num = 4;
+
+                        old_cursor_num = 2;
                     }
                     else if (select5 != null && select5.activeInHierarchy)
                     {
@@ -392,6 +507,8 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select5);
 
                         cursor_num = 5;
+
+                        old_cursor_num = 2;
                     }
 
                     break;
@@ -404,6 +521,8 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select5);
 
                         cursor_num = 5;
+
+                        old_cursor_num = 3;
                     }
 
                     break;
@@ -416,6 +535,8 @@ public class CursorController : MonoBehaviour
                         SetCursorPos(select5);
 
                         cursor_num = 5;
+
+                        old_cursor_num = 4;
                     }
 
                     break;
@@ -425,6 +546,8 @@ public class CursorController : MonoBehaviour
 
                     break;
             }
+
+            vertical_move = false;
         }
     }
 
