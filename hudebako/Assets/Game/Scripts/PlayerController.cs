@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     [Header("変形する時に鳴らすSE")] public AudioClip HENKEI;
     [Header("着地した時に鳴らすSE")] public AudioClip TYAKUTI;
     [Header("ダメージを受けた時に鳴らすSE")] public AudioClip DAMEZI;
+    [Header("ステージクリア時に鳴らすSE")] public AudioClip CLEAR;
 
     // Start is called before the first frame update
     void Start()
@@ -607,6 +608,7 @@ public class PlayerController : MonoBehaviour
     //ステージクリア
     void Clear()
     {
+        GameManager.instance.PlaySE(CLEAR);
         gameState = "clear";
         MoveStop();
     }
