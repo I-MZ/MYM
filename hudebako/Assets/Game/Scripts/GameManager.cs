@@ -113,20 +113,15 @@ public class GameManager : MonoBehaviour
                 ScCanger.ReloadScene();
             }
 
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                if (!menupanel.activeInHierarchy)
-                {
-                    PauseGame();
-                }
-                    
-            }
-
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (MenuManager.instance.Menu.activeInHierarchy)
                 {
                     ResumeGame();
+                }
+                else if (!menupanel.activeInHierarchy)
+                {
+                    PauseGame();
                 }
             }
 
@@ -170,6 +165,20 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         PlaySE(Cancel);
+
+        if(CursorController.instance.select1!=null&& CursorController.instance.select1.activeInHierarchy)
+        {
+            CursorController.instance.SetCursorPos(CursorController.instance.select1);
+
+            CursorController.instance.cursor_num = 1;
+        }
+        else
+        {
+            CursorController.instance.SetCursorPos(CursorController.instance.select5);
+
+            CursorController.instance.cursor_num = 5;
+        }
+
         Time.timeScale = 1;
         clearpanel.SetActive(false);
         menupanel.SetActive(false);

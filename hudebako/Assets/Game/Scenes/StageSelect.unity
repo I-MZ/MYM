@@ -3882,6 +3882,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 746634848}
     m_Modifications:
+    - target: {fileID: 182612812610651503, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 182612812610651503, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4721407735211895921, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
       propertyPath: m_Name
       value: Cursor
@@ -5724,6 +5732,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 917360288}
     m_Modifications:
+    - target: {fileID: 182612812610651503, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 182612812610651503, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4721407735211895921, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
       propertyPath: m_Name
       value: Cursor
@@ -5837,6 +5853,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1044633445}
     m_Modifications:
+    - target: {fileID: 182612812610651503, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 182612812610651503, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4721407735211895921, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
       propertyPath: m_Name
       value: Cursor

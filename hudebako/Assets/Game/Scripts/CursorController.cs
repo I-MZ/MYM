@@ -6,10 +6,11 @@ using UnityEngine.EventSystems;
 
 public class CursorController : MonoBehaviour
 {
+    public static CursorController instance = null;
 
     public GameObject cursor;
-    private int cursor_num = 1;
-    private RectTransform cursor_RTr;
+    public int cursor_num = 1;
+    private RectTransform cursor_RecTr;
 
     public GameObject select1;
     public GameObject select2;
@@ -31,7 +32,9 @@ public class CursorController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cursor_RTr = cursor.GetComponent<RectTransform>();
+        instance = GetComponent<CursorController>();
+
+        cursor_RecTr = cursor.GetComponent<RectTransform>();
 
         if (select1 != null && select1.activeInHierarchy)
         {
@@ -53,6 +56,22 @@ public class CursorController : MonoBehaviour
         if (!GameEnd_Cuasor && GameEnd.GameState == "endmode")
         {
             return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (select1 != null && select1.activeInHierarchy)
+            {
+                SetCursorPos(select1);
+
+                cursor_num = 1;
+            }
+            else
+            {
+                SetCursorPos(select5);
+
+                cursor_num = 5;
+            }
         }
 
         switch (cursor_num)
@@ -107,6 +126,8 @@ public class CursorController : MonoBehaviour
                     break;
             }
         }
+
+        
 
     }
 
@@ -407,15 +428,15 @@ public class CursorController : MonoBehaviour
         }
     }
 
-    void SetCursorPos(GameObject select)
+    public void SetCursorPos(GameObject select)
     {
-        RectTransform select_RTr = select.GetComponent<RectTransform>();
+        RectTransform select_RecTr = select.GetComponent<RectTransform>();
 
 
         if (cursor != null)
         {
-            cursor_RTr.anchoredPosition = new Vector2(select_RTr.anchoredPosition.x + (select_RTr.sizeDelta.x / 2),
-                                                      select_RTr.anchoredPosition.y + (select_RTr.sizeDelta.y / 20));
+            cursor_RecTr.anchoredPosition = new Vector2(select_RecTr.anchoredPosition.x + (select_RecTr.sizeDelta.x / 2),
+                                                      select_RecTr.anchoredPosition.y + (select_RecTr.sizeDelta.y / 20));
 
         }
         
