@@ -111,7 +111,7 @@ public class CursorController : MonoBehaviour
                 break;
         }
 
-        CursorMove();
+        CursorControll();
 
         if (Input.GetKeyDown(KeyCode.Space)&&(!GameEnd_Cuasor && GameEnd.GameState == "endmode"))
         {//SpaceÉLÅ[ÇâüÇµÇΩÇÁ
@@ -177,32 +177,9 @@ public class CursorController : MonoBehaviour
 
             vertical_move = true;
         }
-    }
+    }   
 
-    void ButtonSelect(GameObject select)
-    {
-        Button bt = select.GetComponent<Button>();
-        bt.Select();
-
-        if (select.GetComponent<EventTriggerTest>() != null)
-        {
-            EventTriggerTest evt = select.GetComponent<EventTriggerTest>();
-            evt.Enter_Event();
-        }
-        
-        
-    }
-
-    void ButtonSelectRemove(GameObject select)
-    {
-        if (select.GetComponent<EventTriggerTest>() != null)
-        {
-            EventTriggerTest evt = select.GetComponent<EventTriggerTest>();
-            evt.Exit_Event();
-        }
-    }
-
-    void CursorMove()
+    void CursorControll()
     {
         if (horizontal < 0 && horizontal_move)
         {//ç∂ì¸óÕ
@@ -225,9 +202,7 @@ public class CursorController : MonoBehaviour
 
                     if (select1 != null && select1.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select2);
-
-                        SetCursorPos(select1);
+                        CursorMove(select2, select1);
 
                         cursor_num = 1;
 
@@ -239,11 +214,9 @@ public class CursorController : MonoBehaviour
 
                     if (buckbutton != null && buckbutton.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select3);
+                        CursorMove(select3, select1);
 
                         BuckPage();
-
-                        SetCursorPos(select1);
 
                         cursor_num = 1;
 
@@ -255,9 +228,7 @@ public class CursorController : MonoBehaviour
 
                     if (select3 != null && select3.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select4);
-
-                        SetCursorPos(select3);
+                        CursorMove(select4, select3);
 
                         cursor_num = 3;
 
@@ -269,9 +240,7 @@ public class CursorController : MonoBehaviour
 
                     if (select3 != null && select3.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select5);
-
-                        SetCursorPos(select3);
+                        CursorMove(select5, select3);
 
                         cursor_num = 3;
 
@@ -291,9 +260,7 @@ public class CursorController : MonoBehaviour
 
                     if (select2 != null && select2.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select1);
-
-                        SetCursorPos(select2);
+                        CursorMove(select1, select2);
 
                         cursor_num = 2;
 
@@ -317,9 +284,7 @@ public class CursorController : MonoBehaviour
 
                     if (select4 != null && select4.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select3);
-
-                        SetCursorPos(select4);
+                        CursorMove(select3, select4);
 
                         cursor_num = 4;
 
@@ -331,11 +296,9 @@ public class CursorController : MonoBehaviour
 
                     if (nextbutton != null && nextbutton.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select4);
+                        CursorMove(select4, select2);
 
                         NextPage();
-
-                        SetCursorPos(select2);
 
                         cursor_num = 2;
 
@@ -347,9 +310,7 @@ public class CursorController : MonoBehaviour
 
                     if (select4 != null && select4.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select5);
-
-                        SetCursorPos(select4);
+                        CursorMove(select5, select4);
 
                         cursor_num = 4;
 
@@ -378,9 +339,7 @@ public class CursorController : MonoBehaviour
 
                     if (select1 != null && select1.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select3);
-
-                        SetCursorPos(select1);
+                        CursorMove(select3, select1);
 
                         cursor_num = 1;
 
@@ -392,9 +351,7 @@ public class CursorController : MonoBehaviour
 
                     if (select2 != null && select2.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select4);
-
-                        SetCursorPos(select2);
+                        CursorMove(select4, select2);
 
                         cursor_num = 2;
 
@@ -402,9 +359,7 @@ public class CursorController : MonoBehaviour
                     }
                     else if (select1 != null && select1.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select3);
-
-                        SetCursorPos(select1);
+                        CursorMove(select3, select1);
 
                         cursor_num = 1;
 
@@ -414,11 +369,41 @@ public class CursorController : MonoBehaviour
                     break;
                 case 5:
 
-                    if (select3 != null && select3.activeInHierarchy)
+                    if (select3 != null && select3.activeInHierarchy && old_cursor_num == 3)
                     {
-                        ButtonSelectRemove(select5);
+                        CursorMove(select5, select3);
 
-                        SetCursorPos(select3);
+                        cursor_num = 3;
+
+                        old_cursor_num = 5;
+                    }
+                    else if (select1 != null && select1.activeInHierarchy && old_cursor_num == 4)
+                    {
+                        CursorMove(select5, select4);
+
+                        cursor_num = 4;
+
+                        old_cursor_num = 5;
+                    }
+                    else if (select3 != null && select3.activeInHierarchy && old_cursor_num == 1)
+                    {
+                        CursorMove(select5, select1);
+
+                        cursor_num = 1;
+
+                        old_cursor_num = 5;
+                    }
+                    else if (select1 != null && select1.activeInHierarchy && old_cursor_num == 2)
+                    {
+                        CursorMove(select5, select2);
+
+                        cursor_num = 2;
+
+                        old_cursor_num = 5;
+                    }
+                    else if (select3 != null && select3.activeInHierarchy)
+                    {
+                        CursorMove(select5, select3);
 
                         cursor_num = 3;
 
@@ -426,9 +411,7 @@ public class CursorController : MonoBehaviour
                     }
                     else if (select1 != null && select1.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select5);
-
-                        SetCursorPos(select1);
+                        CursorMove(select5, select1);
 
                         cursor_num = 1;
 
@@ -448,9 +431,7 @@ public class CursorController : MonoBehaviour
 
                     if (select3 != null && select3.activeInHierarchy && old_cursor_num == 3)
                     {
-                        ButtonSelectRemove(select1);
-
-                        SetCursorPos(select3);
+                        CursorMove(select1, select3);
 
                         cursor_num = 3;
 
@@ -458,9 +439,7 @@ public class CursorController : MonoBehaviour
                     }
                     else if (select4 != null && select4.activeInHierarchy && old_cursor_num == 4)
                     {
-                        ButtonSelectRemove(select1);
-
-                        SetCursorPos(select4);
+                        CursorMove(select1, select4);
 
                         cursor_num = 4;
 
@@ -468,9 +447,7 @@ public class CursorController : MonoBehaviour
                     }
                     else if (select3 != null && select3.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select1);
-
-                        SetCursorPos(select3);
+                        CursorMove(select1, select3);
 
                         cursor_num = 3;
 
@@ -478,9 +455,7 @@ public class CursorController : MonoBehaviour
                     }
                     else if (select5 != null && select5.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select1);
-
-                        SetCursorPos(select5);
+                        CursorMove(select1, select5);
 
                         cursor_num = 5;
 
@@ -492,9 +467,7 @@ public class CursorController : MonoBehaviour
 
                     if (select4 != null && select4.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select2);
-
-                        SetCursorPos(select4);
+                        CursorMove(select2, select4);
 
                         cursor_num = 4;
 
@@ -502,9 +475,7 @@ public class CursorController : MonoBehaviour
                     }
                     else if (select5 != null && select5.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select2);
-
-                        SetCursorPos(select5);
+                        CursorMove(select2, select5);
 
                         cursor_num = 5;
 
@@ -516,9 +487,7 @@ public class CursorController : MonoBehaviour
 
                     if (select5 != null && select5.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select3);
-
-                        SetCursorPos(select5);
+                        CursorMove(select3, select5);
 
                         cursor_num = 5;
 
@@ -530,9 +499,7 @@ public class CursorController : MonoBehaviour
 
                     if (select5 != null && select5.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select4);
-
-                        SetCursorPos(select5);
+                        CursorMove(select4, select5);
 
                         cursor_num = 5;
 
@@ -551,6 +518,29 @@ public class CursorController : MonoBehaviour
         }
     }
 
+    void ButtonSelect(GameObject select)
+    {
+        Button bt = select.GetComponent<Button>();
+        bt.Select();
+
+        if (select.GetComponent<EventTriggerTest>() != null)
+        {
+            EventTriggerTest evt = select.GetComponent<EventTriggerTest>();
+            evt.Enter_Event();
+        }
+
+
+    }
+
+    void ButtonSelectRemove(GameObject select)
+    {
+        if (select.GetComponent<EventTriggerTest>() != null)
+        {
+            EventTriggerTest evt = select.GetComponent<EventTriggerTest>();
+            evt.Exit_Event();
+        }
+    }
+
     public void SetCursorPos(GameObject select)
     {
         RectTransform select_RecTr = select.GetComponent<RectTransform>();
@@ -563,6 +553,13 @@ public class CursorController : MonoBehaviour
 
         }
         
+    }
+
+    void CursorMove(GameObject old_select, GameObject select)
+    {
+        ButtonSelectRemove(old_select);
+
+        SetCursorPos(select);
     }
 
     void Enter(GameObject select)
