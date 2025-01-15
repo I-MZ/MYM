@@ -15,6 +15,8 @@ public class Panel_Manager_m : MonoBehaviour
 
     int stage_num;
 
+    [Header("ページを切り替える時のSE")] public AudioClip Paging;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +64,7 @@ public class Panel_Manager_m : MonoBehaviour
     {
         if (stage_num < 2)//右
         {
+            SceneChenger.instance.PlaySE(Paging);
             stage_num++;
         }
        
@@ -73,6 +76,7 @@ public class Panel_Manager_m : MonoBehaviour
         
         if (stage_num > 0)//左
         {
+            SceneChenger.instance.PlaySE(Paging);
             stage_num--;
         }
 

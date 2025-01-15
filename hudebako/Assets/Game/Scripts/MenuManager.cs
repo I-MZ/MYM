@@ -35,6 +35,7 @@ public class MenuManager : MonoBehaviour
 
     [Header("決定時に鳴らすSE")]       public AudioClip Decide;
     [Header("キャンセル時に鳴らすSE")] public AudioClip Cancel;
+    [Header("ページを切り替える時に鳴らすSE")] public AudioClip Paging;
 
     // Start is called before the first frame update
     void Start()
@@ -128,13 +129,13 @@ public class MenuManager : MonoBehaviour
     public void NextPage()
     {
         page++;
-        GameManager.instance.PlaySE(Decide);
+        GameManager.instance.PlaySE(Paging);
     }
 
     public void BackPage()
     {
         page--;
-        GameManager.instance.PlaySE(Decide);
+        GameManager.instance.PlaySE(Paging);
     }
 
     public void GoTutorial()
