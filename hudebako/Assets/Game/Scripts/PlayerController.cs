@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         cc2 = GetComponent<CircleCollider2D>();
         pc2 = GetComponent<PolygonCollider2D>();
-        gameState = "playing";
+        gameState = "start";
         cc2.enabled = true;
         pc2.enabled = false;
 

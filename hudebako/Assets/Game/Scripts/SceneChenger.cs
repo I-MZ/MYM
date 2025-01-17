@@ -19,6 +19,8 @@ public class SceneChenger : MonoBehaviour
 
     public static string gameState = "";    //フェードイン/フェードアウト中かどうか
 
+    public static bool doRetry = false;
+
     private AudioSource audioSource = null; //
 
     public AudioClip enter;                 //決定時に鳴らすSE
@@ -57,7 +59,11 @@ public class SceneChenger : MonoBehaviour
     public void ReloadScene()
     {
         if (gameState != "loading")
+        {
+            doRetry = true;
+
             StartCoroutine(FadeOut(SceneManager.GetActiveScene().buildIndex));
+        }
     }
 
     public void ReturnSelect()
@@ -76,6 +82,7 @@ public class SceneChenger : MonoBehaviour
             Debug.Log("sr.color = " + sr.color.a);
             yield return null;
         }
+        doRetry = false;
         gameState = "playing";
         Time.timeScale = 1;
     }
