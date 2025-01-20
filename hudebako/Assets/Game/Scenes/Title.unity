@@ -1196,6 +1196,10 @@ PrefabInstance:
       propertyPath: select1
       value: 
       objectReference: {fileID: 1002232737}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buttons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1002232737}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
 --- !u!1 &1409662003

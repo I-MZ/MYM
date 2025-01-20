@@ -166,15 +166,15 @@ public class GameManager : MonoBehaviour
     {
         PlaySE(Cancel);
 
-        if(CursorController.instance.select1!=null&& CursorController.instance.select1.activeInHierarchy)
+        if(CursorController.instance.Buttons[0]!=null&& CursorController.instance.Buttons[0].activeInHierarchy)
         {
-            CursorController.instance.SetCursorPos(CursorController.instance.select1);
+            CursorController.instance.SetCursorPos(CursorController.instance.Buttons[0]);
 
             CursorController.instance.cursor_num = 1;
         }
         else
         {
-            CursorController.instance.SetCursorPos(CursorController.instance.select5);
+            CursorController.instance.SetCursorPos(CursorController.instance.Buttons[4]);
 
             CursorController.instance.cursor_num = 5;
         }

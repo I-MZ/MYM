@@ -6,54 +6,60 @@ using UnityEngine.EventSystems;
 
 public class CursorController : MonoBehaviour
 {
+    //インスタンス
     public static CursorController instance = null;
 
-    public GameObject cursor;
-    public int cursor_num = 1;
+    //カーソル
+    public GameObject cursor;           //カーソルのオブジェクト
+    private RectTransform cursor_RecTr; //カーソルのRectTransform
+
+    //カーソルがどこにいるか
+    public int cursor_num;
+    
+    //カーソルがひとつ前にどこにいたか
     private int old_cursor_num;
-    private RectTransform cursor_RecTr;
 
-    public GameObject select1;
-    public GameObject select2;
-    public GameObject select3;
-    public GameObject select4;
-    public GameObject select5;
+    //ボタン(Unity上で設定)
+    public GameObject[] Buttons = new GameObject[5];
+    public GameObject Nextbutton;
+    public GameObject Buckbutton;
 
-    public GameObject nextbutton;
-    public GameObject buckbutton;
+    private int[] Bt_num;
 
+    //ボタン位置イメージ
+    //      0   1  
+    //   B  2   3  N
+    //        4
+
+
+    //ゲーム終了確認メニューのパネルか
     public bool GameEnd_Cuasor = false;
 
-    //入力関係
-    private int horizontal = 0;
-    private int vertical = 0;
-    private bool horizontal_move = false;
-    private bool vertical_move = false;
+    //カーソルが連続で動かないようにするための変数
+    private bool horizontal_move = false;   //横
+    private bool vertical_move = false;     //縦
 
-    //位置サンプル
-    //   1   2  
-    //   3   4
-    //     5
+    
 
-
+    //スタート関数
+    //
     // Start is called before the first frame update
     void Start()
     {
+        //コンポーネント取得
         instance = GetComponent<CursorController>();
-
         cursor_RecTr = cursor.GetComponent<RectTransform>();
 
-        if (select1 != null && select1.activeInHierarchy)
+        //カーソル位置初期設定
+        if (Buttons[0] != null && Buttons[0].activeInHierarchy)
         {
-            SetCursorPos(select1);
-
-            cursor_num = 1;
+            SetCursorPos(Buttons[0]);
+            cursor_num = 0;
         }
-        else
+        else//select1が非アクティブならselect5を初期位置にする
         {
-            SetCursorPos(select5);
-
-            cursor_num = 5;
+            SetCursorPos(Buttons[4]);
+            cursor_num = 4;
         }
         old_cursor_num = cursor_num;
     }
@@ -61,82 +67,58 @@ public class CursorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("horizontal = " + horizontal + " : horizontal_move = " + horizontal_move);
-        Debug.Log("vertical = " + vertical + " : vertical_move = " + vertical_move);
+        //入力確認用ログ
+        Debug.Log("horizontal = " + Input.GetAxisRaw("Horizontal") + " : horizontal_move = " + horizontal_move);
+        Debug.Log("vertical = " + Input.GetAxisRaw("Vertical") + " : vertical_move = " + vertical_move);
 
+        //
         CheckInput();
 
+        //
         if (!GameEnd_Cuasor && GameEnd.GameState == "endmode")
         {
             return;
         }
 
+        Debug.Log(Buttons[0]);
+
+        //Escキーが押されたら
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (select1 != null && select1.activeInHierarchy)
+            //カーソル位置を初期化
+            if (Buttons[0] != null && Buttons[0].activeInHierarchy)
             {
-                SetCursorPos(select1);
+                SetCursorPos(Buttons[0]);
 
-                cursor_num = 1;
+                cursor_num = 0;
             }
             else
             {
-                SetCursorPos(select5);
+                SetCursorPos(Buttons[4]);
 
-                cursor_num = 5;
+                cursor_num = 4;
             }
         }
 
-        switch (cursor_num)
+        //カーソルが合っているボタンを選択状態にする
+        for(int i = 0; i < 5; i++)
         {
-            case 1:
-                //場所1にカーソルが合わさっている状態
-                ButtonSelect(select1);
-                break;
-            case 2:
-                //場所2にカーソルが合わさっている状態
-                ButtonSelect(select2);
-                break;
-            case 3:
-                //場所3にカーソルが合わさっている状態
-                ButtonSelect(select3);
-                break;
-            case 4:
-                //場所4にカーソルが合わさっている状態
-                ButtonSelect(select4);
-                break;
-            case 5:
-                //場所5にカーソルが合わさっている状態
-                ButtonSelect(select5);
-                break;
+            if (cursor_num == i)
+            {
+                ButtonSelect(Buttons[i]);
+            }
         }
 
         CursorControll();
 
         if (Input.GetKeyDown(KeyCode.Space)&&(!GameEnd_Cuasor && GameEnd.GameState == "endmode"))
-        {//Spaceキーを押したら
-            switch (cursor_num) 
+        {//Spaceキーが押されたら
+            for (int i = 0; i < 5; i++)
             {
-                case 1://場所1
-                    //
-                    Enter(select1);
-                    break;
-                case 2://場所2
-                    //
-                    Enter(select2);
-                    break;
-                case 3://場所3
-                    //
-                    Enter(select3);
-                    break;
-                case 4://場所4
-                    //
-                    Enter(select4);
-                    break;
-                case 5://場所5
-                    //
-                    Enter(select5);
-                    break;
+                if (cursor_num == i)
+                {
+                    Enter(Buttons[i]);
+                }
             }
         }
 
@@ -147,104 +129,70 @@ public class CursorController : MonoBehaviour
     void CheckInput()
     {
         //横方向
-        if (Input.GetAxisRaw("Horizontal") < 0)
-        {//左入力
-            horizontal = -1;
-        }
-        else if (Input.GetAxisRaw("Horizontal") > 0)
-        {//右入力
-            horizontal = 1;
-        }
-        else if (Input.GetAxisRaw("Horizontal") == 0)
-        {//入力なし
-            horizontal = 0;
-
+        if (Input.GetAxisRaw("Horizontal") == 0)
+        {//入力なしならカーソルを動かせるようにする
             horizontal_move = true;
         }
 
         //縦方向
-        if (Input.GetAxisRaw("Vertical") < 0)
-        {//下入力
-            vertical = -1;
-        }
-        else if (Input.GetAxisRaw("Vertical") > 0)
-        {//上入力
-            vertical = 1;
-        }
-        else if (Input.GetAxisRaw("Vertical") == 0)
-        {//入力なし
-            vertical = 0;
-
+        if (Input.GetAxisRaw("Vertical") == 0)
+        {//入力なしならカーソルを動かせるようにする
             vertical_move = true;
         }
     }   
 
+
     void CursorControll()
     {
-        if (horizontal < 0 && horizontal_move)
+        if (Input.GetAxisRaw("Horizontal") < 0 && horizontal_move)
         {//左入力
             switch (cursor_num)
             {
-                case 1:
+                case 0:
 
-                    if (buckbutton != null && buckbutton.activeInHierarchy)
+                    if (Buckbutton != null && Buckbutton.activeInHierarchy)
                     {
-                        ButtonSelectRemove(select1);
+                        ButtonSelectRemove(Buttons[0]);
 
                         BuckPage();
 
-                        old_cursor_num = 1;
+                        old_cursor_num = 0;
                     }
 
 
                     break;
+                case 1:
+
+                    if (Buttons[0] != null && Buttons[0].activeInHierarchy)
+                    {
+                        CursorMove(Buttons[1], Buttons[0], 1, 0);
+                    }
+
+                    break;
                 case 2:
 
-                    if (select1 != null && select1.activeInHierarchy)
+                    if (Buckbutton != null && Buckbutton.activeInHierarchy)
                     {
-                        CursorMove(select2, select1);
+                        CursorMove(Buttons[2], Buttons[0], 2, 0);
 
-                        cursor_num = 1;
+                        BuckPage();
 
-                        old_cursor_num = 2;
                     }
 
                     break;
                 case 3:
 
-                    if (buckbutton != null && buckbutton.activeInHierarchy)
+                    if (Buttons[2] != null && Buttons[2].activeInHierarchy)
                     {
-                        CursorMove(select3, select1);
-
-                        BuckPage();
-
-                        cursor_num = 1;
-
-                        old_cursor_num = 3;
+                        CursorMove(Buttons[3], Buttons[2], 3, 2);
                     }
 
                     break;
                 case 4:
 
-                    if (select3 != null && select3.activeInHierarchy)
+                    if (Buttons[2] != null && Buttons[2].activeInHierarchy)
                     {
-                        CursorMove(select4, select3);
-
-                        cursor_num = 3;
-
-                        old_cursor_num = 4;
-                    }
-
-                    break;
-                case 5:
-
-                    if (select3 != null && select3.activeInHierarchy)
-                    {
-                        CursorMove(select5, select3);
-
-                        cursor_num = 3;
-
-                        old_cursor_num = 5;
+                        CursorMove(Buttons[4], Buttons[2], 4, 2);
                     }
 
                     break;
@@ -252,17 +200,25 @@ public class CursorController : MonoBehaviour
 
             horizontal_move = false;
         }
-        if (horizontal > 0 && horizontal_move)
+        if (Input.GetAxisRaw("Horizontal") > 0 && horizontal_move)
         {//右入力
             switch (cursor_num)
             {
+                case 0:
+
+                    if (Buttons[1] != null && Buttons[1].activeInHierarchy)
+                    {
+                        CursorMove(Buttons[0], Buttons[1], 0, 1);
+                    }
+
+                    break;
                 case 1:
 
-                    if (select2 != null && select2.activeInHierarchy)
+                    if (Nextbutton != null && Nextbutton.activeInHierarchy)
                     {
-                        CursorMove(select1, select2);
+                        ButtonSelectRemove(Buttons[1]);
 
-                        cursor_num = 2;
+                        NextPage();
 
                         old_cursor_num = 1;
                     }
@@ -270,51 +226,27 @@ public class CursorController : MonoBehaviour
                     break;
                 case 2:
 
-                    if (nextbutton != null && nextbutton.activeInHierarchy)
+                    if (Buttons[3] != null && Buttons[3].activeInHierarchy)
                     {
-                        ButtonSelectRemove(select2);
-
-                        NextPage();
-
-                        old_cursor_num = 2;
+                        CursorMove(Buttons[2], Buttons[3], 2, 3);
                     }
 
                     break;
                 case 3:
 
-                    if (select4 != null && select4.activeInHierarchy)
+                    if (Nextbutton != null && Nextbutton.activeInHierarchy)
                     {
-                        CursorMove(select3, select4);
+                        CursorMove(Buttons[3], Buttons[1], 3, 1);
 
-                        cursor_num = 4;
-
-                        old_cursor_num = 3;
+                        NextPage();
                     }
 
                     break;
                 case 4:
 
-                    if (nextbutton != null && nextbutton.activeInHierarchy)
+                    if (Buttons[3] != null && Buttons[3].activeInHierarchy)
                     {
-                        CursorMove(select4, select2);
-
-                        NextPage();
-
-                        cursor_num = 2;
-
-                        old_cursor_num = 4;
-                    }
-
-                    break;
-                case 5:
-
-                    if (select4 != null && select4.activeInHierarchy)
-                    {
-                        CursorMove(select5, select4);
-
-                        cursor_num = 4;
-
-                        old_cursor_num = 5;
+                        CursorMove(Buttons[4], Buttons[3], 4, 3);
                     }
 
                     break;
@@ -322,100 +254,64 @@ public class CursorController : MonoBehaviour
 
             horizontal_move = false;
         }
-        if (vertical > 0 && vertical_move)
+        if (Input.GetAxisRaw("Vertical") > 0 && vertical_move)
         {//上入力
             switch (cursor_num)
             {
-                case 1:
+                case 0:
 
                     
 
                     break;
+                case 1:
+
+
+                    break;
                 case 2:
 
+                    if (Buttons[0] != null && Buttons[0].activeInHierarchy)
+                    {
+                        CursorMove(Buttons[2], Buttons[0], 2, 1);
+                    }
 
                     break;
                 case 3:
 
-                    if (select1 != null && select1.activeInHierarchy)
+                    if (Buttons[1] != null && Buttons[1].activeInHierarchy)
                     {
-                        CursorMove(select3, select1);
-
-                        cursor_num = 1;
-
-                        old_cursor_num = 3;
+                        CursorMove(Buttons[3], Buttons[1], 3, 1);
+                    }
+                    else if (Buttons[0] != null && Buttons[0].activeInHierarchy)
+                    {
+                        CursorMove(Buttons[3], Buttons[0], 3, 0);
                     }
 
                     break;
                 case 4:
 
-                    if (select2 != null && select2.activeInHierarchy)
+                    if (Buttons[2] != null && Buttons[2].activeInHierarchy && old_cursor_num == 2)
                     {
-                        CursorMove(select4, select2);
-
-                        cursor_num = 2;
-
-                        old_cursor_num = 4;
+                        CursorMove(Buttons[4], Buttons[2], 4, 2);
                     }
-                    else if (select1 != null && select1.activeInHierarchy)
+                    else if (Buttons[3] != null && Buttons[3].activeInHierarchy && old_cursor_num == 3)
                     {
-                        CursorMove(select3, select1);
-
-                        cursor_num = 1;
-
-                        old_cursor_num = 4;
+                        CursorMove(Buttons[4], Buttons[3], 4, 3);
                     }
-
-                    break;
-                case 5:
-
-                    if (select3 != null && select3.activeInHierarchy && old_cursor_num == 3)
+                    else if (Buttons[0] != null && Buttons[0].activeInHierarchy && old_cursor_num == 0)
                     {
-                        CursorMove(select5, select3);
-
-                        cursor_num = 3;
-
-                        old_cursor_num = 5;
+                        CursorMove(Buttons[4], Buttons[0], 4, 0);
                     }
-                    else if (select1 != null && select1.activeInHierarchy && old_cursor_num == 4)
+                    else if (Buttons[1] != null && Buttons[1].activeInHierarchy && old_cursor_num == 1)
                     {
-                        CursorMove(select5, select4);
-
-                        cursor_num = 4;
-
-                        old_cursor_num = 5;
+                        CursorMove(Buttons[4], Buttons[1], 4, 1);
                     }
-                    else if (select3 != null && select3.activeInHierarchy && old_cursor_num == 1)
+                    else if (Buttons[2] != null && Buttons[2].activeInHierarchy)
                     {
-                        CursorMove(select5, select1);
-
-                        cursor_num = 1;
-
-                        old_cursor_num = 5;
+                        CursorMove(Buttons[4], Buttons[2], 4, 2);
                     }
-                    else if (select1 != null && select1.activeInHierarchy && old_cursor_num == 2)
+                    else if (Buttons[0] != null && Buttons[0].activeInHierarchy)
                     {
-                        CursorMove(select5, select2);
-
-                        cursor_num = 2;
-
-                        old_cursor_num = 5;
-                    }
-                    else if (select3 != null && select3.activeInHierarchy)
-                    {
-                        CursorMove(select5, select3);
-
-                        cursor_num = 3;
-
-                        old_cursor_num = 5;
-                    }
-                    else if (select1 != null && select1.activeInHierarchy)
-                    {
-                        CursorMove(select5, select1);
-
-                        cursor_num = 1;
-
-                        old_cursor_num = 5;
+                        CursorMove(Buttons[4], Buttons[0], 4, 0);
                     }
 
                     break;
@@ -423,91 +319,59 @@ public class CursorController : MonoBehaviour
 
             vertical_move = false;
         }
-        if (vertical < 0 && vertical_move)
+        if (Input.GetAxisRaw("Vertical") < 0 && vertical_move)
         {//下入力
             switch (cursor_num)
             {
+                case 0:
+
+                    if (Buttons[2] != null && Buttons[2].activeInHierarchy && old_cursor_num == 2)
+                    {
+                        CursorMove(Buttons[0], Buttons[2], 0, 2);
+                    }
+                    else if (Buttons[3] != null && Buttons[3].activeInHierarchy && old_cursor_num == 3)
+                    {
+                        CursorMove(Buttons[0], Buttons[3], 0, 3);
+                    }
+                    else if (Buttons[2] != null && Buttons[2].activeInHierarchy)
+                    {
+                        CursorMove(Buttons[0], Buttons[2], 0, 2);
+                    }
+                    else if (Buttons[4] != null && Buttons[4].activeInHierarchy)
+                    {
+                        CursorMove(Buttons[0], Buttons[4], 0, 4);
+                    }
+
+                    break;
                 case 1:
 
-                    if (select3 != null && select3.activeInHierarchy && old_cursor_num == 3)
+                    if (Buttons[3] != null && Buttons[3].activeInHierarchy)
                     {
-                        CursorMove(select1, select3);
-
-                        cursor_num = 3;
-
-                        old_cursor_num = 1;
+                        CursorMove(Buttons[1], Buttons[3], 1, 3);
                     }
-                    else if (select4 != null && select4.activeInHierarchy && old_cursor_num == 4)
+                    else if (Buttons[4] != null && Buttons[4].activeInHierarchy)
                     {
-                        CursorMove(select1, select4);
-
-                        cursor_num = 4;
-
-                        old_cursor_num = 1;
-                    }
-                    else if (select3 != null && select3.activeInHierarchy)
-                    {
-                        CursorMove(select1, select3);
-
-                        cursor_num = 3;
-
-                        old_cursor_num = 1;
-                    }
-                    else if (select5 != null && select5.activeInHierarchy)
-                    {
-                        CursorMove(select1, select5);
-
-                        cursor_num = 5;
-
-                        old_cursor_num = 1;
+                        CursorMove(Buttons[1], Buttons[4], 1, 4);
                     }
 
                     break;
                 case 2:
 
-                    if (select4 != null && select4.activeInHierarchy)
+                    if (Buttons[4] != null && Buttons[4].activeInHierarchy)
                     {
-                        CursorMove(select2, select4);
-
-                        cursor_num = 4;
-
-                        old_cursor_num = 2;
-                    }
-                    else if (select5 != null && select5.activeInHierarchy)
-                    {
-                        CursorMove(select2, select5);
-
-                        cursor_num = 5;
-
-                        old_cursor_num = 2;
+                        CursorMove(Buttons[2], Buttons[4], 2, 4);
                     }
 
                     break;
                 case 3:
 
-                    if (select5 != null && select5.activeInHierarchy)
+                    if (Buttons[4] != null && Buttons[4].activeInHierarchy)
                     {
-                        CursorMove(select3, select5);
-
-                        cursor_num = 5;
-
-                        old_cursor_num = 3;
+                        CursorMove(Buttons[3], Buttons[4], 3, 4);
                     }
 
                     break;
                 case 4:
-
-                    if (select5 != null && select5.activeInHierarchy)
-                    {
-                        CursorMove(select4, select5);
-
-                        cursor_num = 5;
-
-                        old_cursor_num = 4;
-                    }
-
-                    break;
-                case 5:
 
                     
 
@@ -518,6 +382,8 @@ public class CursorController : MonoBehaviour
         }
     }
 
+
+    //カーソルがボタンを選んでいるときの処理
     void ButtonSelect(GameObject select)
     {
         Button bt = select.GetComponent<Button>();
@@ -532,6 +398,7 @@ public class CursorController : MonoBehaviour
 
     }
 
+    //カーソルがボタンから出たときの処理
     void ButtonSelectRemove(GameObject select)
     {
         if (select.GetComponent<EventTriggerTest>() != null)
@@ -541,25 +408,29 @@ public class CursorController : MonoBehaviour
         }
     }
 
+    //カーソルを選ばれているボタンの横に移動させる
     public void SetCursorPos(GameObject select)
     {
         RectTransform select_RecTr = select.GetComponent<RectTransform>();
 
-
         if (cursor != null)
         {
             cursor_RecTr.anchoredPosition = new Vector2(select_RecTr.anchoredPosition.x + (select_RecTr.sizeDelta.x / 2),
-                                                      select_RecTr.anchoredPosition.y + (select_RecTr.sizeDelta.y / 20));
+                                                        select_RecTr.anchoredPosition.y + (select_RecTr.sizeDelta.y / 20));
 
         }
         
     }
 
-    void CursorMove(GameObject old_select, GameObject select)
+    //カーソル移動処理
+    void CursorMove(GameObject old_select, GameObject select, int now_num, int new_num)
     {
         ButtonSelectRemove(old_select);
 
         SetCursorPos(select);
+
+        cursor_num = new_num;
+        old_cursor_num = now_num;
     }
 
     void Enter(GameObject select)
@@ -572,13 +443,13 @@ public class CursorController : MonoBehaviour
 
     void NextPage()
     {
-        Button bt = nextbutton.GetComponent<Button>();
+        Button bt = Nextbutton.GetComponent<Button>();
         bt.onClick.Invoke();
     }
 
     void BuckPage()
     {
-        Button bt = buckbutton.GetComponent<Button>();
+        Button bt = Buckbutton.GetComponent<Button>();
         bt.onClick.Invoke();
     }
 }
