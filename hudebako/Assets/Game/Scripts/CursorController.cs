@@ -271,7 +271,7 @@ public class CursorController : MonoBehaviour
 
                     if (Buttons[0] != null && Buttons[0].activeInHierarchy)
                     {
-                        CursorMove(Buttons[2], Buttons[0], 2, 1);
+                        CursorMove(Buttons[2], Buttons[0], 2, 0);
                     }
 
                     break;

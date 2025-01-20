@@ -52,7 +52,7 @@ public class SceneChenger : MonoBehaviour
 
     public void ChangeScene(int n)
     {
-        if (n <= StageClearManager.clearlevel + 1)
+        if (gameState != "loading" && n <= StageClearManager.clearlevel + 1)
             StartCoroutine(FadeOut(n));
     }
 
