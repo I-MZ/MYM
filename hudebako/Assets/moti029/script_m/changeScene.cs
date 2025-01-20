@@ -3,15 +3,67 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-
+///【機能】 ボタン状態による色変更
+///【第一引数】色を変更したいボタン
+///【第二引数】変更したい色（new Color32(byte a,byte b,byte c,byte d)) 
+///【第三引数】色を変更したい状態（0:normalColor 1:highlightedColor 2:pressedColor 3:selectedColor 4:disabledColor）
 public class changeScene : MonoBehaviour
 {
-   
-    [SerializeField] public GameObject select_button; //ボタンを入れる
-    int stage_num;
+    private void ButtonStateColorChange(Button button, Color32 color, int changeState)
+    {
+        ColorBlock colorblock = button.colors;
+        switch (changeState)
+        {
+            case 0://normalColor
+                colorblock.normalColor = color;
+                break;
+            case 1://highlightedColor
+                colorblock.highlightedColor = color;
+                break;
+            case 2://pressedColor
+                colorblock.pressedColor = color;
+                break;
+            case 3://selectedColor
+                colorblock.selectedColor = color;
+                break;
+            case 4://disabledColor
+                colorblock.disabledColor = color;
+                break;
+        }
+        button.colors = colorblock;
+    }
 
-    
+    [SerializeField] public Button select_button; //ボタンを入れる
+    //[SerializeField] private Button stage_button;
+    private Color32 button_color;//Color32型の変数を宣言
+    int stage_num = 0;
+
+    private void Start()
+    {
+       
+    }
+
+    public void Change_Color()
+    {
+        //通常色
+        //色設定
+        button_color = new Color32(150, 150, 150, 255);
+
+        //設定した色を通常時の色へ設定
+        ButtonStateColorChange(select_button, button_color, 0);
+
+        if (StageClearManager.clearlevel < stage_num)
+        {
+            //色設定
+            button_color = new Color32(150, 150, 150, 255);
+
+            //設定した色を通常時の色へ設定
+            ButtonStateColorChange(select_button, button_color, 0);
+        }
+    }
+
     public void Stage_select()//ステージ決定
     {
         if (select_button)
@@ -40,11 +92,10 @@ public class changeScene : MonoBehaviour
                 stage_num = 10;
         }
 
-
         switch (stage_num)
         {
             case 0:
-                //シーン4でクリア判定が出ていたら
+                //ゲームを最初から初めても
                 if (StageClearManager.clearlevel >= 0)
                 {
                     //ステージ1にはいれる

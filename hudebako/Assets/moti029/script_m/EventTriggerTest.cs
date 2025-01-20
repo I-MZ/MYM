@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EventTriggerTest : MonoBehaviour
 {
-    [SerializeField] public GameObject SelectObject;//このオブジェクトが選択されると
-    [SerializeField] public GameObject SelectObject_arrow;//このオブジェクトが表示
-    int num;
+    [SerializeField] public GameObject SelectObject;        //ステージボタンが選択されると
+    [SerializeField] public GameObject SelectObject_arrow;  //黄色の矢印がステージボタンの上に表示
+    public int num;                                         //どのステージを選択しているか(1:左上2:右上3:左下4:右上)
 
     private void Start()
     {
@@ -16,7 +16,7 @@ public class EventTriggerTest : MonoBehaviour
     public void Enter_Event()
     {
 
-
+        //
         if (SelectObject)
         {
             if (SelectObject.name == "Stage1_button" ||
@@ -24,26 +24,28 @@ public class EventTriggerTest : MonoBehaviour
                 SelectObject.name == "Stage9_button")
             {
                 Debug.Log("num1");
-                num = 1;
+                num = 1;//矢印は左上に表示される
             }
             else if (SelectObject.name == "Stage2_button" ||
-                SelectObject.name == "Stage6_button")
+                     SelectObject.name == "Stage6_button" ||
+                     SelectObject.name == "Stage10_button")
             {
                 Debug.Log("num2");
-                num = 2;
+                num = 2;//矢印は右上に表示される
             }
             else if (SelectObject.name == "Stage3_button" ||
-                SelectObject.name == "Stage7_button" ||
-                SelectObject.name == "Stage10_button")
+                     SelectObject.name == "Stage7_button" ||
+                     SelectObject.name == "Clear_Illust_Open")
             {
                 Debug.Log("num3");
-                num = 3;
+                num = 3;//矢印は左下に表示される
             }
             else if (SelectObject.name == "Stage4_button" ||
-                SelectObject.name == "Stage8_button")
+                     SelectObject.name == "Stage8_button" )
+                     
             {
                 Debug.Log("num4");
-                num = 4;
+                num = 4;//矢印は右下に表示される
             }
             else
             {
@@ -53,7 +55,7 @@ public class EventTriggerTest : MonoBehaviour
 
 
 
-
+            //矢印を表示する条件
             if (num == 1 && SelectObject_arrow.name == "select_arrowUL")
             {
                 SelectObject_arrow.SetActive(true);
@@ -72,7 +74,7 @@ public class EventTriggerTest : MonoBehaviour
             if (num == 4 && SelectObject_arrow.name == "select_arrowDR")
             {
                 SelectObject_arrow.SetActive(true);
-                Debug.Log("左下表示");
+                Debug.Log("右下表示");
             }
 
             //Debug.Log("イベント発生！");
@@ -80,8 +82,9 @@ public class EventTriggerTest : MonoBehaviour
     }
 
     public void Exit_Event()
+    //矢印を非表示にする
     {
-        SelectObject_arrow.SetActive(false);
+        SelectObject_arrow.SetActive(false);//矢印を非表示にする
 
         Debug.Log("イベント非表示！");
     }
