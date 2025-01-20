@@ -315,6 +315,14 @@ PrefabInstance:
       propertyPath: GameEnd_Cuasor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buttons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1380845794}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buttons.Array.data[1]
+      value: 
+      objectReference: {fileID: 532913712}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
 --- !u!1 &105697395
@@ -4259,6 +4267,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 784381082}
     - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buckbutton
+      value: 
+      objectReference: {fileID: 1947066046}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Nextbutton
+      value: 
+      objectReference: {fileID: 323185346}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
       propertyPath: buckbutton
       value: 
       objectReference: {fileID: 1947066046}
@@ -4266,6 +4282,22 @@ PrefabInstance:
       propertyPath: nextbutton
       value: 
       objectReference: {fileID: 323185346}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buttons.Array.data[0]
+      value: 
+      objectReference: {fileID: 595583503}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buttons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1364862089}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buttons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1520787821}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buttons.Array.data[3]
+      value: 
+      objectReference: {fileID: 784381082}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
 --- !u!1 &1380845794
@@ -6197,6 +6229,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1982185348}
     - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buckbutton
+      value: 
+      objectReference: {fileID: 1947066046}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Nextbutton
+      value: 
+      objectReference: {fileID: 323185346}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
       propertyPath: buckbutton
       value: 
       objectReference: {fileID: 1947066046}
@@ -6204,6 +6244,14 @@ PrefabInstance:
       propertyPath: nextbutton
       value: 
       objectReference: {fileID: 323185346}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buttons.Array.data[0]
+      value: 
+      objectReference: {fileID: 855341153}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buttons.Array.data[1]
+      value: 
+      objectReference: {fileID: 691474293}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
 --- !u!1001 &1434488703831424495
@@ -6326,6 +6374,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 150814929}
     - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buckbutton
+      value: 
+      objectReference: {fileID: 1947066046}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Nextbutton
+      value: 
+      objectReference: {fileID: 323185346}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
       propertyPath: buckbutton
       value: 
       objectReference: {fileID: 1947066046}
@@ -6333,5 +6389,21 @@ PrefabInstance:
       propertyPath: nextbutton
       value: 
       objectReference: {fileID: 323185346}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buttons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1613808878}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buttons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1806803192}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buttons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1206233228}
+    - target: {fileID: 7552008892689011979, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+      propertyPath: Buttons.Array.data[3]
+      value: 
+      objectReference: {fileID: 150814929}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
