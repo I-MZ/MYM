@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+//カーソルの動きを制御するクラス
 public class CursorController : MonoBehaviour
 {
     //インスタンス
@@ -64,6 +65,7 @@ public class CursorController : MonoBehaviour
         old_cursor_num = cursor_num;
     }
 
+    //アップデート関数
     // Update is called once per frame
     void Update()
     {
@@ -71,7 +73,7 @@ public class CursorController : MonoBehaviour
         Debug.Log("horizontal = " + Input.GetAxisRaw("Horizontal") + " : horizontal_move = " + horizontal_move);
         Debug.Log("vertical = " + Input.GetAxisRaw("Vertical") + " : vertical_move = " + vertical_move);
 
-        //
+        //入力を確認する
         CheckInput();
 
         //
@@ -79,8 +81,6 @@ public class CursorController : MonoBehaviour
         {
             return;
         }
-
-        Debug.Log(Buttons[0]);
 
         //Escキーが押されたら
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -111,8 +111,9 @@ public class CursorController : MonoBehaviour
 
         CursorControll();
 
+        //Spaceキーが押されたら選択されているボタンを押す
         if (Input.GetKeyDown(KeyCode.Space)&&(!GameEnd_Cuasor && GameEnd.GameState == "endmode"))
-        {//Spaceキーが押されたら
+        {
             for (int i = 0; i < 5; i++)
             {
                 if (cursor_num == i)
@@ -126,6 +127,7 @@ public class CursorController : MonoBehaviour
 
     }
 
+    //入力を確認して移動の受付を制御する関数
     void CheckInput()
     {
         //横方向

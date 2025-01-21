@@ -72,11 +72,16 @@ public class GameManager : MonoBehaviour
 
         if (PlayerController.gameState == "clear")
         {//ステージクリア
-            clearpanel.SetActive(true);
+            
             Button rbt = resetButton.GetComponent<Button>();
             rbt.interactable = false;
             Button mbt = menuButton.GetComponent<Button>();
             mbt.interactable = false;
+
+            if (ClearMove.Movefinish)
+            {
+                clearpanel.SetActive(true);
+            }
 
             if (StageClearManager.clearlevel < SceneManager.GetActiveScene().buildIndex)
             {

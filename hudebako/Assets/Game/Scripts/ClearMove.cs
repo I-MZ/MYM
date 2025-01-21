@@ -2,29 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartMove : MonoBehaviour
+public class ClearMove : MonoBehaviour
 {
-    public GameObject StartImage;
-    RectTransform rect;
 
-    private bool DoCheck;
+    public GameObject ClearImage;
+    RectTransform rect;
 
     private float Movespeed = 10.0f;
     private float Stoptime = 0.5f;
 
-    [Header("開始時に鳴らすSE")] public AudioClip StartSE;
-
+    public static bool Movefinish = false;
+    private bool DoCheck;
 
     // Start is called before the first frame update
     void Start()
     {
-        DoCheck = false;
         rect = GetComponent<RectTransform>();
+        DoCheck = false;
+        Movefinish = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (PlayerController.gameState != "clear")
+        {
+            return;
+        }
+
         //右から画面中央まで動かす
         if (rect.anchoredPosition.x > 0)
         {
@@ -37,9 +42,7 @@ public class StartMove : MonoBehaviour
         {
             if (!DoCheck)
             {
-                Invoke(nameof(PlaySound), Stoptime / 2);
                 Invoke(nameof(Move), Stoptime);
-
                 DoCheck = true;
             }
         }
@@ -47,14 +50,14 @@ public class StartMove : MonoBehaviour
         //画面中央から左に動かす
         if (rect.anchoredPosition.x < 0)
         {
-            Move(Movespeed * 2);
+            Move();
         }
 
         //画面外に行ったら消す
-        if (rect.anchoredPosition.x < -1000 || SceneChenger.doRetry)
+        if (rect.anchoredPosition.x < -700 || SceneChenger.doRetry)
         {
-            Destroy(StartImage);
-            PlayerController.gameState = "playing";
+            Movefinish = true;
+            Destroy(ClearImage);
         }
     }
 
@@ -63,17 +66,5 @@ public class StartMove : MonoBehaviour
     {
         rect.anchoredPosition = new Vector2(rect.anchoredPosition.x - Movespeed,
                                             rect.anchoredPosition.y);
-    }
-
-    //左に少し動かす関数(速度調整用)
-    void Move(float movespeed)
-    {
-        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x - movespeed,
-                                            rect.anchoredPosition.y);
-    }
-
-    void PlaySound()
-    {
-        SceneChenger.instance.PlaySE(StartSE);
     }
 }
