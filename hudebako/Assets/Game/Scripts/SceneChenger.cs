@@ -35,8 +35,8 @@ public class SceneChenger : MonoBehaviour
     {
         instance = GetComponent<SceneChenger>();
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
 
         gameState = "loading";
         audioSource = GetComponent<AudioSource>();
