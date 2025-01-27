@@ -120,13 +120,13 @@ public class GameManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (MenuManager.instance.Menu.activeInHierarchy)
-                {
-                    ResumeGame();
-                }
-                else if (!menupanel.activeInHierarchy)
+                if (!menupanel.activeInHierarchy)
                 {
                     PauseGame();
+                }
+                else if (MenuManager.instance.Menu.activeInHierarchy)
+                {
+                    ResumeGame();
                 }
             }
 
@@ -175,13 +175,13 @@ public class GameManager : MonoBehaviour
         {
             CursorController.instance.SetCursorPos(CursorController.instance.Buttons[0]);
 
-            CursorController.instance.cursor_num = 1;
+            CursorController.instance.cursor_num = 0;
         }
         else
         {
             CursorController.instance.SetCursorPos(CursorController.instance.Buttons[4]);
 
-            CursorController.instance.cursor_num = 5;
+            CursorController.instance.cursor_num = 4;
         }
 
         Time.timeScale = 1;

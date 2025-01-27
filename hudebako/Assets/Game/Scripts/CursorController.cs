@@ -57,7 +57,7 @@ public class CursorController : MonoBehaviour
             SetCursorPos(Buttons[0]);
             cursor_num = 0;
         }
-        else//select1が非アクティブならselect5を初期位置にする
+        else//select0が非アクティブならselect4を初期位置にする
         {
             SetCursorPos(Buttons[4]);
             cursor_num = 4;
@@ -151,7 +151,7 @@ public class CursorController : MonoBehaviour
             switch (cursor_num)
             {
                 case 0:
-
+                    //ページを戻す
                     if (Buckbutton != null && Buckbutton.activeInHierarchy)
                     {
                         ButtonSelectRemove(Buttons[0]);
@@ -164,7 +164,7 @@ public class CursorController : MonoBehaviour
 
                     break;
                 case 1:
-
+                    //場所1→場所0
                     if (Buttons[0] != null && Buttons[0].activeInHierarchy)
                     {
                         CursorMove(Buttons[1], Buttons[0], 1, 0);
@@ -172,7 +172,7 @@ public class CursorController : MonoBehaviour
 
                     break;
                 case 2:
-
+                    //ページを戻す 場所2→場所0
                     if (Buckbutton != null && Buckbutton.activeInHierarchy)
                     {
                         CursorMove(Buttons[2], Buttons[0], 2, 0);
@@ -183,7 +183,7 @@ public class CursorController : MonoBehaviour
 
                     break;
                 case 3:
-
+                    //場所3→場所2
                     if (Buttons[2] != null && Buttons[2].activeInHierarchy)
                     {
                         CursorMove(Buttons[3], Buttons[2], 3, 2);
@@ -191,7 +191,7 @@ public class CursorController : MonoBehaviour
 
                     break;
                 case 4:
-
+                    //場所4→場所2
                     if (Buttons[2] != null && Buttons[2].activeInHierarchy)
                     {
                         CursorMove(Buttons[4], Buttons[2], 4, 2);
@@ -385,38 +385,49 @@ public class CursorController : MonoBehaviour
     }
 
 
-    //カーソルがボタンを選んでいるときの処理
+    //カーソルがボタンを選んでいるときの処理の関数
     void ButtonSelect(GameObject select)
     {
+        //受け取ったボタンのButton取得
         Button bt = select.GetComponent<Button>();
+        //ボタンを選ばれている状態に
         bt.Select();
 
+        //受け取ったボタンにEventTriggerTestがあるか確認
         if (select.GetComponent<EventTriggerTest>() != null)
-        {
+        {//あるなら
+            //EventTriggerTest取得
             EventTriggerTest evt = select.GetComponent<EventTriggerTest>();
+            //イベント起動
             evt.Enter_Event();
         }
 
 
     }
 
-    //カーソルがボタンから出たときの処理
+    //カーソルがボタンから出たときの処理の関数
     void ButtonSelectRemove(GameObject select)
     {
+        //受け取ったボタンにEventTriggerTestがあるか確認
         if (select.GetComponent<EventTriggerTest>() != null)
         {
+            //EventTriggerTest取得
             EventTriggerTest evt = select.GetComponent<EventTriggerTest>();
+            //イベント起動
             evt.Exit_Event();
         }
     }
 
-    //カーソルを選ばれているボタンの横に移動させる
+    //カーソルを選ばれているボタンの横に移動させる関数
     public void SetCursorPos(GameObject select)
     {
+        //受け取ったボタンのRectTransform取得
         RectTransform select_RecTr = select.GetComponent<RectTransform>();
 
+        //カーソルがあるか確認
         if (cursor != null)
-        {
+        {//あるなら
+            //カーソルを受け取ったボタンの横に移動させる
             cursor_RecTr.anchoredPosition = new Vector2(select_RecTr.anchoredPosition.x + (select_RecTr.sizeDelta.x / 2),
                                                         select_RecTr.anchoredPosition.y + (select_RecTr.sizeDelta.y / 20));
 
@@ -424,17 +435,21 @@ public class CursorController : MonoBehaviour
         
     }
 
-    //カーソル移動処理
+    //カーソルを移動させる処理をまとめた関数
     void CursorMove(GameObject old_select, GameObject select, int now_num, int new_num)
     {
+        //カーソルをボタンから出す
         ButtonSelectRemove(old_select);
-
+        //カーソルを移動させる
         SetCursorPos(select);
 
+        //
         cursor_num = new_num;
+        //
         old_cursor_num = now_num;
     }
 
+    //ボタンを押したときの処理の関数
     void Enter(GameObject select)
     {
 
@@ -443,12 +458,14 @@ public class CursorController : MonoBehaviour
               
     }
 
+    //次のページに進むときの関数
     void NextPage()
     {
         Button bt = Nextbutton.GetComponent<Button>();
         bt.onClick.Invoke();
     }
 
+    //前のページに戻るときの関数
     void BuckPage()
     {
         Button bt = Buckbutton.GetComponent<Button>();
