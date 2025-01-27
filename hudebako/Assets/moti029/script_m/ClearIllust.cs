@@ -31,8 +31,8 @@ public class ClearIllust : MonoBehaviour
         //    Debug.Log("1度だけクリア判定");
         //}
 
-        //全ステージクリア後
-        if (StageClearManager.clearlevel == 1 && Panel_Manager_m.page_num == 2)
+        //全ステージクリア後にクリア絵を表示する(現在は表示しない)
+        if (StageClearManager.clearlevel == 12 && Panel_Manager_m.page_num == 2)
             //全ステージクリアしたあとステージ9と10が表示されている場所に
         {
             //GameClearPanel.SetActive(true);//クリア絵に関するパネルを表示
