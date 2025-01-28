@@ -8045,6 +8045,7 @@ MonoBehaviour:
   menuButton: {fileID: 7315348618902116345}
   timer: {fileID: 4730502572191626525}
   timeText: {fileID: 1279325351216181536}
+  MenuCursor: {fileID: 5985373350503020324}
   Explanation: {fileID: 414027974657888782}
   fade: {fileID: 2261749850398848901}
   stagenum: {fileID: 5476946686156374423}
@@ -11216,6 +11217,11 @@ PrefabInstance:
       objectReference: {fileID: 7315348617072300698}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+--- !u!1 &5985373350503020324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4721407735211895921, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}
+  m_PrefabInstance: {fileID: 1339150222580013909}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8445197521535235511 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7468868614961606370, guid: 0ba26cb528c83914a9b6cf9a9a0e9c46, type: 3}

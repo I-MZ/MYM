@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public GameObject timer;
     public GameObject timeText;
 
+    public GameObject MenuCursor;
+    private CursorController MC_cont;
 
     public GameObject Explanation;
 
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour
         }
 
         ScCanger = fade.GetComponent<SceneChenger>();
+        MC_cont = MenuCursor.GetComponent<CursorController>();
 
         stagenum.GetComponent<Text>().text = "ステージ" + SceneManager.GetActiveScene().buildIndex;
 
@@ -77,6 +80,7 @@ public class GameManager : MonoBehaviour
             rbt.interactable = false;
             Button mbt = menuButton.GetComponent<Button>();
             mbt.interactable = false;
+            
 
             if (ClearMove.Movefinish)
             {
@@ -120,7 +124,8 @@ public class GameManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (!menupanel.activeInHierarchy)
+
+                if (!menupanel.activeSelf)
                 {
                     PauseGame();
                 }
@@ -128,6 +133,9 @@ public class GameManager : MonoBehaviour
                 {
                     ResumeGame();
                 }
+
+                
+                
             }
 
             
@@ -171,17 +179,17 @@ public class GameManager : MonoBehaviour
     {
         PlaySE(Cancel);
 
-        if(CursorController.instance.Buttons[0]!=null&& CursorController.instance.Buttons[0].activeInHierarchy)
+        if(MC_cont.Buttons[0]!=null&& MC_cont.Buttons[0].activeInHierarchy)
         {
-            CursorController.instance.SetCursorPos(CursorController.instance.Buttons[0]);
+            MC_cont.SetCursorPos(MC_cont.Buttons[0]);
 
-            CursorController.instance.cursor_num = 0;
+            MC_cont.cursor_num = 0;
         }
         else
         {
-            CursorController.instance.SetCursorPos(CursorController.instance.Buttons[4]);
+            MC_cont.SetCursorPos(MC_cont.Buttons[4]);
 
-            CursorController.instance.cursor_num = 4;
+            MC_cont.cursor_num = 4;
         }
 
         Time.timeScale = 1;

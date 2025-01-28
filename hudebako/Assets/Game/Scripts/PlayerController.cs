@@ -339,7 +339,7 @@ public class PlayerController : MonoBehaviour
         // ‰¡•ûŒüˆÚ“®“ü—Í
         if (Input.GetKey(KeyCode.D))
         {// ‰E•ûŒü‚ÌˆÚ“®“ü—Í
-            if (!Input.GetKey(KeyCode.LeftShift))
+            if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
             {
                 inputH = 1.0f;
             }
@@ -350,7 +350,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.A))
         {// ¶•ûŒü‚ÌˆÚ“®“ü—Í
-            if (!Input.GetKey(KeyCode.LeftShift))
+            if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
             {
                 inputH = -1.0f;
             }
@@ -367,7 +367,7 @@ public class PlayerController : MonoBehaviour
         // c•ûŒüˆÚ“®“ü—Í
         if (Input.GetKey(KeyCode.W))
         {// ã•ûŒü‚ÌˆÚ“®“ü—Í
-            if (!Input.GetKey(KeyCode.LeftShift))
+            if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
             {
                 inputV = 1.0f;
             }
@@ -378,7 +378,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.S))
         {// ‰º•ûŒü‚ÌˆÚ“®“ü—Í
-            if (!Input.GetKey(KeyCode.LeftShift))
+            if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
             {
                 inputV = -1.0f;
             }
