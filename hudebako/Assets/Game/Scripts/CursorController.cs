@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-//カーソルの動きを制御するクラス
+/// <summary>
+/// カーソルの動きを制御するクラス
+/// </summary>
 public class CursorController : MonoBehaviour
 {
     //インスタンス
@@ -42,8 +44,9 @@ public class CursorController : MonoBehaviour
 
     
 
-    //スタート関数
-    //
+    /// <summary>
+    /// 初期化を行う関数
+    /// </summary>
     // Start is called before the first frame update
     void Start()
     {
@@ -127,7 +130,9 @@ public class CursorController : MonoBehaviour
 
     }
 
-    //入力を確認して移動の受付を制御する関数
+    /// <summary>
+    /// 入力を確認して移動の受付を制御する関数
+    /// </summary>
     void CheckInput()
     {
         //横方向
@@ -143,7 +148,9 @@ public class CursorController : MonoBehaviour
         }
     }   
 
-
+    /// <summary>
+    /// 入力に応じてカーソルがどう動くかを制御する関数
+    /// </summary>
     void CursorControll()
     {
         if (Input.GetAxisRaw("Horizontal") < 0 && horizontal_move)
@@ -384,8 +391,10 @@ public class CursorController : MonoBehaviour
         }
     }
 
-
-    //カーソルがボタンを選んでいるときの処理の関数
+    /// <summary>
+    /// カーソルがボタンを選んでいるときの処理の関数
+    /// </summary>
+    /// <param name="select"></param>
     void ButtonSelect(GameObject select)
     {
         //受け取ったボタンのButton取得
@@ -405,7 +414,10 @@ public class CursorController : MonoBehaviour
 
     }
 
-    //カーソルがボタンから出たときの処理の関数
+    /// <summary>
+    /// カーソルがボタンから出たときの処理の関数
+    /// </summary>
+    /// <param name="select"></param>
     void ButtonSelectRemove(GameObject select)
     {
         //受け取ったボタンにEventTriggerTestがあるか確認
@@ -418,7 +430,10 @@ public class CursorController : MonoBehaviour
         }
     }
 
-    //カーソルを選ばれているボタンの横に移動させる関数
+    /// <summary>
+    /// カーソルを選ばれているボタンの横に移動させる関数
+    /// </summary>
+    /// <param name="select"></param>
     public void SetCursorPos(GameObject select)
     {
         //受け取ったボタンのRectTransform取得
@@ -435,7 +450,13 @@ public class CursorController : MonoBehaviour
         
     }
 
-    //カーソルを移動させる処理をまとめた関数
+    /// <summary>
+    /// カーソルを移動させる処理をまとめた関数
+    /// </summary>
+    /// <param name="old_select"></param>
+    /// <param name="select"></param>
+    /// <param name="now_num"></param>
+    /// <param name="new_num"></param>
     void CursorMove(GameObject old_select, GameObject select, int now_num, int new_num)
     {
         //カーソルをボタンから出す
@@ -449,7 +470,10 @@ public class CursorController : MonoBehaviour
         old_cursor_num = now_num;
     }
 
-    //ボタンを押したときの処理の関数
+    /// <summary>
+    /// ボタンを押したときの処理の関数
+    /// </summary>
+    /// <param name="select"></param>
     void Enter(GameObject select)
     {
 
@@ -458,14 +482,18 @@ public class CursorController : MonoBehaviour
               
     }
 
-    //次のページに進むときの関数
+    /// <summary>
+    /// 次のページに進むときの関数
+    /// </summary>
     void NextPage()
     {
         Button bt = Nextbutton.GetComponent<Button>();
         bt.onClick.Invoke();
     }
 
-    //前のページに戻るときの関数
+    /// <summary>
+    /// 前のページに戻るときの関数
+    /// </summary>
     void BuckPage()
     {
         Button bt = Buckbutton.GetComponent<Button>();
