@@ -25,7 +25,15 @@ public class GameEnd : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PanelActivation();
+            if (!endpanel.activeSelf)
+            {
+                PanelActivation();
+            }
+            else
+            {
+                PanelDisabling();
+            }
+
         }
     }
 
