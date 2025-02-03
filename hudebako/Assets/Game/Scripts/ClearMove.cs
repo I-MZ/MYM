@@ -11,6 +11,8 @@ public class ClearMove : MonoBehaviour
     private float Movespeed = 10.0f;
     private float Stoptime = 0.5f;
 
+    private float Destroy_border = -700.0f;
+
     public static bool Movefinish = false;
     private bool DoCheck;
 
@@ -30,7 +32,7 @@ public class ClearMove : MonoBehaviour
             return;
         }
 
-        //右から画面中央まで動かす
+        //右から画面中央まで動かし続ける
         if (rect.anchoredPosition.x > 0)
         {
             Move();
@@ -47,21 +49,23 @@ public class ClearMove : MonoBehaviour
             }
         }
 
-        //画面中央から左に動かす
+        //画面中央から左に動かし続ける
         if (rect.anchoredPosition.x < 0)
         {
             Move();
         }
 
         //画面外に行ったら消す
-        if (rect.anchoredPosition.x < -700 || SceneChenger.doRetry)
+        if (rect.anchoredPosition.x < Destroy_border || SceneChenger.doRetry)
         {
             Movefinish = true;
             Destroy(ClearImage);
         }
     }
 
-    //左に少し動かす関数
+    /// <summary>
+    /// 位置を少し左にずらす
+    /// </summary>
     void Move()
     {
         rect.anchoredPosition = new Vector2(rect.anchoredPosition.x - Movespeed,

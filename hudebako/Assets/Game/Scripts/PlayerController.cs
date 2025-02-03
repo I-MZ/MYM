@@ -664,4 +664,12 @@ public class PlayerController : MonoBehaviour
         rbody.freezeRotation = true;
         Debug.Log("ÉvÉåÉCÉÑÅ[í‚é~");
     }
+
+    public enum GRAVITY
+    {
+        DOWN,
+        UP,
+        RIGHT,
+        LEFT
+    }
 }

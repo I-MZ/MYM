@@ -9,26 +9,34 @@ public class WallColorChenger : MonoBehaviour
 
     [SerializeField] TileBase[] tiles;
 
-
-    
+    private int Nowgravity;
+    private bool Change;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Nowgravity = PlayerController.instance.startgravity;
+        Change = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        CheckGravity();
 
-        for(int i = 0; i < 10; i++)
+        if (Change)
         {
-            tilemap.SwapTile(tiles[10 * 0 + i], tiles[10 * PlayerController.instance.gravity + i]);
-            tilemap.SwapTile(tiles[10 * 1 + i], tiles[10 * PlayerController.instance.gravity + i]);
-            tilemap.SwapTile(tiles[10 * 2 + i], tiles[10 * PlayerController.instance.gravity + i]);
-            tilemap.SwapTile(tiles[10 * 3 + i], tiles[10 * PlayerController.instance.gravity + i]);
+            for (int i = 0; i < 10; i++)
+            {
+                tilemap.SwapTile(tiles[10 * 0 + i], tiles[10 * Nowgravity + i]);
+                tilemap.SwapTile(tiles[10 * 1 + i], tiles[10 * Nowgravity + i]);
+                tilemap.SwapTile(tiles[10 * 2 + i], tiles[10 * Nowgravity + i]);
+                tilemap.SwapTile(tiles[10 * 3 + i], tiles[10 * Nowgravity + i]);
+            }
+
+            Change = false;
         }
+        
 
         if (PlayerController.instance.forcepower)
         {
@@ -39,5 +47,14 @@ public class WallColorChenger : MonoBehaviour
             tilemap.color = new Color(1.0f, 1.0f, 1.0f);
         }
         
+    }
+
+    void CheckGravity()
+    {
+        if (Nowgravity != PlayerController.instance.gravity)
+        {
+            Change = true;
+            Nowgravity = PlayerController.instance.gravity;
+        }
     }
 }

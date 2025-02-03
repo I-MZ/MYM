@@ -693,7 +693,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 22249853 1_32
+      name: Key_Img_Alt
       rect:
         serializedVersion: 2
         x: 33
@@ -966,7 +966,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 22249853 1_45
+      name: Key_Img_PrintScreen
       rect:
         serializedVersion: 2
         x: 1442
@@ -987,7 +987,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 22249853 1_48
+      name: Key_Img_Tab
       rect:
         serializedVersion: 2
         x: 33
@@ -1239,7 +1239,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 22249853 1_60
+      name: Key_Img_Delete
       rect:
         serializedVersion: 2
         x: 1328
@@ -2550,7 +2550,6 @@ TextureImporter:
       22249853 1_28: 2012514654
       22249853 1_30: 986405621
       22249853 1_31: 1419205475
-      22249853 1_32: -1283594156
       22249853 1_34: 2058802675
       22249853 1_35: -495578714
       22249853 1_36: -1740639570
@@ -2562,10 +2561,8 @@ TextureImporter:
       22249853 1_42: 994436964
       22249853 1_43: -680207098
       22249853 1_44: -846209622
-      22249853 1_45: 645973552
       22249853 1_46: -377546520
       22249853 1_47: 347161391
-      22249853 1_48: -1624281175
       22249853 1_49: -1201047815
       22249853 1_50: 1668008561
       22249853 1_51: 1886832872
@@ -2577,7 +2574,6 @@ TextureImporter:
       22249853 1_57: 1202417138
       22249853 1_58: 68689873
       22249853 1_59: -231603501
-      22249853 1_60: 1872807392
       22249853 1_62: 450522673
       22249853 1_63: -539537506
       22249853 1_64: 865648841
@@ -2622,12 +2618,14 @@ TextureImporter:
       Key_Img_8: -882081601
       Key_Img_9: 472226363
       Key_Img_A: -450071459
+      Key_Img_Alt: -1283594156
       Key_Img_B: 1602363182
       Key_Img_BackSpace: -756062645
       Key_Img_C: 623333084
       Key_Img_CapsLock: 72489793
       Key_Img_Control: -1143707426
       Key_Img_D: -395722137
+      Key_Img_Delete: 1872807392
       Key_Img_DownArrow: 558027491
       Key_Img_E: 2061704123
       Key_Img_End: -2022187505
@@ -2663,12 +2661,14 @@ TextureImporter:
       Key_Img_PageDown: 1042220323
       Key_Img_PageUp: -1805507931
       Key_Img_PauseBreak: 2016137721
+      Key_Img_PrintScreen: 645973552
       Key_Img_Q: -2065503285
       Key_Img_R: 995657713
       Key_Img_RightArrow: 89214143
       Key_Img_S: 544851101
       Key_Img_Shift: -1440149557
       Key_Img_T: -2091387832
+      Key_Img_Tab: -1624281175
       Key_Img_U: -1375597517
       Key_Img_UpArrow: -188672472
       Key_Img_V: 2082144723

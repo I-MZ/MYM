@@ -9,7 +9,7 @@ public class CheckPoint : MonoBehaviour
 
     private void Start()
     {
-        sr = GetComponent<SpriteRenderer>();    //SuriteRendererŽæ“¾
+        sr = GetComponent<SpriteRenderer>();    //SpriteRendererŽæ“¾
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
