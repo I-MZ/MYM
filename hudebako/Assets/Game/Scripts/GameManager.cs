@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private CursorController MC_cont;
 
     public GameObject Explanation;
+    private ExplanationManager ExplanationMng;
 
 
     TimeController timeCnt;
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
         timeCnt = GetComponent<TimeController>();
         if (timeCnt != null)
         {
-            if (timeCnt.gameTime == 0.0f || SceneManager.GetActiveScene().buildIndex > StageClearManager.clearlevel)
+            if (timeCnt.gameTime == 0.0f)
             {
                 timer.SetActive(false);
             }
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
 
         ScCanger = fade.GetComponent<SceneChenger>();
         MC_cont = MenuCursor.GetComponent<CursorController>();
+        ExplanationMng = Explanation.GetComponent<ExplanationManager>();
 
         stagenum.GetComponent<Text>().text = "ステージ" + SceneManager.GetActiveScene().buildIndex;
 
@@ -166,6 +168,7 @@ public class GameManager : MonoBehaviour
             PlaySE(Decide);
             Time.timeScale = 0;
             menupanel.SetActive(true);
+            ExplanationMng.TextChange();
             Button rbt = resetButton.GetComponent<Button>();
             rbt.interactable = false;
             Button mbt = menuButton.GetComponent<Button>();
@@ -195,6 +198,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         clearpanel.SetActive(false);
         menupanel.SetActive(false);
+        ExplanationMng.TextChange();
         Button rbt = resetButton.GetComponent<Button>();
         rbt.interactable = true;
         Button mbt = menuButton.GetComponent<Button>();
@@ -218,6 +222,7 @@ public class GameManager : MonoBehaviour
     private void UiHidden()
     {
         UI.SetActive(false);
+        ExplanationMng.PlayingText.SetActive(false);
 
         Uihidden = true;
     }
@@ -225,6 +230,7 @@ public class GameManager : MonoBehaviour
     private void UiDisplay()
     {
         UI.SetActive(true);
+        ExplanationMng.PlayingText.SetActive(true);
 
         Uihidden = false;
     }
