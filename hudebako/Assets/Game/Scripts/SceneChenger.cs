@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// ƒV[ƒ“‚Ì•ÏX‚È‚Ç‚ğ§Œä‚·‚éŠÖ”
+/// </summary>
 public class SceneChenger : MonoBehaviour
 {
     public static SceneChenger instance = null;
@@ -23,7 +26,7 @@ public class SceneChenger : MonoBehaviour
 
     private AudioSource audioSource = null; //
 
-    public AudioClip enter;                 //Œˆ’è‚É–Â‚ç‚·SE
+    public AudioClip Decide;                 //Œˆ’è‚É–Â‚ç‚·SE
 
     void Awake()
     {
@@ -94,7 +97,7 @@ public class SceneChenger : MonoBehaviour
 
         gameState = "loading";
 
-        PlaySE(enter);
+        PlaySE(Decide);
 
         scenenum = i;
 

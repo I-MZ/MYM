@@ -90,10 +90,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursor: {fileID: 4721407735211895921}
-  select1: {fileID: 0}
-  select2: {fileID: 0}
-  select3: {fileID: 0}
-  select4: {fileID: 0}
-  select5: {fileID: 0}
-  nextbutton: {fileID: 0}
-  buckbutton: {fileID: 0}
+  cursor_num: 0
+  Buttons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Nextbutton: {fileID: 0}
+  Buckbutton: {fileID: 0}
+  GameEnd_Cuasor: 0
+  MoveSE: {fileID: 8300000, guid: 0e409e936c9b48c46b392abff13cf39d, type: 3}

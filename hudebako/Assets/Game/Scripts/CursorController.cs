@@ -42,6 +42,8 @@ public class CursorController : MonoBehaviour
     private bool horizontal_move = false;   //â°
     private bool vertical_move = false;     //èc
 
+    public AudioClip MoveSE;
+
     
 
     /// <summary>
@@ -463,6 +465,8 @@ public class CursorController : MonoBehaviour
         ButtonSelectRemove(old_select);
         //ÉJÅ[É\ÉãÇà⁄ìÆÇ≥ÇπÇÈ
         SetCursorPos(select);
+
+        SceneChenger.instance.PlaySE(MoveSE);
 
         //
         cursor_num = new_num;

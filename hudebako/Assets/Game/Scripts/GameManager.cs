@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
+/// <summary>
+/// プレイ中の動きを制御するクラス
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;

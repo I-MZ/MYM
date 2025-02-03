@@ -5,17 +5,19 @@ using UnityEngine.Tilemaps;
 
 public class WallColorChenger : MonoBehaviour
 {
+    //ステージのタイルマップ取得
     [SerializeField] Tilemap tilemap = default;
 
+    //タイルのデータを入れておく配列
     [SerializeField] TileBase[] tiles;
 
-    private PlayerController.GRAVITY Nowgravity;
+    private PlayerController.GRAVITY Oldgravity;
     private bool Change;
 
     // Start is called before the first frame update
     void Start()
     {
-        Nowgravity = PlayerController.instance.startgravity;
+        Oldgravity = PlayerController.instance.startgravity;
         Change = false;
     }
 
@@ -26,8 +28,9 @@ public class WallColorChenger : MonoBehaviour
 
         if (Change)
         {
-            switch (Nowgravity) 
+            switch (Oldgravity) 
             {
+                //下
                 case PlayerController.GRAVITY.DOWN:
                     for (int i = 0; i < 10; i++)
                     {
@@ -37,6 +40,7 @@ public class WallColorChenger : MonoBehaviour
                     }
                     break;
 
+                //上
                 case PlayerController.GRAVITY.UP:
                     for (int i = 0; i < 10; i++)
                     {
@@ -46,6 +50,7 @@ public class WallColorChenger : MonoBehaviour
                     }
                     break;
 
+                //右
                 case PlayerController.GRAVITY.RIGHT:
                     for (int i = 0; i < 10; i++)
                     {
@@ -55,6 +60,7 @@ public class WallColorChenger : MonoBehaviour
                     }
                     break;
 
+                //左
                 case PlayerController.GRAVITY.LEFT:
                     for (int i = 0; i < 10; i++)
                     {
@@ -80,12 +86,15 @@ public class WallColorChenger : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// 重力が変わっていないかを確認する関数
+    /// </summary>
     void CheckGravity()
     {
-        if (Nowgravity != PlayerController.instance.gravity)
+        if (Oldgravity != PlayerController.instance.gravity)
         {
             Change = true;
-            Nowgravity = PlayerController.instance.gravity;
+            Oldgravity = PlayerController.instance.gravity;
         }
     }
 }
