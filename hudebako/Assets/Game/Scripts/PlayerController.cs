@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
     private float inputH = 0.0f;        //横入力
     private float inputV = 0.0f;        //縦入力
     public float fallspead = 10.0f;     //落下速度
-    public int startgravity = 0;
-    public int gravity = 0;             //重力の向き(0=下,1=上,2=右,3=左)
+    public GRAVITY startgravity = GRAVITY.DOWN;
+    public GRAVITY gravity = GRAVITY.DOWN;             //重力の向き(0=下,1=上,2=右,3=左)
     public bool forcepower = false;     //重力強化
     private bool checkchange = false;
     bool onWall = false;                //床(壁)に乗っているか
@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
         //重力による落下処理(下、上、右、左)
         switch (gravity)
         {
-            case 0://下
+            case GRAVITY.DOWN://下
                 onWall = Physics2D.CircleCast(transform.position,
                                                    0.1f,
                                                    Vector2.down,
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
 
-            case 1://上
+            case GRAVITY.UP://上
                 onWall = Physics2D.CircleCast(transform.position,
                                                    0.1f,
                                                    Vector2.up,
@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
 
-            case 2://右
+            case GRAVITY.RIGHT://右
                 onWall = Physics2D.CircleCast(transform.position,
                                                    0.1f,
                                                    Vector2.right,
@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
 
-            case 3://左
+            case GRAVITY.LEFT://左
                 onWall = Physics2D.CircleCast(transform.position,
                                                   0.1f,
                                                   Vector2.left,
@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
 
         if (onWall)
         {
-            if (gravity == 0 || gravity == 1)
+            if (gravity == GRAVITY.DOWN || gravity == GRAVITY.UP)
             {
                 rbody.velocity = new Vector2(movespeed * inputH, rbody.velocity.y);
             }
@@ -218,16 +218,16 @@ public class PlayerController : MonoBehaviour
                 {
                     switch (gravity)
                     {
-                        case 0://下
+                        case GRAVITY.DOWN://下
                             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.25f, this.transform.position.z);
                             break;
-                        case 1://上
+                        case GRAVITY.UP://上
                             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.25f, this.transform.position.z);
                             break;
-                        case 2://右
+                        case GRAVITY.RIGHT://右
                             this.transform.position = new Vector3(this.transform.position.x - 0.25f, this.transform.position.y, this.transform.position.z);
                             break;
-                        case 3://左
+                        case GRAVITY.LEFT://左
                             this.transform.position = new Vector3(this.transform.position.x + 0.25f, this.transform.position.y, this.transform.position.z);
                             break;
                     }
@@ -266,7 +266,7 @@ public class PlayerController : MonoBehaviour
         {
             switch (gravity)
             {
-                case 0://下
+                case GRAVITY.DOWN://下
                     crevice = Physics2D.CircleCast(transform.position,
                                                    0.1f,
                                                    Vector2.up,
@@ -286,7 +286,7 @@ public class PlayerController : MonoBehaviour
 
                     break;
 
-                case 1://上
+                case GRAVITY.UP://上
                     crevice = Physics2D.CircleCast(transform.position,
                                                    0.1f,
                                                    Vector2.down,
@@ -301,7 +301,7 @@ public class PlayerController : MonoBehaviour
 
                     break;
 
-                case 2://右
+                case GRAVITY.RIGHT://右
                     crevice = Physics2D.CircleCast(transform.position,
                                                    0.1f,
                                                    Vector2.left,
@@ -315,7 +315,7 @@ public class PlayerController : MonoBehaviour
 
                     break;
 
-                case 3://左
+                case GRAVITY.LEFT://左
                     crevice = Physics2D.CircleCast(transform.position,
                                                    0.1f,
                                                    Vector2.right,
@@ -399,74 +399,74 @@ public class PlayerController : MonoBehaviour
     void ChangeGravity()
     {
         //重力の強弱切り替え
-        if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity == 0 && !crevice)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity == GRAVITY.DOWN && !crevice)
         {
             PowChange();
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity == 1 && !crevice)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity == GRAVITY.UP && !crevice)
         {
             PowChange();
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity == 2 && !crevice)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity == GRAVITY.RIGHT && !crevice)
         {
             PowChange();
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity == 3 && !crevice)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity == GRAVITY.LEFT && !crevice)
         {
             PowChange();
         }
 
         //重力の向き切り替え
-        if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity != 0)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && onWall && gravity != GRAVITY.DOWN)
         {
-            if (gravity == 2 || gravity == 3)
+            if (gravity == GRAVITY.RIGHT || gravity == GRAVITY.LEFT)
             {
-                gravity = 0;
+                gravity = GRAVITY.DOWN;
                 PowDown();
                 returnfolm = false;
             }
             else
             {
-                gravity = 0;
+                gravity = GRAVITY.DOWN;
             }
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity != 1)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && onWall && gravity != GRAVITY.UP)
         {
-            if (gravity == 2 || gravity == 3)
+            if (gravity == GRAVITY.RIGHT || gravity == GRAVITY.LEFT)
             {
-                gravity = 1;
+                gravity = GRAVITY.UP;
                 PowDown();
                 returnfolm = false;
             }
             else
             {
-                gravity = 1;
+                gravity = GRAVITY.UP;
             }
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity != 2)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && onWall && gravity != GRAVITY.RIGHT)
         {
-            if (gravity == 0 || gravity == 1)
+            if (gravity == GRAVITY.DOWN || gravity == GRAVITY.UP)
             {
-                gravity = 2;
+                gravity = GRAVITY.RIGHT;
                 PowDown();
                 returnfolm = false;
             }
             else
             {
-                gravity = 2;
+                gravity = GRAVITY.RIGHT;
             }
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity != 3)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && onWall && gravity != GRAVITY.LEFT)
         {
-            if (gravity == 0 || gravity == 1)
+            if (gravity == GRAVITY.DOWN || gravity == GRAVITY.UP)
             {
-                gravity = 3;
+                gravity = GRAVITY.LEFT;
                 PowDown();
                 returnfolm = false;
             }
             else
             {
-                gravity = 3;
+                gravity = GRAVITY.LEFT;
             }
         }
 
@@ -558,26 +558,24 @@ public class PlayerController : MonoBehaviour
         ////定規の位置を取得
         Vector3 RulerPosition = this.transform.position;
 
-        //0下、1上、2右、3左
-
         if (Ruler_overlap)
         {
-            if (gravity == 0)//下
+            if (gravity == GRAVITY.DOWN)//下
             {
                 this.gameObject.transform.position = new Vector3(Neripos.x, Neripos.y = RulerPosition.y - 1 / 2, Neripos.z);
                 Debug.Log("下側へ移動");
             }
-            if (gravity == 1)//上
+            if (gravity == GRAVITY.UP)//上
             {
                 this.gameObject.transform.position = new Vector3(Neripos.x, Neripos.y = RulerPosition.y + 1 / 2, Neripos.z);
                 Debug.Log("上側へ移動");
             }
-            if (gravity == 2)//右
+            if (gravity == GRAVITY.RIGHT)//右
             {
                 this.gameObject.transform.position = new Vector3(Neripos.x = RulerPosition.x + 1 / 2, Neripos.y, Neripos.z);
                 Debug.Log("右側へ移動");
             }
-            if (gravity == 3)//左
+            if (gravity == GRAVITY.LEFT)//左
             {
                 this.gameObject.transform.position = new Vector3(Neripos.x = RulerPosition.x - 1 / 2, Neripos.y, Neripos.z);
                 Debug.Log("左側へ移動");

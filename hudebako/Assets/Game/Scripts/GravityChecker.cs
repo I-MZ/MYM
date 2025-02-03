@@ -28,16 +28,16 @@ public class GravityChecker : MonoBehaviour
             switch (PlayerController.instance.gravity) 
             {//PlayerControllerのgravity(重力の向き)をチェック
 
-                case 0://下のとき
+                case PlayerController.GRAVITY.DOWN://下のとき
                     Img.sprite = ArrowDown; //下矢印に
                     break;
-                case 1://上のとき
+                case PlayerController.GRAVITY.UP://上のとき
                     Img.sprite = ArrowUp;   //上矢印に
                     break;
-                case 2://右のとき
+                case PlayerController.GRAVITY.RIGHT://右のとき
                     Img.sprite = ArrowRight;//右矢印に
                     break;
-                case 3://左のとき
+                case PlayerController.GRAVITY.LEFT://左のとき
                     Img.sprite = ArrowLeft; //左矢印に
                     break;
             }

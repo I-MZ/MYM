@@ -7,8 +7,8 @@ public class Penetration : MonoBehaviour
 {
     public GameObject PlayerObject;
     PlayerController Pcnt;
-    public int CkopenGravity;
-    public int CkcloseGravity;
+    public PlayerController.GRAVITY CkopenGravity;
+    public PlayerController.GRAVITY CkcloseGravity;
 
     private BoxCollider2D BC;
 

@@ -6,7 +6,7 @@ public class SURINUKEYUKA2_m : MonoBehaviour
 {
     public GameObject PlayerObject;
     PlayerController Pcnt;
-    public int CkopenGravity;
+    public PlayerController.GRAVITY CkopenGravity;
     //public int CkcloseGravity;
 
     private BoxCollider2D BC;

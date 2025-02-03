@@ -9,7 +9,7 @@ public class WallColorChenger : MonoBehaviour
 
     [SerializeField] TileBase[] tiles;
 
-    private int Nowgravity;
+    private PlayerController.GRAVITY Nowgravity;
     private bool Change;
 
     // Start is called before the first frame update
@@ -26,12 +26,43 @@ public class WallColorChenger : MonoBehaviour
 
         if (Change)
         {
-            for (int i = 0; i < 10; i++)
+            switch (Nowgravity) 
             {
-                tilemap.SwapTile(tiles[10 * 0 + i], tiles[10 * Nowgravity + i]);
-                tilemap.SwapTile(tiles[10 * 1 + i], tiles[10 * Nowgravity + i]);
-                tilemap.SwapTile(tiles[10 * 2 + i], tiles[10 * Nowgravity + i]);
-                tilemap.SwapTile(tiles[10 * 3 + i], tiles[10 * Nowgravity + i]);
+                case PlayerController.GRAVITY.DOWN:
+                    for (int i = 0; i < 10; i++)
+                    {
+                        tilemap.SwapTile(tiles[10 * 1 + i], tiles[10 * 0 + i]);
+                        tilemap.SwapTile(tiles[10 * 2 + i], tiles[10 * 0 + i]);
+                        tilemap.SwapTile(tiles[10 * 3 + i], tiles[10 * 0 + i]);
+                    }
+                    break;
+
+                case PlayerController.GRAVITY.UP:
+                    for (int i = 0; i < 10; i++)
+                    {
+                        tilemap.SwapTile(tiles[10 * 0 + i], tiles[10 * 1 + i]);
+                        tilemap.SwapTile(tiles[10 * 2 + i], tiles[10 * 1 + i]);
+                        tilemap.SwapTile(tiles[10 * 3 + i], tiles[10 * 1 + i]);
+                    }
+                    break;
+
+                case PlayerController.GRAVITY.RIGHT:
+                    for (int i = 0; i < 10; i++)
+                    {
+                        tilemap.SwapTile(tiles[10 * 0 + i], tiles[10 * 2 + i]);
+                        tilemap.SwapTile(tiles[10 * 1 + i], tiles[10 * 2 + i]);
+                        tilemap.SwapTile(tiles[10 * 3 + i], tiles[10 * 2 + i]);
+                    }
+                    break;
+
+                case PlayerController.GRAVITY.LEFT:
+                    for (int i = 0; i < 10; i++)
+                    {
+                        tilemap.SwapTile(tiles[10 * 0 + i], tiles[10 * 3 + i]);
+                        tilemap.SwapTile(tiles[10 * 1 + i], tiles[10 * 3 + i]);
+                        tilemap.SwapTile(tiles[10 * 2 + i], tiles[10 * 3 + i]);
+                    }
+                    break;
             }
 
             Change = false;

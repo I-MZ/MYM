@@ -29,7 +29,7 @@ public class FudebakoChanger : MonoBehaviour
     {
         switch (PlayerController.instance.gravity) 
         {
-            case 0:
+            case PlayerController.GRAVITY.DOWN:
 
                 Fudebako_Down.SetActive(true);
                 Fudebako_Up.SetActive(false);
@@ -37,7 +37,7 @@ public class FudebakoChanger : MonoBehaviour
                 Fudebako_Left.SetActive(false);
 
                 break;
-            case 1:
+            case PlayerController.GRAVITY.UP:
 
                 Fudebako_Down.SetActive(false);
                 Fudebako_Up.SetActive(true);
@@ -45,7 +45,7 @@ public class FudebakoChanger : MonoBehaviour
                 Fudebako_Left.SetActive(false);
 
                 break;
-            case 2:
+            case PlayerController.GRAVITY.RIGHT:
 
                 Fudebako_Down.SetActive(false);
                 Fudebako_Up.SetActive(false);
@@ -53,7 +53,7 @@ public class FudebakoChanger : MonoBehaviour
                 Fudebako_Left.SetActive(false);
 
                 break;
-            case 3:
+            case PlayerController.GRAVITY.LEFT:
 
                 Fudebako_Down.SetActive(false);
                 Fudebako_Up.SetActive(false);
