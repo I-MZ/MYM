@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-//520行未完
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,32 +10,28 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rbody;                  //Rigidbody2D型の変数
     SpriteRenderer sr;
+    private CircleCollider2D cc2;
+    private PolygonCollider2D pc2;
+
     public float movespeed = 5.0f;      //移動速度
     private float inputH = 0.0f;        //横入力
     private float inputV = 0.0f;        //縦入力
     public float fallspead = 10.0f;     //落下速度
     public GRAVITY startgravity = GRAVITY.DOWN;
-    public GRAVITY gravity = GRAVITY.DOWN;             //重力の向き(0=下,1=上,2=右,3=左)
+    public GRAVITY gravity = GRAVITY.DOWN;            
     public bool forcepower = false;     //重力強化
     private bool checkchange = false;
     bool onWall = false;                //床(壁)に乗っているか
 
     public bool crevice = false;        //変形しないと通れない場所にいるか
     public bool Ruler_overlap = false;  //定規とプレイヤーが重なっているか
-    public int groundgravity;            //入力された重力の向きを記憶する
-    //public int newgravity;              //現在の重力の向きを記憶する
     public int UDLRground;              //定規から外れたときの重力の向き(0:下 1:上 2:右 3:左)
 
 
     private float cla;                  //透明度
     private float clarespeed = 0.01f;   //変化速度
-    public float spawnpointX = 0.0f;    //復活位置(X軸)
-    public float spawnpointY = 0.0f;    //復活位置(Y軸)
-    public float CpSpawnpointX = 0.0f;
-    public float CpSpawnpointY = 0.0f;
-    private CircleCollider2D cc2;
-    private PolygonCollider2D pc2;
-
+    private Vector2 SpawnPoint;
+    private Vector2 CpPos;
 
     private bool hitwall = true;
 
@@ -72,7 +67,7 @@ public class PlayerController : MonoBehaviour
         cc2.enabled = true;
         pc2.enabled = false;
 
-
+        SpawnPoint = transform.position;
 
 
         animator = GetComponent<Animator>();
@@ -189,7 +184,6 @@ public class PlayerController : MonoBehaviour
                 break;
 
         }
-        //GroundGravityCount();
 
 
 
@@ -507,6 +501,8 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "CheckPoint")
         {
             checkpoint = true;
+            CpPos = CheckPoint.instance.Position;
+
         }
         //死亡判定
         if (collision.gameObject.tag == "Dead" && gameState == "playing")
@@ -530,22 +526,6 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    //
-    //void GroundGravityCount()
-    //{
-    //    if (gravity == 1 || gravity == 0)//上下
-    //    {
-    //        groundgravity = gravity;
-    //        Debug.Log("着地する重力の方向を上下に変更");
-
-    //    }
-    //    if (gravity == 2 || gravity == 3)//左右
-    //    {
-    //        groundgravity = gravity;
-    //        Debug.Log("着地する重力の方向を左右に変更");
-
-    //    }
-    //}
 
     //定規に埋まった時の処理
     void Ruler_Move()
@@ -623,11 +603,11 @@ public class PlayerController : MonoBehaviour
 
         if (!checkpoint)
         {
-            transform.position = new Vector2(spawnpointX, spawnpointY);
+            transform.position = SpawnPoint;
         }
         else
         {
-            transform.position = new Vector2(CpSpawnpointX, CpSpawnpointY);
+            transform.position = CpPos;
         }
 
         rbody.velocity = new Vector2(0, 0);

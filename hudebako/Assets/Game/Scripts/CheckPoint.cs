@@ -7,8 +7,12 @@ using UnityEngine;
 /// </summary>
 public class CheckPoint : MonoBehaviour
 {
+    public static CheckPoint instance;
+
     public Sprite img;  //Žæ“¾Œã‚Ìimage
     SpriteRenderer sr;
+    Transform tf;
+    public Vector2 Position;
 
     public AudioClip GetSE;
 
@@ -17,7 +21,10 @@ public class CheckPoint : MonoBehaviour
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();    //SpriteRendererŽæ“¾
+        tf = GetComponent<Transform>();
+        Position = tf.position;
         Get = false;
+        instance = this;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

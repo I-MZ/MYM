@@ -22,6 +22,9 @@ public class SceneChenger : MonoBehaviour
 
     public static string gameState = "";    //フェードイン/フェードアウト中かどうか
 
+    private bool SceneChange;
+    private bool Gameend;
+
     public static bool doRetry = false;
 
     private AudioSource audioSource = null; //
@@ -38,6 +41,9 @@ public class SceneChenger : MonoBehaviour
     {
         instance = GetComponent<SceneChenger>();
 
+        SceneChange = false;
+        Gameend = false;
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -48,15 +54,28 @@ public class SceneChenger : MonoBehaviour
         StartCoroutine(FadeIn());
     }
 
+    private void Update()
+    {
+        if (SceneChange)
+        {
+            SceneManager.LoadScene(scenenum);
+        }
+    }
+
     public void NextScene()
     {
+        PlaySE(Decide);
         StartCoroutine(FadeOut((SceneManager.GetActiveScene().buildIndex) + 1));
     }
 
     public void ChangeScene(int n)
     {
         if (gameState != "loading" && n <= StageClearManager.clearlevel + 1)
+        {
+            PlaySE(Decide);
             StartCoroutine(FadeOut(n));
+        }
+            
     }
 
     public void ReloadScene()
@@ -64,7 +83,7 @@ public class SceneChenger : MonoBehaviour
         if (gameState != "loading")
         {
             doRetry = true;
-
+            PlaySE(Decide);
             StartCoroutine(FadeOut(SceneManager.GetActiveScene().buildIndex));
         }
     }
@@ -72,7 +91,11 @@ public class SceneChenger : MonoBehaviour
     public void ReturnSelect()
     {
         if (gameState != "loading")
+        {
+            PlaySE(Decide);
             StartCoroutine(FadeOut(selectscene));
+        }
+            
     }
 
     public IEnumerator FadeIn()
@@ -90,16 +113,17 @@ public class SceneChenger : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public IEnumerator FadeOut(int i)
+    public IEnumerator FadeOut(int i = -1)
     {
         fadein = false;
         Time.timeScale = 0;
 
         gameState = "loading";
 
-        PlaySE(Decide);
-
-        scenenum = i;
+        if (i != -1)
+            scenenum = i;
+        else
+            Gameend = true;
 
         cla = sr.color.a;
         while (cla < 1f)
@@ -109,7 +133,16 @@ public class SceneChenger : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene(scenenum);
+        if (!Gameend)
+            SceneChange = true;
+        else
+            Application.Quit();
+    }
+
+    public void Quit()
+    {
+        PlaySE(Decide);
+        StartCoroutine(FadeOut());
     }
 
     public void PlaySE(AudioClip clip)
