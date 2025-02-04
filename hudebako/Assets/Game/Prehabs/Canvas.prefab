@@ -328,6 +328,7 @@ MonoBehaviour:
   Nextbutton: {fileID: 0}
   Buckbutton: {fileID: 7315348617995153418}
   GameEnd_Cuasor: 0
+  MoveSE: {fileID: 0}
 --- !u!1 &1279325351216181536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,6 +1296,7 @@ MonoBehaviour:
   Nextbutton: {fileID: 7315348618853788880}
   Buckbutton: {fileID: 0}
   GameEnd_Cuasor: 0
+  MoveSE: {fileID: 0}
 --- !u!1 &6106360413124871667
 GameObject:
   m_ObjectHideFlags: 0
@@ -7977,7 +7979,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!114 &7315348618201845218
 MonoBehaviour:
