@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameEnd : MonoBehaviour
 {
     public GameObject endpanel;
+    public GameObject Explanation;
+    private ExplanationManager ExplanationMng;
 
     public static string GameState = "";
 
@@ -16,6 +18,8 @@ public class GameEnd : MonoBehaviour
     void Start()
     {
         GameState = "playing";
+
+        ExplanationMng = Explanation.GetComponent<ExplanationManager>();
 
         endpanel.SetActive(false);
     }
@@ -44,6 +48,8 @@ public class GameEnd : MonoBehaviour
         SceneChenger.instance.PlaySE(enter);
         endpanel.SetActive(true);
 
+        ExplanationMng.TextChange();
+
         GameState = "endmode";
 
     }
@@ -53,6 +59,8 @@ public class GameEnd : MonoBehaviour
 
         SceneChenger.instance.PlaySE(cancel);
         endpanel.SetActive(false);
+
+        ExplanationMng.TextChange();
 
         GameState = "playing";
 
