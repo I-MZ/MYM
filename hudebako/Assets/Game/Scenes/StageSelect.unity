@@ -405,7 +405,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105697395}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3690}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 22.242496, y: 19.917799, z: 41}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -414,7 +414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -156.81467, y: 124.02312}
+  m_AnchoredPosition: {x: -160, y: 124.02312}
   m_SizeDelta: {x: 5, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &106409200
@@ -4588,7 +4588,7 @@ MonoBehaviour:
   Panel2: {fileID: 917360287}
   Select_R: {fileID: 323185346}
   Select_L: {fileID: 1947066046}
-  Paging: {fileID: 8300000, guid: b8ba65e1186e5614bb5340078cd62c68, type: 3}
+  Paging: {fileID: 8300000, guid: 9fec13b940ac1b54d861e8e2b64425c3, type: 3}
 --- !u!1 &1364862089
 GameObject:
   m_ObjectHideFlags: 0
@@ -5375,7 +5375,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -10, y: 0}
-  m_SizeDelta: {x: -40, y: 0}
+  m_SizeDelta: {x: -38, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1497483030
 MonoBehaviour:
@@ -6072,7 +6072,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766779787}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3690}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 22.242496, y: 19.917799, z: 41}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6081,7 +6081,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -156.81467, y: -23}
+  m_AnchoredPosition: {x: -160, y: -23}
   m_SizeDelta: {x: 5, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1806803192
@@ -6772,7 +6772,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922108926}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3690.0002}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 22.242496, y: 19.917797, z: 41.000008}
   m_ConstrainProportionsScale: 0
   m_Children: []

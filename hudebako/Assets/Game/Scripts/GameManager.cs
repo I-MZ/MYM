@@ -88,12 +88,31 @@ public class GameManager : MonoBehaviour
 
             if (ClearMove.Movefinish)
             {
-                clearpanel.SetActive(true);
+                if (SceneManager.GetActiveScene().buildIndex != 10)
+                {
+                    clearpanel.SetActive(true);
+                    ClearMove.Movefinish = false;
+                }
+                else if(StageClearManager.clearlevel < 10)
+                {
+                    StageClearManager.clearlevel = SceneManager.GetActiveScene().buildIndex;
+                    SceneChenger.instance.ChangeScene(12);
+                    ClearMove.Movefinish = false;
+                }
+                else
+                {
+                    clearpanel.SetActive(true);
+                    ClearMove.Movefinish = false;
+                }
             }
 
             if (StageClearManager.clearlevel < SceneManager.GetActiveScene().buildIndex)
             {
-                StageClearManager.clearlevel = SceneManager.GetActiveScene().buildIndex;
+                if (SceneManager.GetActiveScene().buildIndex != 10)
+                {
+                    StageClearManager.clearlevel = SceneManager.GetActiveScene().buildIndex;
+                }
+                    
                 Debug.Log("clearlevel = " + StageClearManager.clearlevel);
 
             }

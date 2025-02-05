@@ -75,6 +75,14 @@ public class SceneChenger : MonoBehaviour
             PlaySE(Decide);
             StartCoroutine(FadeOut(n));
         }
+        else if (n == 12)
+        {
+            StartCoroutine(FadeOut(n));
+        }
+        else
+        {
+
+        }
             
     }
 

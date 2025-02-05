@@ -3162,7 +3162,7 @@ MonoBehaviour:
   checkmenu: 0
   Decide: {fileID: 8300000, guid: 48dd58a961c95af479aa08b0ba1717d0, type: 3}
   Cancel: {fileID: 8300000, guid: 561af91fe298680408d0f1ff05bc481d, type: 3}
-  Paging: {fileID: 8300000, guid: b8ba65e1186e5614bb5340078cd62c68, type: 3}
+  Paging: {fileID: 8300000, guid: 9fec13b940ac1b54d861e8e2b64425c3, type: 3}
 --- !u!1 &7315348617089448584
 GameObject:
   m_ObjectHideFlags: 0
