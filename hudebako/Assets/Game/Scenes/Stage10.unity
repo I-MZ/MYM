@@ -1688,6 +1688,8 @@ MonoBehaviour:
   Clear_Illust_Open: {fileID: 333187985}
   Clear_Illust_Close: {fileID: 719344705}
   GameClearPanel: {fileID: 417720118}
+  enter: {fileID: 0}
+  cancel: {fileID: 0}
 --- !u!4 &665694232
 Transform:
   m_ObjectHideFlags: 0
@@ -15918,11 +15920,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 280291653965081820, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.05
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 280291653965081820, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2083627711291270267, guid: 51af9f876456e4941bc1b23b65d6238c, type: 3}
       propertyPath: m_Enabled

@@ -6,7 +6,8 @@ using UnityEngine;
 
 //流れ
 /*
-ステージ10の旗に触れた瞬間にゲームクリアシーンに飛ばす？
+ステージ10の旗に触れてステージクリアの文字が流れた後に
+フェードアウトしてからゲームクリアシーンに飛ばす
 ステージセレクトシーンに戻ってきたらステージ9の下にクリア絵表示ボタンを表示
 そのボタンを押すと再度ゲームクリアシーンに飛ぶ(Escキーでステージセレクトシーンに移動)
 再度ゲームクリアシーンに飛んだ場合はクリア絵のみ表示するようにする
@@ -39,10 +40,10 @@ public class ClearIllust : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //全ステージクリア後にクリア絵を表示する
+        //全ステージクリア後にクリア絵を見るためのシーンに移動するためのボタンを表示
         //(現在はステージ1をクリアしていない場合のみ表示)
         if (StageClearManager.clearlevel == 0 && Panel_Manager_m.page_num == 2)
-        //全ステージクリアしたあとステージ9と10が表示されている場所に
+        //全ステージクリアしたあとステージ9の下にボタンを表示
         {
             IllustPanelOpen = true;
             Debug.Log("クリア絵パネル表示");
@@ -87,30 +88,25 @@ public class ClearIllust : MonoBehaviour
             Clear_Illust_Close.SetActive(false);
         }
 
-        if (IllustOpen)//IllustOpenがtrueなら
-        {
-            Clear_Illust_Close.SetActive(true);
-            Debug.Log("クリア絵を表示");
+        //if (IllustOpen)//IllustOpenがtrueなら
+        //{
+        //    Clear_Illust_Close.SetActive(true);
+        //    Debug.Log("クリア絵を表示");
 
-        }
-        else
-        {
-            Clear_Illust_Close.SetActive(false);
-            Debug.Log("クリア絵を非表示");
-        }
+        //}
 
 
-        if (IllustOpen == true)
-        {
-            //Escapeキーが押されるとクリア絵を非表示にする
-            if (Input.GetKey(KeyCode.Escape))
-            {
-                IllustOpen = false;
-                Debug.Log("絵を閉じる");
-            }
+        //if (IllustOpen == true)
+        //{
+        //    //Escapeキーが押されるとステージセレクト画面に戻る
+        //    if (Input.GetKey(KeyCode.Escape))
+        //    {
+        //        IllustOpen = false;
+        //        Debug.Log("絵を閉じる");
+        //    }
 
 
-        }
+        //}
 
 
         //public void Illust_Open()//クリア絵を開くボタンを表示する
@@ -137,14 +133,12 @@ public class ClearIllust : MonoBehaviour
 
     }
     /// <summary>
-    /// 押すとイラストを表示する
-    /// 表示している間はカーソルを移動出来ない
+    /// 押すとクリアシーンに移動
     /// </summary>
     public void Enter_Event()
     {
-        MoveStop();
-        IllustOpen = true;
-        Debug.Log("絵を開く");
+        //IllustOpen = true;
+        Debug.Log("クリアシーンへ移動");
     }
 
     //public void Close_Event()
@@ -164,11 +158,6 @@ public class ClearIllust : MonoBehaviour
             SceneChenger.instance.PlaySE(cancel);
             Debug.Log("canselSEを鳴らす");
         }
-    }
-    //動きを止める
-    public void MoveStop()
-    {
-        
     }
 }
 

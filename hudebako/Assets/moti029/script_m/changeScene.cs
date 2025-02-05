@@ -5,10 +5,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-///【機能】 ボタン状態による色変更
-///【第一引数】色を変更したいボタン
-///【第二引数】変更したい色（new Color32(byte a,byte b,byte c,byte d)) 
-///【第三引数】色を変更したい状態（0:normalColor 1:highlightedColor 2:pressedColor 3:selectedColor 4:disabledColor）
 public class changeScene : MonoBehaviour
 {
     private void ButtonStateColorChange(Button button, Color32 color, int changeState)
@@ -36,8 +32,6 @@ public class changeScene : MonoBehaviour
     }
 
     [SerializeField] public Button select_button; //ボタンを入れる
-    //[SerializeField] private Button stage_button;
-    private Color32 button_color;//Color32型の変数を宣言
     int stage_num = 0;
 
     private void Start()
