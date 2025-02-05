@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/// <summary>
+/// 外壁の色を重力の向きに合わせて変更するクラス
+/// </summary>
 public class WallColorChenger : MonoBehaviour
 {
     //ステージのタイルマップ取得
@@ -27,8 +30,10 @@ public class WallColorChenger : MonoBehaviour
         CheckGravity();
 
         if (Change)
-        {
-            switch (Oldgravity) 
+        {//重力が変わったら
+
+            //重力の向きに合わせてタイルを入れ替える
+            switch (PlayerController.instance.gravity) 
             {
                 //下
                 case PlayerController.GRAVITY.DOWN:
@@ -74,13 +79,15 @@ public class WallColorChenger : MonoBehaviour
             Change = false;
         }
         
-
+        //重力の強弱による変更
         if (PlayerController.instance.forcepower)
-        {
+        {//重力が強ければ
+            //色を暗くする
             tilemap.color = new Color(0.7f, 0.7f, 0.7f);
         }
         else
-        {
+        {//重力が弱ければ
+            //色を戻す
             tilemap.color = new Color(1.0f, 1.0f, 1.0f);
         }
         

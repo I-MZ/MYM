@@ -21,7 +21,7 @@ public class CheckPoint : MonoBehaviour
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();    //SpriteRenderer取得
-        tf = GetComponent<Transform>();
+        tf = GetComponent<Transform>();         //Transfoam取得
         Position = tf.position;
         Get = false;
         instance = this;
@@ -33,9 +33,13 @@ public class CheckPoint : MonoBehaviour
         {//プレイヤーが触れたら
             //SpriteRendererのimageを変更
             sr.sprite = img;
+
+            //まだ取られていなければ
             if (!Get)
             {
+                //取得音を鳴らす
                 SceneChenger.instance.PlaySE(GetSE);
+                //取ったことにする
                 Get = true;
             }
         }

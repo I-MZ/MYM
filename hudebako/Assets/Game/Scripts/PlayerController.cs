@@ -3,25 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-
+/// <summary>
+/// プレイヤーの動きを制御するクラス
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
-    Rigidbody2D rbody;                  //Rigidbody2D型の変数
-    SpriteRenderer sr;
+    //コンポーネントを入れる変数
+    private Rigidbody2D rbody;
+    private SpriteRenderer sr;
     private CircleCollider2D cc2;
     private PolygonCollider2D pc2;
+    Animator animator;
 
-    public float movespeed = 5.0f;      //移動速度
-    private float inputH = 0.0f;        //横入力
-    private float inputV = 0.0f;        //縦入力
-    public float fallspead = 10.0f;     //落下速度
-    public GRAVITY startgravity = GRAVITY.DOWN;
-    public GRAVITY gravity = GRAVITY.DOWN;            
-    public bool forcepower = false;     //重力強化
-    private bool checkchange = false;
-    bool onWall = false;                //床(壁)に乗っているか
+    //入力
+    private float inputH = 0.0f;    //横
+    private float inputV = 0.0f;    //縦
+
+    //ステータス
+    private float movespeed = 5.0f;             //移動速度
+    private float fallspead = 10.0f;            //落下速度
+    public GRAVITY startgravity = GRAVITY.DOWN; //初期重力向き
+    public GRAVITY gravity = GRAVITY.DOWN;      //現在の重力向き
+    public bool forcepower = false;             //重力強/弱
+    private Vector2 SpawnPoint;                 //初期復活位置
+    private Vector2 CpPos;                      //中間地点
+    private bool checkchange = false;           //1回目の変形確認用変数
+    private bool onWall = false;                //床(壁)に乗っているか
 
     public bool crevice = false;        //変形しないと通れない場所にいるか
     public bool Ruler_overlap = false;  //定規とプレイヤーが重なっているか
@@ -30,8 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private float cla;                  //透明度
     private float clarespeed = 0.01f;   //変化速度
-    private Vector2 SpawnPoint;
-    private Vector2 CpPos;
+
 
     private bool hitwall = true;
 
@@ -39,14 +47,13 @@ public class PlayerController : MonoBehaviour
 
     private bool checkpoint;
 
-    public static string gameState = "playing";
+    public static string gameState = "";
     public LayerMask wallLayer;
 
-    Animator animator;
+    //アニメーション関係の変数
     public string henkeianime = "player-HENKEI";
     public string modorianime = "player-HUKUGEN";
     public string tuujouanime = "player-TUUZYOU";
-
     string nowanime = "";
     string oldanime = "";
 
@@ -59,10 +66,13 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rbody = this.GetComponent<Rigidbody2D>();   //Rigidbody2Dを取ってくる
+        //コンポーネント取得
+        rbody = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         cc2 = GetComponent<CircleCollider2D>();
         pc2 = GetComponent<PolygonCollider2D>();
+
+
         gameState = "start";
         cc2.enabled = true;
         pc2.enabled = false;
@@ -77,9 +87,7 @@ public class PlayerController : MonoBehaviour
         gravity = startgravity;
         returnfolm = false;
 
-        instance = GetComponent<PlayerController>();
-
-        
+        instance = this;
     }
 
     // Update is called once per frame
