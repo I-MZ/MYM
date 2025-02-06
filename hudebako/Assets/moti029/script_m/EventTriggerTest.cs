@@ -35,7 +35,7 @@ public class EventTriggerTest : MonoBehaviour
             }
             else if (SelectObject.name == "Stage3_button" ||
                      SelectObject.name == "Stage7_button" ||
-                     SelectObject.name == "Clear_Illust_Open")
+                     SelectObject.name == "Clear")
             {
                 Debug.Log("num3");
                 num = 3;//ñÓàÛÇÕç∂â∫Ç…ï\é¶Ç≥ÇÍÇÈ

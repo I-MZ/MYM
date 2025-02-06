@@ -49,7 +49,7 @@ public class Stage_Lock_Set : MonoBehaviour
         {
             stage_lock_UL.SetActive(true);
             stage_lock_UR.SetActive(true);
-            stage_lock_DL.SetActive(false);
+            stage_lock_DL.SetActive(true);
             stage_lock_DR.SetActive(false);
         }
 
@@ -80,8 +80,10 @@ public class Stage_Lock_Set : MonoBehaviour
             stage_lock_UL.SetActive(false);
         if (Panel_Manager_m.page_num == 2 && nowclearlevel >= 9)
             stage_lock_UR.SetActive(false);
-       
+        if (Panel_Manager_m.page_num == 2 && nowclearlevel >= 10)
+            stage_lock_DL.SetActive(false);
 
-       
+
+
     }
 }

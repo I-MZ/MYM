@@ -1686,7 +1686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Clear_Illust_Open: {fileID: 333187985}
-  Clear_Illust_Close: {fileID: 719344705}
+  Clear_Illust_Close: {fileID: 0}
   GameClearPanel: {fileID: 417720118}
   enter: {fileID: 0}
   cancel: {fileID: 0}
@@ -1749,11 +1749,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &719344705 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 77702278470315448, guid: 6b75b02b369f74b4c96223b056544b92, type: 3}
-  m_PrefabInstance: {fileID: 77702279109966329}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &782573401
 GameObject:
   m_ObjectHideFlags: 0

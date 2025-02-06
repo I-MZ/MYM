@@ -75,7 +75,7 @@ public class SceneChenger : MonoBehaviour
             PlaySE(Decide);
             StartCoroutine(FadeOut(n));
         }
-        else if (n == 12)
+        else if (n == 12 && StageClearManager.clearlevel >= 10)
         {
             StartCoroutine(FadeOut(n));
         }
