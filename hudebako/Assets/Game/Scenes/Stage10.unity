@@ -2956,6 +2956,18 @@ PrefabInstance:
       propertyPath: PlayerObject
       value: 
       objectReference: {fileID: 283652820}
+    - target: {fileID: 3596315568308569417, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+      propertyPath: Buttons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1351267566}
+    - target: {fileID: 3596315568308569417, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+      propertyPath: Buttons.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557473484501598085, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6087035847762427291, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2972,6 +2984,18 @@ PrefabInstance:
       propertyPath: nextbutton
       value: 
       objectReference: {fileID: 444197408}
+    - target: {fileID: 7315348617592482573, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7315348617592482573, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7315348617592482573, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 7315348617701477300, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2979,6 +3003,10 @@ PrefabInstance:
     - target: {fileID: 7315348617701477306, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
       propertyPath: sceneName
       value: Stage10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7315348618049531285, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 7315348618201845216, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
       propertyPath: m_Pivot.x
@@ -3076,10 +3104,23 @@ PrefabInstance:
       propertyPath: sceneName
       value: Stage10
       objectReference: {fileID: 0}
+    - target: {fileID: 7315348618233333718, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7315348618233333718, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6710768583732342959, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
     - {fileID: 3060346352287782333, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+--- !u!1 &1351267566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7315348617592482574, guid: 827f1e4dd3c8f6846bf8117e5a9ecbc3, type: 3}
+  m_PrefabInstance: {fileID: 1351267565}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1370787895
 PrefabInstance:
   m_ObjectHideFlags: 0
